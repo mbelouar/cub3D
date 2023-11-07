@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/11/07 01:09:54 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/11/07 17:24:01 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,11 @@ RM = rm -f
 
 INCLUDE = -L libft -lft
 
-SRC = main.c\
-			elalj/errors.c\
+SRC =		main.c \
+			elalj/errors.c \
+			mbelouar/srcs/ft_errors.c \
+			mbelouar/srcs/init.c \
+			mbelouar/srcs/esc_close.c \
 
 OBJS := $(SRC:.c=.o)
 

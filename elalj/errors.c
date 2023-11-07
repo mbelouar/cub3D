@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moelalj <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:44:02 by moelalj           #+#    #+#             */
-/*   Updated: 2023/11/07 12:44:03 by moelalj          ###   ########.fr       */
+/*   Updated: 2023/11/07 15:20:58 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_and_exit_param(void)
 {
 	ft_putstr_fd("Bad parameters input, Try again!", 2);
-	exit (1);
+	exit (EXIT_FAILURE);
 }
 
 void	open_fd_check(int *fd, char *file)
@@ -24,6 +24,6 @@ void	open_fd_check(int *fd, char *file)
 	if (*fd < 0)
 	{
 		ft_putstr_fd("You have no file to read from", 1);
-		exit (1);
+		exit (EXIT_FAILURE);
 	}
 }

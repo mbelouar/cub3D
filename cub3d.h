@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/07 01:07:09 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:27:31 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-# define WIDTH		1400
-# define HEIGHT		900
+# define WIDTH		800
+# define HEIGHT		600
 # define TITLE		"cub3D"
 
 typedef struct e_image {
@@ -35,20 +35,21 @@ typedef struct s_data {
 	t_image			image;
 	void			*mlx_ptr;
 	void			*win_ptr;
-	double			scale;
-	double			zoom;
 	double			mouse_x;
 	double			mouse_y;
 }				t_data;
 
+typedef struct s_player {
+	
+}				t_player;
+
 void	ft_init_data(t_data *data);
 void	ft_init_image(t_data *data);
+void	err_msg(char *str, int fd);
+int		esc_handle(int keycode, t_data *data);
+int		ft_close(t_data *data);
 
-
-
-// bonjah
 void	print_and_exit_param(void);
 void	open_fd_check(int *fd, char *file);
-int		close_window(t_data *data);
 
 #endif
