@@ -10,8 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "cub3d.h"
 
+int	close_window(t_data *data)
+{
+	(void)data;	//we need it later
+	//we need to free all after exit..
+	exit (0);
+	return (0);
+}
 void	ft_init_image(t_data *data)
 {
 	data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
@@ -21,6 +28,7 @@ void	ft_init_image(t_data *data)
 			&data->image.bits_per_pixel,
 			&data->image.line_length,
 			&data->image.endian);
+	mlx_hook(data->win_ptr, 17, 0, close_window, data);
 }
 
 void	ft_init_data(t_data *data)
@@ -36,10 +44,18 @@ void	ft_init_data(t_data *data)
 
 int main(int ac, char **av)
 {
-	(void)ac;
 	(void)av;
 	t_data	data;
+	int			fd;
 
-	ft_init_data(&data);
-	mlx_loop(data.mlx_ptr);
+	fd = 0;
+	if (ac == 2)
+	{
+		//open_fd_check(&fd, av[1]);	//for check ila kan dak map already kayn ->> hadi tal men ba3d wndiroha
+		ft_init_data(&data);
+		mlx_loop(data.mlx_ptr);
+	}
+	else
+		print_and_exit_param(); //error d map beli makynx
+	return (0);
 }

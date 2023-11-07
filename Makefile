@@ -11,33 +11,49 @@
 # **************************************************************************** #
 
 # Colors
-RED = \033[0;31m
-GREEN = \033[0;32m
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
 RESET = \033[0m
 
-SRC = mbelouar/srcs/main.c
 
 NAME = cub3d
+
 CC = cc
-FLAGS = -lmlx -framework OpenGL -framework AppKit
+
+MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+
+CFLAGS = -Wall -Werror -Wextra
+
 RM = rm -f
+
 INCLUDE = -L libft -lft
+
+SRC = main.c\
+			elalj/errors.c\
+
 OBJS := $(SRC:.c=.o)
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	@echo "$(YELLOW)Compiling cub3D...⏳$(RESET)"
+	@echo "$(YELLOW)Linking...⏳$(RESET)"
 	@make -C libft
-	@echo "$(RED)Compiling cub3D...$(RESET)"
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(INCLUDE)
-	@echo "$(GREEN)Compilation complete$(RESET)"
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(INCLUDE)
+	@echo "$(GREEN)Compilation completed✅$(RESET)"
 
 clean:
 	@$(RM) $(OBJS)
+	@echo "$(RED)Deleting obj_files$(RESET)"
 	@make clean -C libft
 
 fclean: clean
 	@$(RM) $(NAME)
+	@echo "$(RED)Deleting obj_files + ./cub3D$(RESET)"
 	@make fclean -C libft
 
 re: fclean all

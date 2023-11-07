@@ -14,9 +14,10 @@
 # define CUB3D_H
 
 # include <mlx.h>
-# include "../libft/libft.h"
+# include "libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 # define WIDTH		1400
 # define HEIGHT		900
@@ -42,5 +43,12 @@ typedef struct s_data {
 
 void	ft_init_data(t_data *data);
 void	ft_init_image(t_data *data);
+
+
+
+// bonjah
+void	print_and_exit_param(void);
+void	open_fd_check(int *fd, char *file);
+int		close_window(t_data *data);
 
 #endif
