@@ -18,6 +18,32 @@ int	ft_close(t_data *data)
 	exit (0);
 }
 
+void	ft_rotate(t_data *data)
+{
+	double cos_val = cos(radians);
+    double sin_val = sin(radians);
+
+    // Rotate direction vector
+    double new_dir_x = all->ray.dir_x * cos_val - all->ray.dir_y * sin_val;
+    double new_dir_y = all->ray.dir_x * sin_val + all->ray.dir_y * cos_val;
+
+    // Rotate camera plane
+    double new_plane_x = all->ray.plane_x * cos_val - all->ray.plane_y * sin_val;
+    double new_plane_y = all->ray.plane_x * sin_val + all->ray.plane_y * cos_val;
+
+    // Update direction and camera plane
+    all->ray.dir_x = new_dir_x;
+    all->ray.dir_y = new_dir_y;
+    all->ray.plane_x = new_plane_x;
+    all->ray.plane_y = new_plane_y;
+
+    // Redraw and display the image after the rotation
+    //draw_img(all);
+    //show_img(all);
+
+    return 0;
+}
+
 int	handle_hook(int keycode, t_data *data)
 {
 	if (keycode == 53)
@@ -31,13 +57,9 @@ int	handle_hook(int keycode, t_data *data)
 	else if (keycode == RIGHT)
 		data->ray.player_x += 10;
 	else if (keycode == RROTATE)
-	{
-		//
-	}
+		ft_rotate(data, -M_PI / 50);
 	else if (keycode == LROTATE)
-	{
-		//
-	}
+		ft_rotate(data, M_PI / 50);
 	return (0);
 }
 
