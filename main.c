@@ -20,6 +20,9 @@ int main(int ac, char **av)
 	if (ac != 2)
 		print_and_exit_param();
 	ft_init_data(&data);
+	mlx_hook(data.win_ptr, 17, 0, &ft_close, &data);
+	mlx_hook(data.win_ptr, 2, 0, &handle_hook, &data);
+	mlx_loop_hook(data.mlx_ptr, &handle_move, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
