@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/11/09 17:08:24 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/11/09 21:48:01 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ $(NAME): $(OBJS)
 	@echo "$(YELLOW)Linking...⏳$(RESET)"
 	@make -C libft
 	@$(CC) $(CFLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJS) $(INCLUDE)
-	@echo "$(GREEN)Compilation completed✅$(RESET)"
+	@echo "$(GREEN)Compilation completed ✅$(RESET)"
 
 clean:
 	@$(RM) $(OBJS)

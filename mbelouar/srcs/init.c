@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/09 18:08:02 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:58:49 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_init_player(t_data *data)
 {
+	// after parse the map 
 	// data->ray.player_x = data->map_info.snew_x + 0.5;
 	// data->ray.player_y = data->map_info.snew_y + 0.5;
-	data->rotation_angle = 0.0;
-	data->ray.player_x = HEIGHT / 2;
-	data->ray.player_y = WIDTH / 2;
+	data->ray.player_x = WIDTH / 2;
+	data->ray.player_y = HEIGHT / 2;
 	data->ray.direction_x = 0;
 	data->ray.direction_y = 0;
 	data->ray.plane_x = 0;
@@ -71,6 +71,7 @@ int init_player_direction(t_data *data)
 		initial_rotation_angle = M_PI / 2;  // Rotate 90 degrees for East direction
 	else if (data->map_info.snew_dir == 'W')
 		initial_rotation_angle = (3 * M_PI) / 2; // Rotate 270 degrees for West direction
+	data->angle = initial_rotation_angle;
 
 	// Apply the initial rotation to set player direction
 	// rotate the player with the initial_rotate_angle

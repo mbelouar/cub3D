@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/09 18:19:25 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:39:59 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 # include <stdio.h>
 # include <math.h>
 
-# define FORWARD 126
-# define BACKWARDS 125
-# define LEFT 123
-# define RIGHT 124
+# define LROTATE 123
+# define RROTATE 124
+# define FORWARD 13
+# define BACKWARDS 1
+# define LEFT 0
+# define RIGHT 2
 # define ESC 53
 # define WIDTH		800
 # define HEIGHT		600
@@ -125,7 +127,7 @@ typedef struct s_data {
 	void			*win_ptr;
 	double			width;
 	double			height;
-    double          rotation_angle;
+    int             angle;
 }				t_data;
 
 // initialize functions
