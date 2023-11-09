@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/07 17:26:59 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:08:02 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	ft_init_player(t_data *data)
 {
-	data->ray.player_x = data->map.snew_x + 0.5;
-	data->ray.player_y = data->map.snew_y + 0.5;
+	// data->ray.player_x = data->map_info.snew_x + 0.5;
+	// data->ray.player_y = data->map_info.snew_y + 0.5;
+	data->rotation_angle = 0.0;
+	data->ray.player_x = HEIGHT / 2;
+	data->ray.player_y = WIDTH / 2;
 	data->ray.direction_x = 0;
 	data->ray.direction_y = 0;
 	data->ray.plane_x = 0;
@@ -26,10 +29,9 @@ void	ft_init_player(t_data *data)
 	data->ray.backwards = 0;
 	data->ray.left = 0;
 	data->ray.right = 0;
-	data->ray.rot_left = 0;
-	data->ray.rot_right = 0;
-	initialize_player_direction(data);
-	return (0);
+	data->ray.r_left = 0;
+	data->ray.r_right = 0;
+	init_player_direction(data);
 }
 
 void	ft_init_image(t_data *data)
@@ -41,9 +43,7 @@ void	ft_init_image(t_data *data)
 			&data->image.bits_per_pixel,
 			&data->image.line_length,
 			&data->image.endian);
-	mlx_key_hook(data->win_ptr, &esc_handle, data);
-	mlx_hook(data->win_ptr, 17, 0, ft_close, data);
-	ft_init_player(&data);
+	ft_init_player(data);
 }
 
 void	ft_init_data(t_data *data)
@@ -57,21 +57,23 @@ void	ft_init_data(t_data *data)
 	ft_init_image(data);
 }
 
-int initialize_player_direction(t_data *data)
+int init_player_direction(t_data *data)
 {
-    double initial_rotation_angle;
+	double	initial_rotation_angle;
 
 	initial_rotation_angle = 0.0;
-    // Check the initial snew direction and set the corresponding rotation angle
-    if (data->map.snew_dir == 'E')
-        initial_rotation_angle = M_PI / 2;  // Rotate 90 degrees for East direction
-    else if (data->map.snew_dir == 'S')
-        initial_rotation_angle = M_PI;      // Rotate 180 degrees for South direction
-    else if (data->map.snew_dir == 'W')
-        initial_rotation_angle = (3 * M_PI) / 2; // Rotate 270 degrees for West direction
+	// Check the initial snew direction and set the corresponding rotation angle
+	if (data->map_info.snew_dir == 'N')
+		initial_rotation_angle = 0;
+	else if (data->map_info.snew_dir == 'S')
+		initial_rotation_angle = M_PI;      // Rotate 180 degrees for South direction
+	else if (data->map_info.snew_dir == 'E')
+		initial_rotation_angle = M_PI / 2;  // Rotate 90 degrees for East direction
+	else if (data->map_info.snew_dir == 'W')
+		initial_rotation_angle = (3 * M_PI) / 2; // Rotate 270 degrees for West direction
 
-    // Apply the initial rotation to set player direction
-    // rotate the player with the initial_rotate_angle
+	// Apply the initial rotation to set player direction
+	// rotate the player with the initial_rotate_angle
 
-    return (0);
+	return (0);
 }

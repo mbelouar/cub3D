@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/07 17:27:31 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:19:25 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdio.h>
+# include <math.h>
 
-# define LROTATE 123
-# define RROTATE 124
-# define FORWARD 13
-# define BACKWARDS 1
-# define LEFT 0
-# define RIGHT 2
+# define FORWARD 126
+# define BACKWARDS 125
+# define LEFT 123
+# define RIGHT 124
 # define ESC 53
 # define WIDTH		800
 # define HEIGHT		600
@@ -37,16 +37,6 @@ typedef struct e_image {
 	int		line_length;
 	int		endian;
 }				t_image;
-
-typedef struct s_data {
-	t_image			image;
-	t_ray			ray;
-	t_map			map_info;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	double			width;
-	double			height;
-}				t_data;
 
 typedef struct s_map {
 	char			**map;
@@ -127,13 +117,32 @@ typedef struct s_ray {
     int r_right;
 }				t_ray;
 
+typedef struct s_data {
+	t_image			image;
+	t_ray			ray;
+	t_map			map_info;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	double			width;
+	double			height;
+    double          rotation_angle;
+}				t_data;
+
+// initialize functions
 void	ft_init_data(t_data *data);
 void	ft_init_image(t_data *data);
-void	err_msg(char *str, int fd);
-int		esc_handle(int keycode, t_data *data);
-int		ft_close(t_data *data);
+void	ft_init_player(t_data *data);
+int     init_player_direction(t_data *data);
 
+// error functions
+void	err_msg(char *str, int fd);
 void	print_and_exit_param(void);
 void	open_fd_check(int *fd, char *file);
+
+// mlx hooks
+int		ft_close(t_data *data);
+int		esc_handle(int keycode, t_data *data);
+int     handle_hook(int keycode, t_data *data);
+int     handle_move(t_data *data);
 
 #endif
