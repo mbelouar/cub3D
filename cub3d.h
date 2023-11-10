@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/09 19:39:59 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:15:56 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct s_data {
 	void			*win_ptr;
 	double			width;
 	double			height;
-    int             angle;
+    double          r_angle;
 }				t_data;
 
 // initialize functions
@@ -146,5 +146,8 @@ int		ft_close(t_data *data);
 int		esc_handle(int keycode, t_data *data);
 int     handle_hook(int keycode, t_data *data);
 int     handle_move(t_data *data);
+
+//colors
+void	plot_point(t_data *data, int x, int y, int color);
 
 #endif
