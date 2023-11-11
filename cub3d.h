@@ -28,7 +28,6 @@
 # define LEFT 0
 # define RIGHT 2
 # define ESC 53
-# define SPEED_MOVE 0.01
 # define WIDTH		800
 # define HEIGHT		600
 # define TITLE		"cub3D"
@@ -48,6 +47,7 @@ typedef struct s_map {
 	char			snew_dir;
     int             snew_x;
     int             snew_y;
+    char            **str;
 }				t_map;
 
 typedef struct s_ray {
@@ -119,11 +119,17 @@ typedef struct s_ray {
     int r_left;
     int r_right;
 }				t_ray;
-
+typedef struct s_dir{
+    int NO;
+    int SO;
+    int EA;
+    int WE;
+}               t_dir;
 typedef struct s_data {
 	t_image			image;
 	t_ray			ray;
 	t_map			map_info;
+    t_dir           num;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	double			width;
@@ -148,14 +154,41 @@ int		esc_handle(int keycode, t_data *data);
 int     handle_hook(int keycode, t_data *data);
 int     handle_move(t_data *data);
 
-// colors
+//colors
 void	plot_point(t_data *data, int x, int y, int color);
 
-// moves
-void	ft_move_up(t_data *data);
-void	ft_move_down(t_data *data);
-void	ft_move_right(t_data *data);
-void	ft_move_left(t_data *data);
-bool    valid_move(t_data *data, double x, double y);
+// >--------<
+//parsing
+void	read_map(t_data *data, int fd);
+int     map_valid(t_data *data, int fd);
+void	check_valid_directions(t_data *data);
+//split
+char	**ftt_split(char const *s, char c);
+int	    count_chars(char const *s, char delimiter, int lens);
+int	    count_words(char const *s, char delimiter);
+//directions
+void    check_if_double_directions(t_data *data);
+void	check_if_valid_direction_name(t_data *data);
+void	print_err_NO();
+void	print_err_double_dir();
+//errors
+void	check_fd_map(int *fd, char *file);
+void	print_and_exit_param(void);
+void	err_empty_map(void);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+//gnl
+char	*get_next_line(int fd);
+char	*ft_read(char *all, int fd);
+char	*cut(char *str);
+char	*copy_to_xyata(char *str);
+//libft_needed
+char	*ftt_strcpy(char *dst, char *src);
+char	*ftt_strjoin(char *s1, char *s2);
+char	*ftt_strchr(const char *s, int c);
+size_t	ftt_strlen(const char *s);
+// directions
 
+
+# endif
 #endif

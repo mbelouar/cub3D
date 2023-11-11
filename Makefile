@@ -30,7 +30,14 @@ RM = rm -f
 INCLUDE = -L libft -lft
 
 SRC =		main.c \
-			elalj/errors.c \
+			elalj/errors.c\
+			elalj/read_map.c\
+			elalj/parsing.c\
+			elalj/ft_split.c\
+			elalj/gnl/get_next_line.c\
+			elalj/gnl/get_next_line_utils.c\
+			elalj/directions/check_directions.c\
+			elalj/directions/err_directions.c\
 			mbelouar/srcs/ft_errors.c \
 			mbelouar/srcs/init.c \
 			mbelouar/srcs/mlx_hooks.c \
