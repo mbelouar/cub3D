@@ -72,7 +72,7 @@ int init_player_direction(t_data *data)
 		initial_rotation_angle = M_PI / 2;  // Rotate 90 degrees for East direction
 	else if (data->map_info.snew_dir == 'W')
 		initial_rotation_angle = (3 * M_PI) / 2; // Rotate 270 degrees for West direction
-	// data->r_angle = initial_rotation_angle;
+	data->r_angle = initial_rotation_angle;
 
 	// Apply the initial rotation to set player direction
 	// rotate the player with the initial_rotate_angle

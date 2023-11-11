@@ -18,24 +18,24 @@ int	ft_close(t_data *data)
 	exit (0);
 }
 
-int	handle_hook(int keycode, t_data *data)
-{
-	if (keycode == 53)
-		ft_close(data);
-	else if (keycode == FORWARD)
-		data->ray.player_y -= 10;
-	else if (keycode == BACKWARDS)
-		data->ray.player_y += 10;
-	else if (keycode == LEFT)
-		data->ray.player_x -= 10;
-	else if (keycode == RIGHT)
-		data->ray.player_x += 10;
-	else if (keycode == RROTATE)
-		data->r_angle += 0.09;
-	else if (keycode == LROTATE)
-		data->r_angle -= 0.09;
-	return (0);
-}
+// int	handle_hook(int keycode, t_data *data)
+// {
+// 	if (keycode == 53)
+// 		ft_close(data);
+// 	else if (keycode == FORWARD)
+// 		data->ray.player_y -= 10;
+// 	else if (keycode == BACKWARDS)
+// 		data->ray.player_y += 10;
+// 	else if (keycode == LEFT)
+// 		data->ray.player_x -= 10;
+// 	else if (keycode == RIGHT)
+// 		data->ray.player_x += 10;
+// 	else if (keycode == RROTATE)
+// 		data->r_angle += 0.09;
+// 	else if (keycode == LROTATE)
+// 		data->r_angle -= 0.09;
+// 	return (0);
+// }
 
 // int handle_move(t_data *data)
 // {
@@ -57,23 +57,23 @@ int	handle_hook(int keycode, t_data *data)
 // }
 
 
-void draw_rotated_player(t_data *data, double angle)
-{
-    int i, j;
-    int size = 10; // Adjust the size as needed
-    int half_size = size / 2;
+// void draw_rotated_player(t_data *data, double angle)
+// {
+//     int i, j;
+//     int size = 10; // Adjust the size as needed
+//     int half_size = size / 2;
 
-    for (i = -half_size; i < half_size; i++) {
-        for (j = -half_size; j < half_size; j++) {
-            // Apply rotation transformation to get new coordinates
-            int new_x = cos(angle) * i - sin(angle) * j + data->ray.player_x;
-            int new_y = sin(angle) * i + cos(angle) * j + data->ray.player_y;
+//     for (i = -half_size; i < half_size; i++) {
+//         for (j = -half_size; j < half_size; j++) {
+//             // Apply rotation transformation to get new coordinates
+//             int new_x = cos(angle) * i - sin(angle) * j + data->ray.player_x;
+//             int new_y = sin(angle) * i + cos(angle) * j + data->ray.player_y;
 
-            // Plot the point in the new rotated position
-            plot_point(data, new_x, new_y, 0xFFFFFF);
-        }
-    }
-}
+//             // Plot the point in the new rotated position
+//             plot_point(data, new_x, new_y, 0xFFFFFF);
+//         }
+//     }
+// }
 
 // int handle_move(t_data *data)
 // {
@@ -86,38 +86,57 @@ void draw_rotated_player(t_data *data, double angle)
 //     return (0);
 // }
 
-int handle_move(t_data *data)
+// int handle_move(t_data *data)
+// {
+//     mlx_destroy_image(data->mlx_ptr, data->image.img);
+
+//     // Create a new image
+//     data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+//     data->image.addr = mlx_get_data_addr(data->image.img,
+//             &data->image.bits_per_pixel,
+//             &data->image.line_length,
+//             &data->image.endian);
+
+//     // Draw the rotated rectangle based on r_angle
+//     draw_rotated_player(data, data->r_angle);
+
+//     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.img, 0, 0);
+//     return (0);
+// }
+
+
+int	handle_hook(int keycode, t_data *data)
 {
-    mlx_destroy_image(data->mlx_ptr, data->image.img);
-
-    // Create a new image
-    data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-    data->image.addr = mlx_get_data_addr(data->image.img,
-            &data->image.bits_per_pixel,
-            &data->image.line_length,
-            &data->image.endian);
-
-    // Draw the rotated rectangle based on r_angle
-    draw_rotated_player(data, data->r_angle);
-
-    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.img, 0, 0);
-    return (0);
+	if (keycode == 53)
+		ft_close(data);
+	else if (keycode == FORWARD)
+		data->ray.player_y = 1;
+	else if (keycode == BACKWARDS)
+		data->ray.player_y = 1;
+	else if (keycode == LEFT)
+		data->ray.player_x = 1;
+	else if (keycode == RIGHT)
+		data->ray.player_x = 1;
+	else if (keycode == RROTATE)
+		data->ray.r_right = 1;
+	else if (keycode == LROTATE)
+		data->ray.r_left = 1;
+	return (0);
 }
 
-
-// int	handle_move(t_data *data)
-// {
-// 	if (data->ray.forward == 1)
-// 		// must move the player      (direction : +x and +y)
-// 	if (data->ray.backwards == 1)
-// 		// must move the player      (direction : -x and -y)
-// 	if (data->ray.left == 1)
-// 		// must move the player      (plane 2D  : -x and -y)
-// 	if (data->ray.right == 1)
-// 		// must move the player      (plane 2D  : +x and +y)
-// 	if (data->ray.r_right == 1)
-// 		// must rotate the player    (radian    : +pi/2)
-// 	if (data->ray.r_left == 1)
-// 		// must rotate the player    (radian    : -pi/2)
-// 	return (1);
-// }
+int	handle_move(t_data *data)
+{
+	if (data->ray.forward == 1)
+		ft_move_up(data);
+	if (data->ray.backwards == 1)
+		ft_move_down(data);
+	if (data->ray.left == 1)
+		ft_move_left(data);
+	if (data->ray.right == 1)
+		ft_move_right(data);
+	if (data->ray.r_right == 1)
+		data->r_angle += 0.03;
+	if (data->ray.r_left == 1)
+		data->r_angle -= 0.03;
+	return (1);
+}

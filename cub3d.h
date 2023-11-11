@@ -28,6 +28,7 @@
 # define LEFT 0
 # define RIGHT 2
 # define ESC 53
+# define SPEED_MOVE 0.01
 # define WIDTH		800
 # define HEIGHT		600
 # define TITLE		"cub3D"
@@ -147,7 +148,14 @@ int		esc_handle(int keycode, t_data *data);
 int     handle_hook(int keycode, t_data *data);
 int     handle_move(t_data *data);
 
-//colors
+// colors
 void	plot_point(t_data *data, int x, int y, int color);
+
+// moves
+void	ft_move_up(t_data *data);
+void	ft_move_down(t_data *data);
+void	ft_move_right(t_data *data);
+void	ft_move_left(t_data *data);
+bool    valid_move(t_data *data, double x, double y);
 
 #endif
