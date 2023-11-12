@@ -6,14 +6,14 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/10 17:15:56 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:12:10 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
+# include "MLX42.h"
 # include "libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,13 +21,14 @@
 # include <stdio.h>
 # include <math.h>
 
-# define LROTATE 123
-# define RROTATE 124
-# define FORWARD 13
-# define BACKWARDS 1
-# define LEFT 0
-# define RIGHT 2
+# define LEFT_ROTATE 123
+# define RIGHT_ROTATE 124
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
 # define ESC 53
+# define SPEED_MOVE 0.01
 # define WIDTH		800
 # define HEIGHT		600
 # define TITLE		"cub3D"
@@ -41,13 +42,16 @@ typedef struct e_image {
 }				t_image;
 
 typedef struct s_map {
-	char			**map;
+	char		    **map;
+    int             map_size;
 	int				map_width;
 	int				map_height;
+    int             mapX;
+    int             mapY;
+    int             mapS;
 	char			snew_dir;
     int             snew_x;
     int             snew_y;
-    char            **str;
 }				t_map;
 
 typedef struct s_ray {
@@ -98,18 +102,8 @@ typedef struct s_ray {
     // Size of each step (pixel) for drawing the walls
     double step_size;
 
-    // Constant value for converting degrees to radians
-    double const_rad;
-
     // Height of the line to be drawn on the screen
     int wall_height;
-
-    // Start and end points for drawing the wall slice on the screen
-    int draw_start;
-    int draw_end;
-
-    // Relative position of the wall hit, used for texture mapping
-    double wall_x;
 
     // Movement flags for player control
     int forward;
@@ -119,17 +113,11 @@ typedef struct s_ray {
     int r_left;
     int r_right;
 }				t_ray;
-typedef struct s_dir{
-    int NO;
-    int SO;
-    int EA;
-    int WE;
-}               t_dir;
+
 typedef struct s_data {
 	t_image			image;
 	t_ray			ray;
 	t_map			map_info;
-    t_dir           num;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	double			width;
@@ -154,41 +142,14 @@ int		esc_handle(int keycode, t_data *data);
 int     handle_hook(int keycode, t_data *data);
 int     handle_move(t_data *data);
 
-//colors
+// colors
 void	plot_point(t_data *data, int x, int y, int color);
 
-// >--------<
-//parsing
-void	read_map(t_data *data, int fd);
-int     map_valid(t_data *data, int fd);
-void	check_valid_directions(t_data *data);
-//split
-char	**ftt_split(char const *s, char c);
-int	    count_chars(char const *s, char delimiter, int lens);
-int	    count_words(char const *s, char delimiter);
-//directions
-void    check_if_double_directions(t_data *data);
-void	check_if_valid_direction_name(t_data *data);
-void	print_err_NO();
-void	print_err_double_dir();
-//errors
-void	check_fd_map(int *fd, char *file);
-void	print_and_exit_param(void);
-void	err_empty_map(void);
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1337
-//gnl
-char	*get_next_line(int fd);
-char	*ft_read(char *all, int fd);
-char	*cut(char *str);
-char	*copy_to_xyata(char *str);
-//libft_needed
-char	*ftt_strcpy(char *dst, char *src);
-char	*ftt_strjoin(char *s1, char *s2);
-char	*ftt_strchr(const char *s, int c);
-size_t	ftt_strlen(const char *s);
-// directions
+// moves
+void	ft_move_up(t_data *data);
+void	ft_move_down(t_data *data);
+void	ft_move_right(t_data *data);
+void	ft_move_left(t_data *data);
+int     valid_move(t_data *data, double x, double y);
 
-
-# endif
 #endif

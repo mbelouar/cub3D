@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/10 17:23:28 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/12 16:03:03 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_init_player(t_data *data)
 	data->ray.plane_x = 0.0;
 	data->ray.plane_y = 0.0; // 45 degree
 	data->ray.step_size = 0.1;
-	data->ray.const_rad = M_PI / 45;
 	data->ray.forward = 0;
 	data->ray.backwards = 0;
 	data->ray.left = 0;
@@ -49,7 +48,7 @@ void	ft_init_image(t_data *data)
 
 void	ft_init_data(t_data *data)
 {
-	data->mlx_ptr = mlx_init();
+	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, TITLE, true);
 	if (!(data->mlx_ptr))
 		err_msg("Mlx initialization failed\n", 2);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, TITLE);
@@ -72,7 +71,7 @@ int init_player_direction(t_data *data)
 		initial_rotation_angle = M_PI / 2;  // Rotate 90 degrees for East direction
 	else if (data->map_info.snew_dir == 'W')
 		initial_rotation_angle = (3 * M_PI) / 2; // Rotate 270 degrees for West direction
-	// data->r_angle = initial_rotation_angle;
+	data->r_angle = initial_rotation_angle;
 
 	// Apply the initial rotation to set player direction
 	// rotate the player with the initial_rotate_angle
