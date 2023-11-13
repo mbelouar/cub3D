@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/12 16:12:10 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:23:04 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,10 @@ void	ft_move_down(t_data *data);
 void	ft_move_right(t_data *data);
 void	ft_move_left(t_data *data);
 int     valid_move(t_data *data, double x, double y);
+
+// drawing
+void drawing(t_data * data);
+void draw_map2D(t_data *data);
+void draw_player(t_data *data);
 
 #endif

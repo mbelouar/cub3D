@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:12:00 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/11 15:20:35 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:26:09 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_move_up(t_data *data)
 
 	x = data->ray.player_x + cos(data->r_angle) * SPEED_MOVE;
 	y = data->ray.player_y + sin(data->r_angle) * SPEED_MOVE;
-	if (valid_move(data, x, y));
+	if (valid_move(data, x, y))
 		return ;
 }
 

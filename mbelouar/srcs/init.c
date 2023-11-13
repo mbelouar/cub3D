@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/12 16:03:03 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:23:36 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ void	ft_init_player(t_data *data)
 	init_player_direction(data);
 }
 
+void	ft_init_map(t_data *data)
+{
+	data->map_info.mapS = 64;
+	data->map_info.mapX = 8;
+	data->map_info.mapY = 8;
+}
+
 void	ft_init_data(t_data *data)
 {
 	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, TITLE, true);
@@ -36,8 +43,9 @@ void	ft_init_data(t_data *data)
 	data->win_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	if (!(data->win_ptr))
 		err_msg("Window creation failed\n", 2);
-	mlx_image_to_window(data->mlx_ptr, data->image., 0, 0);
+	mlx_image_to_window(data->mlx_ptr, data->image.img, 0, 0);
 	ft_init_player(data);
+	ft_init_map(data);
 }
 
 int init_player_direction(t_data *data)
@@ -55,9 +63,6 @@ int init_player_direction(t_data *data)
 	else if (data->map_info.snew_dir == 'W')
 		initial_rotation_angle = (3 * M_PI) / 2; // Rotate 270 degrees for West direction
 	data->r_angle = initial_rotation_angle;
-
-	// Apply the initial rotation to set player direction
-	// rotate the player with the initial_rotate_angle
 
 	return (0);
 }

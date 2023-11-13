@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:51:43 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/09 16:53:32 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:25:03 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ void	plot_point(t_data *data, int x, int y, int color)
 	addr = data->image.addr + (y * data->image.line_length + x
 			* (data->image.bits_per_pixel / 8));
 	*(unsigned int *)addr = (unsigned int)color;
+}
+
+int generate_color(int red, int green, int blue)
+{
+    return (red << 16) | (green << 8) | blue;
 }
