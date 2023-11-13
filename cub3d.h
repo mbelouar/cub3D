@@ -21,8 +21,6 @@
 # include <stdio.h>
 # include <math.h>
 
-# define LEFT_ROTATE 123
-# define RIGHT_ROTATE 124
 # define KEY_W 13
 # define KEY_S 1
 # define KEY_A 0
@@ -104,14 +102,6 @@ typedef struct s_ray {
 
     // Height of the line to be drawn on the screen
     int wall_height;
-
-    // Movement flags for player control
-    int forward;
-    int backwards;
-    int left;
-    int right;
-    int r_left;
-    int r_right;
 }				t_ray;
 
 typedef struct s_data {
@@ -120,8 +110,6 @@ typedef struct s_data {
 	t_map			map_info;
 	void			*mlx_ptr;
 	void			*win_ptr;
-	double			width;
-	double			height;
     double          r_angle;
 }				t_data;
 
@@ -139,7 +127,6 @@ void	open_fd_check(int *fd, char *file);
 // mlx hooks
 int		ft_close(t_data *data);
 int		esc_handle(int keycode, t_data *data);
-int     handle_hook(int keycode, t_data *data);
 int     handle_move(t_data *data);
 
 // colors

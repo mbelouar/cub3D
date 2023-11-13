@@ -49,4 +49,10 @@ void draw_map2D(t_data *data)
 				mlx_pixel_put(data->mlx_ptr, data->win_ptr, x * data->map_info.mapS + 1, y * data->map_info.mapS + 1, 0x000000);
 		}
 	}
+	draw_player(data);
+}
+
+void drawing(t_data * data)
+{
+    draw_map2D(data);
 }

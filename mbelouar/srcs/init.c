@@ -25,25 +25,7 @@ void	ft_init_player(t_data *data)
 	data->ray.plane_x = 0.0;
 	data->ray.plane_y = 0.0; // 45 degree
 	data->ray.step_size = 0.1;
-	data->ray.forward = 0;
-	data->ray.backwards = 0;
-	data->ray.left = 0;
-	data->ray.right = 0;
-	data->ray.r_left = 0;
-	data->ray.r_right = 0;
 	init_player_direction(data);
-}
-
-void	ft_init_image(t_data *data)
-{
-	data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-	if (!data->image.img)
-		err_msg("Image creation failed\n", 2);
-	data->image.addr = mlx_get_data_addr(data->image.img,
-			&data->image.bits_per_pixel,
-			&data->image.line_length,
-			&data->image.endian);
-	ft_init_player(data);
 }
 
 void	ft_init_data(t_data *data)
@@ -51,10 +33,11 @@ void	ft_init_data(t_data *data)
 	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, TITLE, true);
 	if (!(data->mlx_ptr))
 		err_msg("Mlx initialization failed\n", 2);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, TITLE);
+	data->win_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	if (!(data->win_ptr))
 		err_msg("Window creation failed\n", 2);
-	ft_init_image(data);
+	mlx_image_to_window(data->mlx_ptr, data->image., 0, 0);
+	ft_init_player(data);
 }
 
 int init_player_direction(t_data *data)

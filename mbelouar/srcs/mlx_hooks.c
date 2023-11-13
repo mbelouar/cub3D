@@ -12,136 +12,52 @@
 
 #include "../../cub3d.h"
 
-int	ft_close(t_data *data)
-{
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	exit (0);
-}
-
-int	handle_hook(int keycode, t_data *data)
-{
-	if (keycode == 53)
-		ft_close(data);
-	else if (keycode == KEY_W)
-		data->ray.player_y -= 10;
-	else if (keycode == KEY_S)
-		data->ray.player_y += 10;
-	else if (keycode == KEY_A)
-		data->ray.player_x -= 10;
-	else if (keycode == KEY_D)
-		data->ray.player_x += 10;
-	else if (keycode == RIGHT_ROTATE)
-		data->r_angle += 0.09;
-	else if (keycode == LEFT_ROTATE)
-		data->r_angle -= 0.09;
-	return (0);
-}
-
-// int handle_move(t_data *data)
-// {
-// 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-
-// 	int	i;
-// 	int	j;
-// 	int	size = 10; // Adjust the size as needed
-// 	int	half_size = size / 2;
-
-// 	i = data->ray.player_x - half_size;
-// 	while (i++ < data->ray.player_x + half_size)
-// 	{
-// 		j = data->ray.player_y - half_size;
-// 		while (j++ < data->ray.player_y + half_size)
-// 			mlx_pixel_put(data->mlx_ptr, data->win_ptr, i, j, 0xFFFFFF);
-// 	}
-// 	return (0);
-// }
-
-
-void draw_rotated_player(t_data *data, double angle)
-{
-	int i = -5;  // Adjust the size as needed
-	int half_size = 5;
-
-	while (i < half_size)
-	{
-		int j = -half_size;
-		while (j < half_size)
-		{
-			// Apply rotation transformation to get new coordinates
-			int new_x = cos(angle) * i - sin(angle) * j + data->ray.player_x;
-			int new_y = sin(angle) * i + cos(angle) * j + data->ray.player_y;
-
-			// Plot the point in the new rotated position
-			plot_point(data, new_x, new_y, 0xFFFFFF);
-			j++;
-		}
-		i++;
-	}
-}
-
-
-// int handle_move(t_data *data)
-// {
-//     mlx_clear_window(data->mlx_ptr, data->win_ptr);
-
-//     // Draw the rotated rectangle based on r_angle
-//     draw_rotated_rectangle(data, data->r_angle);
-
-//     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.img, 0, 0);
-//     return (0);
-// }
-
-int handle_move(t_data *data)
-{
-    mlx_destroy_image(data->mlx_ptr, data->image.img);
-
-    // Create a new image
-    data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-    data->image.addr = mlx_get_data_addr(data->image.img,
-            &data->image.bits_per_pixel,
-            &data->image.line_length,
-            &data->image.endian);
-
-    // Draw the rotated rectangle based on r_angle
-    draw_rotated_player(data, data->r_angle);
-
-    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->image.img, 0, 0);
-    return (0);
-}
-
-
 // int	handle_hook(int keycode, t_data *data)
 // {
 // 	if (keycode == 53)
 // 		ft_close(data);
 // 	else if (keycode == KEY_W)
-// 		data->ray.player_y = 1;
+// 		data->ray.player_y -= 10;
 // 	else if (keycode == KEY_S)
-// 		data->ray.player_y = 1;
+// 		data->ray.player_y += 10;
 // 	else if (keycode == KEY_A)
-// 		data->ray.player_x = 1;
+// 		data->ray.player_x -= 10;
 // 	else if (keycode == KEY_D)
-// 		data->ray.player_x = 1;
+// 		data->ray.player_x += 10;
 // 	else if (keycode == RIGHT_ROTATE)
-// 		data->ray.r_right = 1;
+// 		data->r_angle += 0.09;
 // 	else if (keycode == LEFT_ROTATE)
-// 		data->ray.r_left = 1;
+// 		data->r_angle -= 0.09;
 // 	return (0);
 // }
 
-// int	handle_move(t_data *data)
+void handle_moves(void *param)
+{
+	t_data    *data;
+
+    data = (t_data *)param;
+	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_ESCAPE))
+		mlx_close_window(data->mlx_ptr);
+	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_UP))
+		ft_move_up(data);
+	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_DOWN))
+		ft_move_down(data);
+	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_LEFT))
+		ft_move_left(data);
+	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
+		ft_move_right(data);
+	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_LEFT))
+		data->r_angle -= 0.05;
+	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
+		data->r_angle += 0.05;
+	// setup_rot_angle(data);
+	drawing(data);
+}
+
+// void setup_rot_angle(t_data_t *data)
 // {
-// 	if (data->ray.forward == 1)
-// 		ft_move_up(data);
-// 	if (data->ray.backwards == 1)
-// 		ft_move_down(data);
-// 	if (data->ray.left == 1)
-// 		ft_move_left(data);
-// 	if (data->ray.right == 1)
-// 		ft_move_right(data);
-// 	if (data->ray.r_right == 1)
-// 		data->r_angle += 0.03;
-// 	if (data->ray.r_left == 1)
-// 		data->r_angle -= 0.03;
-// 	return (1);
+// 	if (data->r_angle < 0)
+// 		data->r_angle += (2 * M_PI);
+// 	if (data->r_angle > (2 * M_PI))
+// 		data->r_angle -= (2 * M_PI);
 // }
