@@ -44,18 +44,15 @@ typedef struct s_map {
     int             map_size;
 	int				map_width;
 	int				map_height;
-    int             mapX;
-    int             mapY;
     int             mapS;
-	char			snew_dir;
-    int             snew_x;
-    int             snew_y;
 }				t_map;
 
 typedef struct s_ray {
     // Player position
     double player_x;
     double player_y;
+    
+    double player_size;
 
     // Direction vector
     double direction_x;

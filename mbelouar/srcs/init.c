@@ -20,6 +20,7 @@ void	ft_init_player(t_data *data)
 	data->r_angle = 0.0;
 	data->ray.player_x = WIDTH / 2;
 	data->ray.player_y = HEIGHT / 2;
+	data->ray.player_size = 8;
 	data->ray.direction_x = 0.0;
 	data->ray.direction_y = 0.0;
 	data->ray.plane_x = 0.0;
@@ -31,8 +32,8 @@ void	ft_init_player(t_data *data)
 void	ft_init_map(t_data *data)
 {
 	data->map_info.mapS = 64;
-	data->map_info.mapX = 8;
-	data->map_info.mapY = 8;
+	data->map_info.map_height = 0;
+	data->map_info.map_width = 0;
 }
 
 void	ft_init_data(t_data *data)

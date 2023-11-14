@@ -51,7 +51,7 @@ void	handle_moves(void *param)
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
 		data->r_angle += 0.05;
 	// setup_rot_angle(data);
-	// drawing(data);
+	drawing(data);
 }
 
 // void setup_rot_angle(t_data_t *data)
