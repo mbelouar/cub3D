@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/13 17:23:04 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:08:10 by moelalj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,14 +168,14 @@ int	    count_chars(char const *s, char delimiter, int lens);
 int	    count_words(char const *s, char delimiter);
 //directions
 void	check_valid_directions(t_data *data);
-void	print_err_directions();
+void	print_err_directions(void);
 void	init_directions(t_data *data);
-void	NO(t_data *data);
-void	SO(t_data *data);
-void	WE(t_data *data);
-void	EA(t_data *data);
-void	F(t_data *data);
-void	C(t_data *data);
+void	no(t_data *data);
+void	so(t_data *data);
+void	we(t_data *data);
+void	ea(t_data *data);
+void	f(t_data *data);
+void	c(t_data *data);
 void	check_directions_needs(t_data *data);
 void    check_no_needs(t_data *data);
 void	check_so_needs(t_data *data);
@@ -183,7 +183,7 @@ void	check_we_needs(t_data *data);
 void	check_ea_needs(t_data *data);
 void	check_f_needs(t_data *data);
 void    check_c_needs(t_data *data);
-void	print_err_needs_directions();
+void	print_err_needs_directions(void);
 void	check_colors(t_data *data);
 void    check_f_c(t_data *data);
 void    check_consecutive_semicolon_f(t_data *data);
