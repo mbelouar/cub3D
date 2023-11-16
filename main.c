@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	if (map_valid(&data, fd, av[1]))
 	{
 		ft_init_data(&data);
-		mlx_loop_hook(data.mlx_ptr, handle_move, &data);
+		mlx_loop_hook(data.mlx_ptr, handle_moves, &data);
 		mlx_loop(data.mlx_ptr);
 	}
 	return (0);

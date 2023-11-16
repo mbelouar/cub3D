@@ -24,12 +24,12 @@ void draw_player(double player_x, double player_y, t_data *data)
     startX = player_x - halfSize;
     startY = player_y - halfSize;
     currentX = startX;
-    while (currentX < startX + data->player.size)
+    while (currentX < startX + data->ray.player_size)
     {
         currentY = startY;
-        while (currentY < startY + data->player.size)
+        while (currentY < startY + data->ray.player_size)
         {
-            mlx_put_pixel(data->mlx.image, currentX, currentY, color);
+            mlx_put_pixel(data->mlx_ptr, currentX, currentY, generate_color(255, 255, 0, 255));
             ++currentY;
         }
         ++currentX;
@@ -87,11 +87,11 @@ void draw_carre(int color, double top, double left, t_data *data)
         currentX = 0;
         while (currentX < data->map_info.mapS)
         {
-            mlx_put_pixel(data->mlx.image, currentX + left, currentY + top, color);
-            mlx_put_pixel(data->mlx.image, currentX + left, top, generate_color(0, 0, 0, 255));  //black
+            mlx_put_pixel(data->image.img, currentX + left, currentY + top, color);
+            mlx_put_pixel(data->image.img, currentX + left, top, generate_color(0, 0, 0, 255));  //black
             currentX++;
         }
-        mlx_put_pixel(data->mlx.image, left, currentY + top, generate_color(0, 0, 0, 255));  //black
+        mlx_put_pixel(data->image.img, left, currentY + top, generate_color(0, 0, 0, 255));  //black
         currentY++;
     }
 }
@@ -119,7 +119,7 @@ void draw_map2D(t_data *data)
         }
         row++;
     }
-    drawPlayer(data->ray.plane_x, data->ray.player_y, data);
+    draw_player(data->ray.plane_x, data->ray.player_y, data);
 }
 
 

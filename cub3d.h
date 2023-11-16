@@ -47,6 +47,8 @@ typedef struct s_map {
 	int				map_height;
     int             mapS;
     char            snew_dir;
+    int             snew_x;
+    int             snew_y;
     char            **str;
     int             columns;
 }				t_map;
@@ -141,10 +143,11 @@ void	open_fd_check(int *fd, char *file);
 // mlx hooks
 int		ft_close(t_data *data);
 int		esc_handle(int keycode, t_data *data);
-void     handle_move(void *param);
+void     handle_moves(void *param);
 
 // colors
 void	plot_point(t_data *data, int x, int y, int color);
+int generate_color(int r, int g, int b, int a);
 
 // moves
 void	ft_move_up(t_data *data);
@@ -156,7 +159,8 @@ int     valid_move(t_data *data, double x, double y);
 // drawing
 void drawing(t_data * data);
 void draw_map2D(t_data *data);
-void draw_player(t_data *data);
+void draw_carre(int color, double top, double left, t_data *data);
+void draw_player(double player_x, double player_y, t_data *data);
 
 // >--------<
 //parsing
@@ -210,6 +214,8 @@ void	around_spaces_err(void);
 void	check_if_double_directions(t_data *data);
 void	double_directions_err(void);
 void	non_directions_err(void);
+void	found_player_n_s(t_data *data);
+void	found_player_e_w(t_data *data);
 
 //errors
 void	check_fd_map(int *fd, char *file);
