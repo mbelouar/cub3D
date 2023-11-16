@@ -12,11 +12,37 @@
 
 #include "../../cub3d.h"
 
-void	check_valid_directions(t_data *data)
+void	f(t_data *data)
 {
-	data->c = 0;
 	int	i;
 
+	i = 0;
+	while (i < 6)
+	{
+		if (!ft_strncmp(data->map_info.str[i], "F", 1))
+			data->dir.F = ftt_split(data->map_info.str[i], ' ');
+		i++;
+	}
+}
+
+void	c(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		if (!ft_strncmp(data->map_info.str[i], "C", 1))
+			data->dir.C = ftt_split(data->map_info.str[i], ' ');
+		i++;
+	}
+}
+
+void	check_valid_directions(t_data *data)
+{
+	int	i;
+
+	data->c = 0;
 	i = 0;
 	while (data->map_info.str[i])
 	{
@@ -37,6 +63,7 @@ void	check_valid_directions(t_data *data)
 	if (data->c != 6)
 		print_err_directions();
 }
+
 void	check_directions_needs(t_data *data)
 {
 	check_no_needs(data);
@@ -46,6 +73,7 @@ void	check_directions_needs(t_data *data)
 	check_f_needs(data);
 	check_c_needs(data);
 }
+
 void	check_colors(t_data *data)
 {
 	check_f_c(data);

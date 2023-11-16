@@ -58,7 +58,8 @@ void	valid_box_color_c(t_data *data)
 	if (i != 3)
 	{
 		ft_putstr_fd("Error: less/more box colors\n", 2);
-		ft_putstr_fd("Usage: Please enter a valid box of colors [..],[..],[..]", 2);
+		ft_putstr_fd("Usage: Please enter a valid box of", 2);
+		ft_putstr_fd(" colors [..],[..],[..]", 2);
 		exit (1);
 	}
 }
@@ -73,7 +74,8 @@ void	valid_color_c(t_data *data)
 	{
 		if (ft_atoi(data->dir.clr_c[i]) > 255)
 		{
-			ft_putstr_fd("Error:\n  ->Please enter a number between 0 and 255", 2);
+			ft_putstr_fd("Error:\n  ->Please enter a number", 2);
+			ft_putstr_fd("between 0 and 255", 2);
 			exit (1);
 		}
 		j = 0;
@@ -88,4 +90,15 @@ void	valid_color_c(t_data *data)
 		}
 		i++;
 	}
+}
+
+void	check_c_needs(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->dir.C[i])
+		i++;
+	if (i != 2)
+		print_err_needs_directions();
 }
