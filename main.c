@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:18:27 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/16 14:57:24 by moelalj          ###   ########.fr       */
+/*   Updated: 2023/11/16 15:54:03 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(int ac, char **av)
 	if (map_valid(&data, fd, av[1]))
 	{
 		ft_init_data(&data);
-		mlx_loop_hook(data.mlx_ptr, handle_move, &data);
+		mlx_loop_hook(data.mlx_ptr, handle_moves, &data);
 		mlx_loop(data.mlx_ptr);
 	}
 	return (0);
