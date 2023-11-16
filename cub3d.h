@@ -41,10 +41,14 @@ typedef struct e_image {
 
 typedef struct s_map {
 	char		    **map;
+    char            **map_wt;
     int             map_size;
 	int				map_width;
 	int				map_height;
     int             mapS;
+    char            snew_dir;
+    char            **str;
+    int             columns;
 }				t_map;
 
 typedef struct s_ray {
@@ -101,13 +105,26 @@ typedef struct s_ray {
     int wall_height;
 }				t_ray;
 
+typedef struct s_dir{
+    char    **NO;
+    char    **SO;
+    char    **WE;
+    char    **EA;
+    char    **F;
+    char    **clr_f;
+    char    **C;
+    char    **clr_c;
+}t_dir;
+
 typedef struct s_data {
 	t_image			image;
 	t_ray			ray;
 	t_map			map_info;
+    t_dir           dir;
 	void			*mlx_ptr;
 	void			*win_ptr;
     double          r_angle;
+    int             c;
 }				t_data;
 
 // initialize functions
@@ -124,7 +141,7 @@ void	open_fd_check(int *fd, char *file);
 // mlx hooks
 int		ft_close(t_data *data);
 int		esc_handle(int keycode, t_data *data);
-int     handle_move(t_data *data);
+void     handle_move(void *param);
 
 // colors
 void	plot_point(t_data *data, int x, int y, int color);
@@ -141,4 +158,81 @@ void drawing(t_data * data);
 void draw_map2D(t_data *data);
 void draw_player(t_data *data);
 
+// >--------<
+//parsing
+void	read_map(t_data *data, int fd);
+int     map_valid(t_data *data, int fd, char *file);
+//split
+char	**ftt_split(char const *s, char c);
+int	    count_chars(char const *s, char delimiter, int lens);
+int	    count_words(char const *s, char delimiter);
+//directions
+void	check_valid_directions(t_data *data);
+void	print_err_directions();
+void	init_directions(t_data *data);
+void	NO(t_data *data);
+void	SO(t_data *data);
+void	WE(t_data *data);
+void	EA(t_data *data);
+void	F(t_data *data);
+void	C(t_data *data);
+void	check_directions_needs(t_data *data);
+void    check_no_needs(t_data *data);
+void	check_so_needs(t_data *data);
+void	check_we_needs(t_data *data);
+void	check_ea_needs(t_data *data);
+void	check_f_needs(t_data *data);
+void    check_c_needs(t_data *data);
+void	print_err_needs_directions();
+void	check_colors(t_data *data);
+void    check_f_c(t_data *data);
+void    check_consecutive_semicolon_f(t_data *data);
+void	valid_box_color_f(t_data *data);
+void	valid_color_f(t_data *data);
+void    check_c_c(t_data *data);
+void    check_consecutive_semicolon_c(t_data *data);
+void	valid_box_color_c(t_data *data);
+void	valid_color_c(t_data *data);
+void	init_maps(t_data *data);
+void	init_map(t_data *data);
+void	init_map_wt(t_data *data);
+void    check_map(t_data *data);
+void	found_tab_inside(t_data *data);
+void    check_extension_map(char *file);
+void	extension_err(void);
+void	only_valid_characters(t_data *data);
+void    check_surr_by_walls(t_data *data);
+void	not_surr_err(void);
+void	check_around_spaces(t_data *data);
+void    start_checking_around_spaces(char **str);
+void    ch_inside_map(char **str, int i, int j);
+void	around_spaces_err(void);
+void	check_if_double_directions(t_data *data);
+void	double_directions_err(void);
+void	non_directions_err(void);
+
+//errors
+void	check_fd_map(int *fd, char *file);
+void	print_and_exit_param(void);
+void	err_empty_map(void);
+void	found_semicolon_err(void);
+void    err_semicolons(void);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+//gnl
+char	*get_next_line(int fd);
+char	*ft_read(char *all, int fd);
+char	*cut(char *str);
+char	*copy_to_xyata(char *str);
+//libft_needed
+char	*ftt_strcpy(char *dst, char *src);
+char	*ftt_strjoin(char *s1, char *s2);
+char	*ftt_strchr(const char *s, int c);
+size_t	ftt_strlen(const char *s);
+// free
+void	ft_str_free(char **s);
+int     strchrr(char *line, char c);
+
+# endif
 #endif
+

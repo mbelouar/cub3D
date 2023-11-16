@@ -17,15 +17,15 @@ RESET = \033[0m
 
 NAME = cub3d
 
-IMLX = -I /Users/mbelouar/MLX42/include/MLX42
-GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+IMLX = -I /Users/moelalj/MLX42/include/MLX42
+GLFW = -I include -lglfw -L"/Users/moelalj/.brew/opt/glfw/lib"
 
 
 CC = cc
 
 MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
-AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
+AR_MLX = /Users/moelalj/MLX42/build/libmlx42.a
 
 CFLAGS = -Wall -Werror -Wextra
 

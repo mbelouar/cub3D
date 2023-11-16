@@ -28,7 +28,7 @@ void	plot_point(t_data *data, int x, int y, int color)
 	*(unsigned int *)addr = (unsigned int)color;
 }
 
-int generate_color(int red, int green, int blue, int a)
+int generate_color(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
