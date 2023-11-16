@@ -108,5 +108,7 @@ char	*get_next_line(int fd)
 	}
 	line = cut(saved);
 	saved = copy_to_xyata(saved);
+	//if (line[0] == '\n')
+	//	free(saved);
 	return (line);
 }

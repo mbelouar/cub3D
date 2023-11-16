@@ -22,7 +22,6 @@ void	check_no_needs(t_data *data)
 	if (i != 2)
 		print_err_needs_directions();
 }
-
 void	check_so_needs(t_data *data)
 {
 	int	i;
@@ -33,7 +32,6 @@ void	check_so_needs(t_data *data)
 	if (i != 2)
 		print_err_needs_directions();
 }
-
 void	check_we_needs(t_data *data)
 {
 	int	i;
@@ -44,7 +42,6 @@ void	check_we_needs(t_data *data)
 	if (i != 2)
 		print_err_needs_directions();
 }
-
 void	check_ea_needs(t_data *data)
 {
 	int	i;
@@ -62,6 +59,17 @@ void	check_f_needs(t_data *data)
 
 	i = 0;
 	while (data->dir.F[i])
+		i++;
+	if (i != 2)
+		print_err_needs_directions();
+}
+
+void	check_c_needs(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->dir.C[i])
 		i++;
 	if (i != 2)
 		print_err_needs_directions();

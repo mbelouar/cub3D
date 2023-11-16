@@ -24,7 +24,6 @@ char	*ftt_strcpy(char *dst, char *src)
 	}
 	return (dst);
 }
-
 char	*ftt_strjoin(char *s1, char *s2)
 {
 	char	*str;

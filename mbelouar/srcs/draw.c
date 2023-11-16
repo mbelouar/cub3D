@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/13 17:24:53 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:34:33 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,52 +29,12 @@ void draw_player(double player_x, double player_y, t_data *data)
         currentY = startY;
         while (currentY < startY + data->ray.player_size)
         {
-            mlx_put_pixel(data->mlx_ptr, currentX, currentY, generate_color(255, 255, 0, 255));
+            mlx_put_pixel(data->image.img, currentX, currentY, generate_color(255, 255, 0, 255));
             ++currentY;
         }
         ++currentX;
     }
 }
-
-
-// void draw_map2D(t_data *data)
-// {
-//     int x, y;
-//     int squareSize = data->map_info.mapS - 2 ; // Adjusted size to leave a border
-
-//     // color the entire window
-//     // mlx_image_to_window(data->mlx, data->img, 0, 0);
-//     for (y = 0; y < data->map_info.mapY; y++)
-//     {
-//         for (x = 0; x < data->map_info.mapX; x++)
-//         {
-//             int index = y * data->map_info.mapX + x;
-//             if (data->map_info.map[index] == 1)
-//             {
-//                 // Draw white square for value 1
-//                 mlx_put_pixel(data->image.img, x * data->map_info.mapS + 1, y * data->map_info.mapS + 1, generate_color(255, 15, 40));
-//                 for (int i = 0; i <= squareSize; i++)
-//                 {
-//                     for (int j = 0; j <= squareSize; j++)
-//                         mlx_put_pixel(data->image.img, x * data->map_info.mapS + i + 1, y * data->map_info.mapS + j + 1, generate_color(255, 15, 40));
-//                 }
-//             }
-//             if (data->map_info.map[index] == 0)
-//             {
-//                 // Draw beige square for value 0
-//                 mlx_put_pixel(data->image.img, x * data->map_info.mapS + 1, y * data->map_info.mapS + 1, 0x0000FF);
-//                 for (int i = 0; i <= squareSize; i++)
-//                 {
-//                     for (int j = 0; j <= squareSize; j++)
-//                         mlx_put_pixel(data->image.img, x * data->map_info.mapS + i + 1, y * data->map_info.mapS + j + 1, 0x0000FF);
-//                 }
-//             }
-//             else
-//                 mlx_put_pixel(data->image.img, x * data->map_info.mapS + 1, y * data->map_info.mapS + 1, generate_color(0, 0, 0));
-//         }
-//     }
-//     draw_player(data);
-// }
 
 void draw_carre(int color, double top, double left, t_data *data)
 {
@@ -87,14 +47,45 @@ void draw_carre(int color, double top, double left, t_data *data)
         currentX = 0;
         while (currentX < data->map_info.mapS)
         {
-            mlx_put_pixel(data->image.img, currentX + left, currentY + top, color);
-            mlx_put_pixel(data->image.img, currentX + left, top, generate_color(0, 0, 0, 255));  //black
+            // Check if the coordinates are within the bounds of the image
+            if (currentX + left < WIDTH && currentY + top < HEIGHT) {
+                mlx_put_pixel(data->image.img, currentX + left, currentY + top, color);
+            }
+
+            // Check if the coordinates are within the bounds of the image
+            if (currentX + left < WIDTH && top < HEIGHT) {
+                mlx_put_pixel(data->image.img, currentX + left, top, generate_color(0, 0, 0, 255));  //black
+            }
             currentX++;
         }
-        mlx_put_pixel(data->image.img, left, currentY + top, generate_color(0, 0, 0, 255));  //black
+        // Check if the coordinates are within the bounds of the image
+        if (left < WIDTH && currentY + top < HEIGHT) {
+            mlx_put_pixel(data->image.img, left, currentY + top, generate_color(0, 0, 0, 255));  //black
+        }
         currentY++;
     }
 }
+
+
+// void draw_carre(int color, double top, double left, t_data *data)
+// {
+//     double currentX;
+//     double currentY;
+
+//     currentY = 0;
+//     while (currentY < data->map_info.mapS)
+//     {
+//         currentX = 0;
+//         while (currentX < data->map_info.mapS)
+//         {
+//             mlx_put_pixel(data->image.img, currentX + left, currentY + top, color);
+//             mlx_put_pixel(data->image.img, currentX + left, top, generate_color(0, 0, 0, 255));  //black
+//             currentX++;
+//         }
+//         mlx_put_pixel(data->image.img, left, currentY + top, generate_color(0, 0, 0, 255));  //black
+//         currentY++;
+//     }
+// }
 
 
 void draw_map2D(t_data *data)
@@ -106,10 +97,10 @@ void draw_map2D(t_data *data)
 
     row = 0;
     carre_S = data->map_info.mapS;
-    while (data->map_info.map[(int)row])
+    while (data->map_info.map_wt[(int)row])
     {
         col = 0;
-        mapRow = data->map_info.map[(int)row];
+        mapRow = data->map_info.map_wt[(int)row];
         while (mapRow[(int)col])
         {
             draw_carre(generate_color(241, 239, 239, 255), row * carre_S, col * carre_S, data);  //#F1EFEF off-white.
@@ -123,7 +114,7 @@ void draw_map2D(t_data *data)
 }
 
 
-void drawing(t_data * data)
+void drawing(t_data *data)
 {
     draw_map2D(data);
 }

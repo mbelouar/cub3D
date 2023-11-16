@@ -1,5 +1,5 @@
-#include </Users/moelalj/.brew/opt/glfw/include/GLFW/glfw3.h>
-#include "/Users/moelalj/MLX42/include/MLX42/MLX42.h"
+#include </goinfre/mbelouar/homebrew/opt/glfw/include/GLFW/glfw3.h>
+#include "/Users/mbelouar/MLX42/include/MLX42/MLX42.h"
 #include <stdio.h>
 
 
@@ -145,4 +145,4 @@ int main()
     mlx_terminate(data.mlx);
 
     return 0;
-} 
+}

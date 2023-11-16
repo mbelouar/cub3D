@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/13 17:23:36 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:04:55 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_init_player(t_data *data)
 	data->ray.direction_x = 0.0;
 	data->ray.direction_y = 0.0;
 	data->ray.plane_x = 0.0;
-	data->ray.plane_y = 0.0; // 45 degree
+	data->ray.plane_y = 0.0;
 	data->ray.step_size = 0.1;
 	init_player_direction(data);
 }
@@ -41,9 +41,11 @@ void	ft_init_data(t_data *data)
 	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, TITLE, true);
 	if (!(data->mlx_ptr))
 		err_msg("Mlx initialization failed\n", 2);
-	data->win_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-	if (!(data->win_ptr))
-		err_msg("Window creation failed\n", 2);
+	if (!(data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT)))
+    {
+        mlx_close_window(data->mlx_ptr);
+		err_msg("Mlx creation image failed\n", 2);
+    }
 	mlx_image_to_window(data->mlx_ptr, data->image.img, 0, 0);
 	ft_init_player(data);
 	ft_init_map(data);
@@ -54,16 +56,14 @@ int init_player_direction(t_data *data)
 	double	initial_rotation_angle;
 
 	initial_rotation_angle = 0.0;
-	// Check the initial snew direction and set the corresponding rotation angle
 	if (data->map_info.snew_dir == 'N')
 		initial_rotation_angle = 0;
 	else if (data->map_info.snew_dir == 'S')
-		initial_rotation_angle = M_PI;      // Rotate 180 degrees for South direction
+		initial_rotation_angle = M_PI;
 	else if (data->map_info.snew_dir == 'E')
-		initial_rotation_angle = M_PI / 2;  // Rotate 90 degrees for East direction
+		initial_rotation_angle = M_PI / 2;
 	else if (data->map_info.snew_dir == 'W')
-		initial_rotation_angle = (3 * M_PI) / 2; // Rotate 270 degrees for West direction
+		initial_rotation_angle = (3 * M_PI) / 2;
 	data->r_angle = initial_rotation_angle;
-
 	return (0);
 }

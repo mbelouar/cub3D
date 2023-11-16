@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/13 17:50:52 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:06:23 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ void	handle_moves(void *param)
 		data->r_angle -= 0.05;
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
 		data->r_angle += 0.05;
-	// setup_rot_angle(data);
+	setup_rot_angle(data);
 	drawing(data);
 }
 
-// void setup_rot_angle(t_data_t *data)
-// {
-// 	if (data->r_angle < 0)
-// 		data->r_angle += (2 * M_PI);
-// 	if (data->r_angle > (2 * M_PI))
-// 		data->r_angle -= (2 * M_PI);
-// }
+void setup_rot_angle(t_data *data)
+{
+	if (data->r_angle < 0)
+		data->r_angle += (2 * M_PI);
+	if (data->r_angle > (2 * M_PI))
+		data->r_angle -= (2 * M_PI);
+}
