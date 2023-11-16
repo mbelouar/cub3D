@@ -14,9 +14,9 @@
 
 void	check_c_c(t_data *data)
 {
-	check_consecutive_semicolon_c(data);
 	data->dir.clr_c = ftt_split(data->dir.C[1], ',');
 	valid_box_color_c(data);
+	check_consecutive_semicolon_c(data);
 	valid_color_c(data);
 }
 
