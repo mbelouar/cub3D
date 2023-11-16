@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:56:57 by moelalj           #+#    #+#             */
-/*   Updated: 2023/11/16 15:44:48 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:55:25 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,5 @@ int	map_valid(t_data *data, int fd, char *file)
 	check_map(data);
 	found_player_n_s(data);
 	found_player_e_w(data);
-	printf("%c\n", data->map_info.snew_dir);
-	printf("%d\n", data->map_info.snew_x);
-	printf("%d\n", data->map_info.snew_y);
 	return (1);
 }

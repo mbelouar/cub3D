@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_directions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moelalj <moelalj@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 00:11:46 by moelalj           #+#    #+#             */
-/*   Updated: 2023/11/10 00:11:47 by moelalj          ###   ########.fr       */
+/*   Updated: 2023/11/16 16:53:40 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	f(t_data *data)
+void	ft_F(t_data *data)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ void	f(t_data *data)
 	}
 }
 
-void	c(t_data *data)
+void	ft_C(t_data *data)
 {
 	int	i;
 

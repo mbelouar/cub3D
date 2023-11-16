@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_directions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moelalj <moelalj@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:03:56 by moelalj           #+#    #+#             */
-/*   Updated: 2023/11/11 17:03:57 by moelalj          ###   ########.fr       */
+/*   Updated: 2023/11/16 16:52:58 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	init_directions(t_data *data)
 {
-	no(data);
-	so(data);
-	we(data);
-	ea(data);
-	f(data);
-	c(data);
+	ft_NO(data);
+	ft_SO(data);
+	ft_WE(data);
+	ft_EA(data);
+	ft_F(data);
+	ft_C(data);
 }
 
-void	no(t_data *data)
+void	ft_NO(t_data *data)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ void	no(t_data *data)
 	}
 }
 
-void	so(t_data *data)
+void	ft_SO(t_data *data)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ void	so(t_data *data)
 	}
 }
 
-void	we(t_data *data)
+void	ft_WE(t_data *data)
 {
 	int	i;
 
@@ -61,7 +61,7 @@ void	we(t_data *data)
 	}
 }
 
-void	ea(t_data *data)
+void	ft_EA(t_data *data)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/16 16:37:49 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:52:15 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,12 +147,12 @@ int	    count_words(char const *s, char delimiter);
 void	check_valid_directions(t_data *data);
 void	print_err_directions();
 void	init_directions(t_data *data);
-void	NO(t_data *data);
-void	SO(t_data *data);
-void	WE(t_data *data);
-void	EA(t_data *data);
-void	F(t_data *data);
-void	C(t_data *data);
+void	ft_NO(t_data *data);
+void	ft_SO(t_data *data);
+void	ft_WE(t_data *data);
+void	ft_EA(t_data *data);
+void	ft_F(t_data *data);
+void	ft_C(t_data *data);
 void	check_directions_needs(t_data *data);
 void    check_no_needs(t_data *data);
 void	check_so_needs(t_data *data);
