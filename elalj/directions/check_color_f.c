@@ -12,13 +12,14 @@
 
 #include "../../cub3d.h"
 
-void    check_f_c(t_data *data)
+void	check_f_c(t_data *data)
 {
-	check_consecutive_semicolon_f(data);
 	data->dir.clr_f = ftt_split(data->dir.F[1], ',');
 	valid_box_color_f(data);
+	check_consecutive_semicolon_f(data);
 	valid_color_f(data);
 }
+
 void	check_consecutive_semicolon_f(t_data *data)
 {
 	int	i;
@@ -30,27 +31,21 @@ void	check_consecutive_semicolon_f(t_data *data)
 		if (data->dir.F[1][i] == ',')
 		{
 			i++;
-			if(data->dir.F[1][i] == ',')
-			{
-				ft_putstr_fd("Error: found(,)near to itself", 2);
-				exit (1);
-			}
+			if (data->dir.F[1][i] == ',')
+				found_semicolon_err();
 		}
 		i++;
 	}
 	i = 0;
 	j = 0;
-	while(data->dir.F[1][i])
+	while (data->dir.F[1][i])
 	{
 		if (data->dir.F[1][i] == ',')
 			j++;
 		i++;
 	}
 	if (j != 2)
-	{
-		ft_putstr_fd(" xz found more/less semicolons", 2);
-		exit (1);
-	}
+		err_semicolons();
 }
 
 void	valid_box_color_f(t_data *data)
@@ -63,10 +58,12 @@ void	valid_box_color_f(t_data *data)
 	if (i != 3)
 	{
 		ft_putstr_fd("Error: less/more box colors\n", 2);
-		ft_putstr_fd("Usage: Please enter a valid box of colors [..],[..],[..]", 2);
+		ft_putstr_fd("Usage: Please enter a valid box of", 2);
+		ft_putstr_fd(" colors [..],[..],[..]", 2);
 		exit (1);
-	}	
+	}
 }
+
 void	valid_color_f(t_data *data)
 {
 	int	i;
@@ -77,7 +74,8 @@ void	valid_color_f(t_data *data)
 	{
 		if (ft_atoi(data->dir.clr_f[i]) > 255)
 		{
-			ft_putstr_fd("Please enter a number between 0 and 255", 2);
+			ft_putstr_fd("Error:\n  ->Please enter a number", 2);
+			ft_putstr_fd(" between 0 and 255", 2);
 			exit (1);
 		}
 		j = 0;
@@ -85,7 +83,7 @@ void	valid_color_f(t_data *data)
 		{
 			if (!ft_isdigit(data->dir.clr_f[i][j]))
 			{
-				ft_putstr_fd("Error: found character in one of boxes", 2);
+				ft_putstr_fd("Error:\n  ->Found character in one of boxes", 2);
 				exit (1);
 			}
 			j++;

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../../cub3d.h"
 
 void	found_tab_inside(t_data *data)
@@ -28,11 +27,12 @@ void	found_tab_inside(t_data *data)
 		i++;
 	}
 }
+
 void	only_valid_characters(t_data *data)
 {
-	int	i;
-	int	j;
-	char *str;
+	int		i;
+	int		j;
+	char	*str;
 
 	i = 0;
 	while (data->map_info.map_wt[i])
@@ -59,7 +59,7 @@ void	only_valid_characters(t_data *data)
 void	check_surr_by_walls(t_data *data)
 {
 	int	i;
-	int len;
+	int	len;
 
 	i = 1;
 	if (strchrr(data->map_info.map_wt[0], '1'))
@@ -90,8 +90,10 @@ void	check_if_double_directions(t_data *data)
 		j = 0;
 		while (data->map_info.map[i][j])
 		{
-			if (data->map_info.map[i][j] == 'N' || data->map_info.map[i][j] == 'S'
-				|| data->map_info.map[i][j] == 'W' || data->map_info.map[i][j] == 'E')
+			if (data->map_info.map[i][j] == 'N'
+				|| data->map_info.map[i][j] == 'S'
+				|| data->map_info.map[i][j] == 'W'
+				|| data->map_info.map[i][j] == 'E')
 				c++;
 			j++;
 		}

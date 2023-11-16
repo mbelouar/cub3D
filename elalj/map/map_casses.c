@@ -14,8 +14,8 @@
 
 void	check_around_spaces(t_data *data)
 {
-	int i;
-	char **str;
+	int		i;
+	char	**str;
 
 	i = 0;
 	str = malloc(sizeof(char *) * data->map_info.columns - 6);
@@ -30,6 +30,7 @@ void	check_around_spaces(t_data *data)
 	start_checking_around_spaces(str);
 	ft_str_free(str);
 }
+
 void	start_checking_around_spaces(char **str)
 {
 	int	i;
@@ -54,6 +55,7 @@ void	start_checking_around_spaces(char **str)
 		i++;
 	}
 }
+
 void	ch_inside_map(char **str, int i, int j)
 {
 	if ((str[i - 1][j] != '1' && str[i - 1][j] != ' ')
