@@ -19,8 +19,7 @@ void	ft_move_up(t_data *data)
 
 	x = data->ray.player_x + cos(data->r_angle) * SPEED_MOVE;
 	y = data->ray.player_y + sin(data->r_angle) * SPEED_MOVE;
-	if (valid_move(data, x, y))
-		return ;
+	update_position(data, x, y);
 }
 
 void	ft_move_down(t_data *data)
@@ -30,8 +29,7 @@ void	ft_move_down(t_data *data)
 
 	x = data->ray.player_x - cos(data->r_angle) * SPEED_MOVE;
 	y = data->ray.player_y - sin(data->r_angle) * SPEED_MOVE;
-	if (valid_move(data, x, y))
-		return;
+	update_position(data, x, y);
 }
 
 void    ft_move_left(t_data *data)
@@ -41,9 +39,7 @@ void    ft_move_left(t_data *data)
 
 	x = data->ray.player_x - cos(data->r_angle + M_PI / 2) * SPEED_MOVE;
     y = data->ray.player_y - sin(data->r_angle + M_PI / 2) * SPEED_MOVE;
-
-    if (valid_move(data, x, y))
-        return;
+    update_position(data, x, y);
 }
 
 void ft_move_right(t_data *data)
@@ -53,31 +49,40 @@ void ft_move_right(t_data *data)
 
     x = data->ray.player_x + cos(data->r_angle + M_PI / 2) * SPEED_MOVE;
     y = data->ray.player_y + sin(data->r_angle + M_PI / 2) * SPEED_MOVE;
-
-    if (valid_move(data, x, y))
-        return;
+    update_position(data, x, y);
 }
+
+void update_position(t_data *data, double x, double y)
+{
+    if (valid_move(data, x, y) == 0)
+    {
+        data->ray.player_x = x;
+        data->ray.player_y = y;
+    }
+}
+
 
 int valid_move(t_data *data, double x, double y)
 {
     // Calculate the grid indices for the new position
     int new_x = (int)x;
     int new_y = (int)y;
+    int S = data->map_info.square_S;
 
     // Check if the new position is within the boundaries of the map
-    if (new_x >= 0 && new_x < data->map_info.map_width &&
-        new_y >= 0 && new_y < data->map_info.map_height)
+    if (data->map_info.map_wt[(new_x + 1) / S][new_y / S] == '0' ||
+        data->map_info.map_wt[(new_x - 1) / S][new_y / S] == '0' ||
+        data->map_info.map_wt[new_x / S][(new_y + 1) / S] == '0' ||
+        data->map_info.map_wt[new_x / S][(new_y - 1) / S] == '0')
     {
         // Check if the new position corresponds to an open space on the map
-        if (data->map_info.map[new_y][new_x] == '0')
+        if (data->map_info.map[new_y / S][new_x / S] == '0')
         {
             // The move is valid
 			// update the position
-			data->ray.player_x = x;
-            data->ray.player_y = y;
-            return (1);
+            return (0);
         }
     }
     // The move is not valid
-    return (0);
+    return (1);
 }
