@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/16 16:04:55 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/17 01:41:12 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	ft_init_player(t_data *data)
 {
 	// after parse the map
-	// data->ray.player_x = data->map_info.snew_x + 0.5;
-	// data->ray.player_y = data->map_info.snew_y + 0.5;
+	printf("x_player : %d\n", data->map_info.snew_x);
+	printf("y_player : %d\n", data->map_info.snew_y);
+	data->ray.player_x = data->map_info.snew_x * data->map_info.square_S + (data->map_info.square_S / 2);
+	data->ray.player_y = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
+	printf("x : %f\n", data->ray.player_x);
+	printf("y : %f\n", data->ray.player_y);
 	data->r_angle = 0.0;
-	data->ray.player_x = WIDTH / 2;
-	data->ray.player_y = HEIGHT / 2;
-	data->ray.player_size = 8;
+	data->ray.player_size = 10;
 	data->ray.direction_x = 0.0;
 	data->ray.direction_y = 0.0;
 	data->ray.plane_x = 0.0;
@@ -31,7 +33,7 @@ void	ft_init_player(t_data *data)
 
 void	ft_init_map(t_data *data)
 {
-	data->map_info.mapS = 64;
+	data->map_info.square_S = 64;
 	data->map_info.map_height = 0;
 	data->map_info.map_width = 0;
 }
@@ -47,8 +49,8 @@ void	ft_init_data(t_data *data)
 		err_msg("Mlx creation image failed\n", 2);
     }
 	mlx_image_to_window(data->mlx_ptr, data->image.img, 0, 0);
-	ft_init_player(data);
 	ft_init_map(data);
+	ft_init_player(data);
 }
 
 int init_player_direction(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/16 16:52:15 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/17 01:50:52 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # define KEY_A 0
 # define KEY_D 2
 # define ESC 53
-# define SPEED_MOVE 0.01
+# define SPEED_MOVE 0.05
 # define WIDTH		2200
-# define HEIGHT		1200
+# define HEIGHT		1000
 # define TITLE		"cub3D"
 
 typedef struct e_image {
@@ -45,7 +45,7 @@ typedef struct s_map {
     int             map_size;
 	int				map_width;
 	int				map_height;
-    int             mapS;
+    int             square_S;
     char            snew_dir;
     int             snew_x;
     int             snew_y;
@@ -101,6 +101,7 @@ typedef struct s_data {
     int             c;
 }				t_data;
 
+// <========== RAYCASTING ==========>
 // initialize functions
 void	ft_init_data(t_data *data);
 void	ft_init_image(t_data *data);
@@ -135,8 +136,8 @@ void    draw_map2D(t_data *data);
 void    draw_carre(int color, double top, double left, t_data *data);
 void    draw_player(double player_x, double player_y, t_data *data);
 
-// >--------<
-//parsing
+// <========== PARSING ==========>
+
 void	read_map(t_data *data, int fd);
 int     map_valid(t_data *data, int fd, char *file);
 //split

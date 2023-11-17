@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/16 16:06:23 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/17 01:49:46 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,31 @@ void	handle_moves(void *param)
 		data->r_angle -= 0.05;
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
 		data->r_angle += 0.05;
-	setup_rot_angle(data);
 	drawing(data);
 }
+
+// void	handle_moves(void *param)
+// {
+// 	t_data	*data;
+
+// 	data = (t_data *)param;
+// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_ESCAPE))
+// 		mlx_close_window(data->mlx_ptr);
+// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_W))
+// 		data->ray.player_x -= 5.0;
+// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_S))
+// 		data->ray.player_x += 5.0;
+// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_A))
+// 		data->ray.player_y -= 5.0;
+// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_D))
+// 		data->ray.player_y += 5.0;
+// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_LEFT))
+// 		data->r_angle -= 0.05;
+// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
+// 		data->r_angle += 0.05;
+// 	setup_rot_angle(data);
+// 	drawing(data);
+// }
 
 void setup_rot_angle(t_data *data)
 {
