@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/17 19:41:47 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/17 20:04:03 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,10 @@ void	plot_point(t_data *data, int x, int y, int color);
 int     generate_color(int r, int g, int b, int a);
 
 // moves
-void	ft_move_up(t_data *data, double x_tmp, double y_tmp);
-void	ft_move_down(t_data *data, double x_tmp, double y_tmp);
-void	ft_move_right(t_data *data, double x_tmp, double y_tmp);
-void	ft_move_left(t_data *data, double x_tmp, double y_tmp);
+void	ft_move_up(t_data *data);
+void	ft_move_down(t_data *data);
+void	ft_move_right(t_data *data);
+void	ft_move_left(t_data *data);
 int     valid_move(t_data *data, double x, double y);
 void    update_position(t_data *data, double x, double y);
 
