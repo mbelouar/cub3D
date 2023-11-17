@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/17 01:40:09 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/17 19:33:11 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void draw_player(double player_x, double player_y, t_data *data)
 {
-    double halfSize;
+    // double halfSize;
     double startX;
     double startY;
     double currentX;
     double currentY;
 
-    halfSize = data->ray.player_size / 2.0;
-    startX = player_y - 2;
-    startY = player_x - 2;
+    // halfSize = data->ray.player_size / 2.0;
+    startX = player_y - 4;
+    startY = player_x - 4;
     currentX = startX;
     while (currentX < startX + data->ray.player_size)
     {
         currentY = startY;
         while (currentY < startY + data->ray.player_size)
         {
-            mlx_put_pixel(data->image.img, currentX, currentY, generate_color(184, 98, 27, 255));
+            mlx_put_pixel(data->image.img, currentX, currentY, generate_color(0, 0,0 , 255));
             ++currentY;
         }
         ++currentX;

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/17 01:41:12 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:31:35 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_init_player(t_data *data)
 	data->ray.player_y = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
 	printf("x : %f\n", data->ray.player_x);
 	printf("y : %f\n", data->ray.player_y);
-	data->r_angle = 0.0;
+	// data->r_angle = 0.0;
 	data->ray.player_size = 10;
 	data->ray.direction_x = 0.0;
 	data->ray.direction_y = 0.0;
@@ -58,6 +58,7 @@ int init_player_direction(t_data *data)
 	double	initial_rotation_angle;
 
 	initial_rotation_angle = 0.0;
+	// printf("dir : %c\n", data->map_info.snew_dir);
 	if (data->map_info.snew_dir == 'N')
 		initial_rotation_angle = 0;
 	else if (data->map_info.snew_dir == 'S')
@@ -66,6 +67,7 @@ int init_player_direction(t_data *data)
 		initial_rotation_angle = M_PI / 2;
 	else if (data->map_info.snew_dir == 'W')
 		initial_rotation_angle = (3 * M_PI) / 2;
+	// printf("initial rotation angle : %f\n\n", initial_rotation_angle);
 	data->r_angle = initial_rotation_angle;
 	return (0);
 }
