@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/17 17:31:35 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:07:57 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_init_player(t_data *data)
 	printf("x : %f\n", data->ray.player_x);
 	printf("y : %f\n", data->ray.player_y);
 	// data->r_angle = 0.0;
-	data->ray.player_size = 10;
+	data->ray.player_size = 8;
 	data->ray.direction_x = 0.0;
 	data->ray.direction_y = 0.0;
 	data->ray.plane_x = 0.0;

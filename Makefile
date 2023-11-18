@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/11/16 15:29:20 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/11/18 18:27:01 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SRC =		main.c \
 			mbelouar/srcs/colors.c \
 			mbelouar/srcs/draw.c \
 			mbelouar/srcs/moves.c \
+			# mbelouar/srcs/raycast.c \
 
 OBJS := $(SRC:.c=.o)
 

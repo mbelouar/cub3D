@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/17 20:04:03 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:24:03 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@
 # include <stdio.h>
 # include <math.h>
 
-# define KEY_W 13
-# define KEY_S 1
-# define KEY_A 0
-# define KEY_D 2
-# define ESC 53
+# define FOV_ANGLE  60 * (M_PI / 180)
 # define SPEED_MOVE 5.00
 # define WIDTH		2200
 # define HEIGHT		1000

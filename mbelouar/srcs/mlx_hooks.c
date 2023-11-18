@@ -6,30 +6,11 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/17 20:03:52 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/18 16:43:49 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-// int	handle_hook(int keycode, t_data *data)
-// {
-// 	if (keycode == 53)
-// 		ft_close(data);
-// 	else if (keycode == KEY_W)
-// 		data->ray.player_y -= 10;
-// 	else if (keycode == KEY_S)
-// 		data->ray.player_y += 10;
-// 	else if (keycode == KEY_A)
-// 		data->ray.player_x -= 10;
-// 	else if (keycode == KEY_D)
-// 		data->ray.player_x += 10;
-// 	else if (keycode == RIGHT_ROTATE)
-// 		data->r_angle += 0.09;
-// 	else if (keycode == LEFT_ROTATE)
-// 		data->r_angle -= 0.09;
-// 	return (0);
-// }
 
 void	handle_moves(void *param)
 {
@@ -52,29 +33,6 @@ void	handle_moves(void *param)
 		data->r_angle -= 0.05;
 	drawing(data);
 }
-
-// void	handle_moves(void *param)
-// {
-// 	t_data	*data;
-
-// 	data = (t_data *)param;
-// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_ESCAPE))
-// 		mlx_close_window(data->mlx_ptr);
-// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_W))
-// 		data->ray.player_x -= 5.0;
-// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_S))
-// 		data->ray.player_x += 5.0;
-// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_A))
-// 		data->ray.player_y -= 5.0;
-// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_D))
-// 		data->ray.player_y += 5.0;
-// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_LEFT))
-// 		data->r_angle -= 0.05;
-// 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
-// 		data->r_angle += 0.05;
-// 	setup_rot_angle(data);
-// 	drawing(data);
-// }
 
 // void setup_rot_angle(t_data *data)
 // {
