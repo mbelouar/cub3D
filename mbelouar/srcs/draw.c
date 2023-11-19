@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 17:50:17 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/19 21:44:03 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,28 +80,6 @@ void draw_square(int color, double top, double left, t_data *data)
         currentY++;
     }
 }
-
-
-// void draw_square(int color, double top, double left, t_data *data)
-// {
-//     double currentX;
-//     double currentY;
-
-//     currentY = 0;
-//     while (currentY < data->map_info.square_S)
-//     {
-//         currentX = 0;
-//         while (currentX < data->map_info.square_S)
-//         {
-//             mlx_put_pixel(data->image.img, currentX + left, currentY + top, color);
-//             mlx_put_pixel(data->image.img, currentX + left, top, generate_color(0, 0, 0, 255));  //black
-//             currentX++;
-//         }
-//         mlx_put_pixel(data->image.img, left, currentY + top, generate_color(0, 0, 0, 255));  //black
-//         currentY++;
-//     }
-// }
-
 
 void draw_map2D(t_data *data)
 {

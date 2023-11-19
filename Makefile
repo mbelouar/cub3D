@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/11/19 17:50:08 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/11/19 22:58:17 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,20 +19,18 @@ RESET = \033[0m
 
 NAME = cub3d
 
+# IMLX = -I /Users/$(USER)/MLX42/include/MLX42
+# GLFW = -I include -lglfw -L"/Users/moelalj/.brew/opt/glfw/lib/"
+IMLX = -I /Users/mbelouar/MLX42/include/MLX42
 
-
-IMLX = -I /Users/$(USER)/MLX42/include/MLX42
-GLFW = -I include -lglfw -L"/Users/moelalj/.brew/opt/glfw/lib/"
-#IMLX = -I /Users/mbelouar/MLX42/include/MLX42
-
-#GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 
 MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
-#AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
-AR_MLX = /Users/moelalj/MLX42/build/libmlx42.a
+AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
+# AR_MLX = /Users/moelalj/MLX42/build/libmlx42.a
 
 
 
@@ -67,6 +65,9 @@ SRC =		main.c \
 			mbelouar/srcs/draw.c \
 			mbelouar/srcs/moves.c \
 			# mbelouar/srcs/raycast.c \
+			# mbelouar/srcs/horz_inter.c \
+			# mbelouar/srcs/vert_inter.c \
+			# mbelouar/srcs/dda_algo.c \
 
 OBJS := $(SRC:.c=.o)
 

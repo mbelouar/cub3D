@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:25:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 17:48:58 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/19 22:06:07 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 double dist_two_points(double x1, double y1, double x2, double y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+}
+
+void	cast_ray(t_data *data, double ray_angle, int i)
+{
+	ray_angle = setup_rot_angle(ray_angle);
+	horz_inter(data, ray_angle, i);
+	vert_inter(data, ray_angle, i);
+	calculate_dis(data, i);
+	data->ray.rayAngle = ray_angle;
+	data->ray.is_FaceDown = isFace_Down;
+	data->ray.is_FaceUp = isFace_Up;
+	data->ray.is_FaceRight = isFace_Left;
+	data->ray.is_FaceRight = isFace_Right;
 }
 
 void	cast_ray(t_data *data, double ray_angle, int i)
@@ -33,6 +46,7 @@ void	cast_ray(t_data *data, double ray_angle, int i)
 	// CHECK HORZ HITS
 	// ==================
 
+	// horz_inter();
 	int foundHorz_hit = 0;
 	double horzHit_x = 0;
 	double horzHit_y = 0;
@@ -79,6 +93,7 @@ void	cast_ray(t_data *data, double ray_angle, int i)
 	// CHECK VERT HITS
 	// ==================
 
+	// vert_inter();
 	int foundVert_hit = 0;
 	double vertHit_x = 0;
 	double vertHit_y = 0;
@@ -121,6 +136,7 @@ void	cast_ray(t_data *data, double ray_angle, int i)
 		}
 	}
 
+	// calculate_dis();
 	//calculate both horz and vert hit distances and choose the smallest one
 	double horzHit_dist = foundHorz_hit ? dist_two_points(data->ray.player_size, data->ray.player_y, horzHit_x, horzHit_y)
 										: INT_MAX;
@@ -142,6 +158,8 @@ void	cast_ray(t_data *data, double ray_angle, int i)
 		data->ray.wallHit_content = horzContent;
 		data->ray.wasHitVertical = 0;
 	}
+
+	// already add in the cast_ray function
 	data->ray.rayAngle = ray_angle;
 	data->ray.is_FaceDown = isFace_Down;
 	data->ray.is_FaceUp = isFace_Up;
@@ -149,7 +167,7 @@ void	cast_ray(t_data *data, double ray_angle, int i)
 	data->ray.is_FaceRight = isFace_Right;
 }
 
-void	draw_rays(t_data *data)
+void	castAll_rays(t_data *data)
 {
     int 	i = 0;
     double	ray_angle = data->r_angle - (FOV_ANGLE / 2);
@@ -157,42 +175,7 @@ void	draw_rays(t_data *data)
     while (i < WIDTH)
     {
         cast_ray(data, ray_angle, i);
-
-        // Draw the ray
-        double end_x = data->ray.wallHit_x;
-        double end_y = data->ray.wallHit_y;
-
-        // Adjust ray length for visualization
-        double ray_length = data->ray.distance;
-        end_x = data->ray.player_x + ray_length * cos(ray_angle);
-        end_y = data->ray.player_y + ray_length * sin(ray_angle);
-
-        // Draw a line for the ray
-        mlx_line(data->image, data->ray.player_x, data->ray.player_y, end_x, end_y, 0xFFFFFF);
-
         ray_angle += FOV_ANGLE / WIDTH;
         i++;
-    }
-}
-
-void mlx_line(t_data *data, double x1, double y1, double x2, double y2, int color)
-{
-    double dx = x2 - x1;
-    double dy = y2 - y1;
-
-    double steps = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
-
-    double x_increment = dx / steps;
-    double y_increment = dy / steps;
-
-    double x = x1;
-    double y = y1;
-
-    int i;
-    for (i = 0; i <= steps; i++)
-    {
-        mlx_put_pixel(data->image.img, round(x), round(y), color);
-        x += x_increment;
-        y += y_increment;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 17:49:44 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/19 22:54:47 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 void	ft_init_player(t_data *data)
 {
 	// after parse the map
-	printf("x_player : %d\n", data->map_info.snew_x);
-	printf("y_player : %d\n", data->map_info.snew_y);
 	data->ray.player_x = data->map_info.snew_x * data->map_info.square_S + (data->map_info.square_S / 2);
 	data->ray.player_y = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
-	printf("x : %f\n", data->ray.player_x);
-	printf("y : %f\n", data->ray.player_y);
 	// data->r_angle = 0.0;
 	data->ray.player_size = 8;
 	data->ray.step_size = 0.1;
@@ -47,6 +43,7 @@ void	ft_init_data(t_data *data)
 	mlx_image_to_window(data->mlx_ptr, data->image.img, 0, 0);
 	ft_init_map(data);
 	ft_init_player(data);
+	// data->ray = (t_ray *)malloc(sizeof(t_ray) * WIDTH);
 }
 
 int init_player_direction(t_data *data)

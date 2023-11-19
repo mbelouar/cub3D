@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 17:49:30 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/19 23:08:39 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct s_data {
 	void			*win_ptr;
     double          r_angle;
     int             c;
+    double x_tmp;
+    double y_tmp;
 }				t_data;
 
 // <========== RAYCASTING ==========>
@@ -115,7 +117,7 @@ void    handle_moves(void *param);
 // colors
 void	plot_point(t_data *data, int x, int y, int color);
 int     generate_color(int r, int g, int b, int a);
-void    setup_rot_angle(double angle);
+double    setup_rot_angle(double angle);
 
 // moves
 void	ft_move_up(t_data *data);
@@ -136,10 +138,12 @@ void	draw_rays(t_data *data);
 
 void	read_map(t_data *data, int fd);
 int     map_valid(t_data *data, int fd, char *file);
+
 //split
 char	**ftt_split(char const *s, char c);
 int	    count_chars(char const *s, char delimiter, int lens);
 int	    count_words(char const *s, char delimiter);
+
 //trim
 char	*ftt_strtrim(char const *s1, char const *set);
 int	check_end(char const *s, char const *set);
@@ -199,22 +203,26 @@ void	print_and_exit_param(void);
 void	err_empty_map(void);
 void	found_semicolon_err(void);
 void    err_semicolons(void);
-# ifndef BUFFER_SIZE
+
+#ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1337
+
 //gnl
 char	*get_next_line(int fd);
 char	*ft_read(char *all, int fd);
 char	*cut(char *str);
 char	*copy_to_xyata(char *str);
+
 //libft_needed
 char	*ftt_strcpy(char *dst, char *src);
 char	*ftt_strjoin(char *s1, char *s2);
 char	*ftt_strchr(const char *s, int c);
 size_t	ftt_strlen(const char *s);
+
 // free
 void	ft_str_free(char **s);
 int     strchrr(char *line, char c);
 
-# endif
+#endif
 #endif
 
