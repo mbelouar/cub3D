@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/18 17:07:57 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/19 17:49:44 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ void	ft_init_player(t_data *data)
 	printf("y : %f\n", data->ray.player_y);
 	// data->r_angle = 0.0;
 	data->ray.player_size = 8;
-	data->ray.direction_x = 0.0;
-	data->ray.direction_y = 0.0;
-	data->ray.plane_x = 0.0;
-	data->ray.plane_y = 0.0;
 	data->ray.step_size = 0.1;
 	init_player_direction(data);
 }
@@ -40,7 +36,7 @@ void	ft_init_map(t_data *data)
 
 void	ft_init_data(t_data *data)
 {
-	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, TITLE, true);
+	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, TITLE, 0);
 	if (!(data->mlx_ptr))
 		err_msg("Mlx initialization failed\n", 2);
 	if (!(data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT)))

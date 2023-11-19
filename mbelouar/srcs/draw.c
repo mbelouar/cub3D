@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/18 18:26:44 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/19 17:50:17 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,4 +132,5 @@ void draw_map2D(t_data *data)
 void drawing(t_data *data)
 {
     draw_map2D(data);
+    // draw_rays(data);
 }

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/18 16:43:49 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/19 15:44:45 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	handle_moves(void *param)
 	drawing(data);
 }
 
-// void setup_rot_angle(t_data *data)
-// {
-// 	if (data->r_angle < 0)
-// 		data->r_angle += (2 * M_PI);
-// 	if (data->r_angle > (2 * M_PI))
-// 		data->r_angle -= (2 * M_PI);
-// }
+void setup_rot_angle(double angle)
+{
+	if (angle < 0)
+		angle += (2 * M_PI);
+	if (angle > (2 * M_PI))
+		angle -= (2 * M_PI);
+}

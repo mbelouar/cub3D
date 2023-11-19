@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/18 17:24:03 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/19 17:49:30 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define WIDTH		2200
 # define HEIGHT		1000
 # define TITLE		"cub3D"
+# define INT_MAX 2147483647
 
 typedef struct e_image {
 	void	*img;
@@ -50,29 +51,26 @@ typedef struct s_map {
 }				t_map;
 
 typedef struct s_ray {
-    double player_x;
-    double player_y;
-    double player_size;
-    double direction_x;
-    double direction_y;
-    double plane_x;
-    double plane_y;
-    double camera;
-    double ray_vect_x;
-    double ray_vect_y;
-    int x_map;
-    int y_map;
-    double x_dist;
-    double y_dist;
-    double delta_dist_x;
-    double delta_dist_y;
-    double wall_dist;
-    int step_x;
-    int step_y;
-    int touch;
-    int face_touched;
-    double step_size;
-    int wall_height;
+    double  player_x;
+    double  player_y;
+    double  player_size;
+    double  rayAngle;
+    double  wallHit_x;
+    double  wallHit_y;
+    double  distance;
+    int     wasHitVertical;
+    int     is_FaceUp;
+    int     is_FaceDown;
+    int     is_FaceRight;
+    int     is_FaceLeft;
+    int     wallHit_content;
+    double  delta_dist_x;
+    double  delta_dist_y;
+    int     step_x;
+    int     step_y;
+    int     touch;
+    int     face_touched;
+    double  step_size;
 }				t_ray;
 
 typedef struct s_dir{
@@ -113,11 +111,11 @@ void	open_fd_check(int *fd, char *file);
 int		ft_close(t_data *data);
 int		esc_handle(int keycode, t_data *data);
 void    handle_moves(void *param);
-void    setup_rot_angle(t_data *data);
 
 // colors
 void	plot_point(t_data *data, int x, int y, int color);
 int     generate_color(int r, int g, int b, int a);
+void    setup_rot_angle(double angle);
 
 // moves
 void	ft_move_up(t_data *data);
@@ -132,6 +130,7 @@ void    drawing(t_data * data);
 void    draw_map2D(t_data *data);
 void    draw_carre(int color, double top, double left, t_data *data);
 void    draw_player(double player_x, double player_y, t_data *data);
+void	draw_rays(t_data *data);
 
 // <========== PARSING ==========>
 
