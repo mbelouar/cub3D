@@ -140,16 +140,22 @@ int     map_valid(t_data *data, int fd, char *file);
 char	**ftt_split(char const *s, char c);
 int	    count_chars(char const *s, char delimiter, int lens);
 int	    count_words(char const *s, char delimiter);
+//trim
+char	*ftt_strtrim(char const *s1, char const *set);
+int	check_end(char const *s, char const *set);
+int	check_start(char const *s, char const *set);
+int	check(char ch, char const *set);
+
 //directions
-void	check_valid_directions(t_data *data);
+void	check_many_directions(t_data *data);
 void	print_err_directions();
 void	init_directions(t_data *data);
-void	ft_NO(t_data *data);
-void	ft_SO(t_data *data);
-void	ft_WE(t_data *data);
-void	ft_EA(t_data *data);
-void	ft_F(t_data *data);
-void	ft_C(t_data *data);
+void	ft_no(t_data *data);
+void	ft_so(t_data *data);
+void	ft_we(t_data *data);
+void	ft_ea(t_data *data);
+void	ft_f(t_data *data);
+void	ft_c(t_data *data);
 void	check_directions_needs(t_data *data);
 void    check_no_needs(t_data *data);
 void	check_so_needs(t_data *data);
@@ -184,6 +190,8 @@ void	around_spaces_err(void);
 void	check_if_double_directions(t_data *data);
 void	double_directions_err(void);
 void	non_directions_err(void);
+void	check_if_play_can_go_bg(t_data *data);
+int     found_last_0(char *line);
 
 //errors
 void	check_fd_map(int *fd, char *file);

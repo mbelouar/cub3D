@@ -21,18 +21,18 @@ NAME = cub3d
 
 
 
-#IMLX = -I /Users/$(USER)/MLX42/include/MLX42
-#GLFW = -I include -lglfw -L"/Users/moelalj/.brew/opt/glfw/lib/"
-IMLX = -I /Users/mbelouar/MLX42/include/MLX42
+IMLX = -I /Users/$(USER)/MLX42/include/MLX42
+GLFW = -I include -lglfw -L"/Users/moelalj/.brew/opt/glfw/lib/"
+#IMLX = -I /Users/mbelouar/MLX42/include/MLX42
 
-GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+#GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 
 MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
-AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
-#AR_MLX = /Users/moelalj/MLX42/build/libmlx42.a
+#AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
+AR_MLX = /Users/moelalj/MLX42/build/libmlx42.a
 
 
 
@@ -47,6 +47,7 @@ SRC =		main.c \
 			elalj/read_map.c\
 			elalj/parsing.c\
 			elalj/ft_split.c\
+			elalj/ftt_strtrim.c\
 			elalj/gnl/get_next_line.c\
 			elalj/gnl/get_next_line_utils.c\
 			elalj/directions/check_directions.c\
@@ -56,6 +57,7 @@ SRC =		main.c \
 			elalj/directions/check_color_f.c\
 			elalj/directions/check_color_c.c\
 			elalj/map/check_map.c\
+			elalj/map/check_map_2.c\
 			elalj/map/map_casses.c\
 			elalj/map/errors_map.c\
 			mbelouar/srcs/ft_errors.c \

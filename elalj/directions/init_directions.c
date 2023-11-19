@@ -14,62 +14,74 @@
 
 void	init_directions(t_data *data)
 {
-	ft_NO(data);
-	ft_SO(data);
-	ft_WE(data);
-	ft_EA(data);
-	ft_F(data);
-	ft_C(data);
+	ft_no(data);
+	ft_so(data);
+	ft_we(data);
+	ft_ea(data);
+	ft_f(data);
+	ft_c(data);
 }
 
-void	ft_NO(t_data *data)
+void	ft_no(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (i < 6)
 	{
-		if (!ft_strncmp(data->map_info.str[i], "NO", 2))
-			data->dir.NO = ftt_split(data->map_info.str[i], ' ');
+		str = ftt_strtrim(data->map_info.str[i], "\t ");
+		if (!ft_strncmp(str, "NO", 2))
+			data->dir.NO = ftt_split(str, ' ');
+		free(str);
 		i++;
 	}
 }
 
-void	ft_SO(t_data *data)
+void	ft_so(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (i < 6)
 	{
-		if (!ft_strncmp(data->map_info.str[i], "SO", 2))
-			data->dir.SO = ftt_split(data->map_info.str[i], ' ');
+		str = ftt_strtrim(data->map_info.str[i], "\t ");
+		if (!ft_strncmp(str, "SO", 2))
+			data->dir.SO = ftt_split(str, ' ');
+		free(str);
 		i++;
 	}
 }
 
-void	ft_WE(t_data *data)
+void	ft_we(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (i < 6)
 	{
-		if (!ft_strncmp(data->map_info.str[i], "WE", 2))
-			data->dir.WE = ftt_split(data->map_info.str[i], ' ');
+		str = ftt_strtrim(data->map_info.str[i], "\t ");
+		if (!ft_strncmp(str, "WE", 2))
+			data->dir.WE = ftt_split(str, ' ');
+		free(str);
 		i++;
 	}
 }
 
-void	ft_EA(t_data *data)
+void	ft_ea(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (i < 6)
 	{
-		if (!ft_strncmp(data->map_info.str[i], "EA", 2))
-			data->dir.EA = ftt_split(data->map_info.str[i], ' ');
+		str = ftt_strtrim(data->map_info.str[i], "\t ");
+		if (!ft_strncmp(str, "EA", 2))
+			data->dir.EA = ftt_split(str, ' ');
+		free(str);
 		i++;
 	}
 }

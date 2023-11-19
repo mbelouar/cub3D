@@ -12,52 +12,61 @@
 
 #include "../../cub3d.h"
 
-void	ft_F(t_data *data)
+void	ft_f(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (i < 6)
 	{
-		if (!ft_strncmp(data->map_info.str[i], "F", 1))
-			data->dir.F = ftt_split(data->map_info.str[i], ' ');
+		str = ftt_strtrim(data->map_info.str[i], "\t ");
+		if (!ft_strncmp(str, "F", 1))
+			data->dir.F = ftt_split(str, ' ');
+		free(str);
 		i++;
 	}
 }
 
-void	ft_C(t_data *data)
+void	ft_c(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (i < 6)
 	{
-		if (!ft_strncmp(data->map_info.str[i], "C", 1))
-			data->dir.C = ftt_split(data->map_info.str[i], ' ');
+		str = ftt_strtrim(data->map_info.str[i], "\t ");
+		if (!ft_strncmp(str, "C", 1))
+			data->dir.C = ftt_split(str, ' ');
+		free(str);
 		i++;
 	}
 }
 
-void	check_valid_directions(t_data *data)
+void	check_many_directions(t_data *data)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	data->c = 0;
 	i = 0;
-	while (data->map_info.str[i])
+	while (i < 6)
 	{
-		if (!ft_strncmp(data->map_info.str[i], "NO ", 3))
+		str = ftt_strtrim(data->map_info.str[i], "\t ");
+		if (!ft_strncmp(str, "NO", 2))
 			data->c++;
-		else if (!ft_strncmp(data->map_info.str[i], "SO ", 3))
+		else if (!ft_strncmp(str, "SO", 2))
 			data->c++;
-		else if (!ft_strncmp(data->map_info.str[i], "WE ", 3))
+		else if (!ft_strncmp(str, "WE", 2))
 			data->c++;
-		else if (!ft_strncmp(data->map_info.str[i], "EA ", 3))
+		else if (!ft_strncmp(str, "EA", 2))
 			data->c++;
-		else if (!ft_strncmp(data->map_info.str[i], "F ", 2))
+		else if (!ft_strncmp(str, "F", 1))
 			data->c++;
-		else if (!ft_strncmp(data->map_info.str[i], "C ", 2))
+		else if (!ft_strncmp(str, "C", 1))
 			data->c++;
+		free(str);
 		i++;
 	}
 	if (data->c != 6)

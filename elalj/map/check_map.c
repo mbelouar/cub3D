@@ -112,4 +112,5 @@ void	check_map(t_data *data)
 	check_if_double_directions(data);
 	check_surr_by_walls(data);
 	check_around_spaces(data);
+	check_if_play_can_go_bg(data);
 }
