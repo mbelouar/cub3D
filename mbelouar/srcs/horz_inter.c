@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:39:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 21:41:06 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:14:53 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int is_wall(t_data *data, double x, double y)
     double x_pix;
     double y_pix;
 
-    x_pix = floor(x / data->map_info.square_S);
-    y_pix = floor(y / data->map_info.square_);
-    if (x_pix >= data->map_info.map_width || y_pix >= data->map_info.map_height)
+    if (x >= data->map_info.map_width || y >= data->map_info.map_height)
         return (1);
+    x_pix = floor(x / data->map_info.square_S);
+    y_pix = floor(y / data->map_info.square_S);
     if (data->map_info.map_wt[(int)x_pix][(int)y_pix] == '1')
         return (1);
     return (0);
@@ -28,52 +28,52 @@ int is_wall(t_data *data, double x, double y)
 
 void	horz_inter(t_data *data, double ray_angle, int i)
 {
-    int	isFace_Down = ray_angle > 0 && ray_angle < M_PI;
-	int	isFace_Up = !isFace_Down;
+    data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
+	data->hold.is_FaceUp = !data->hold.is_FaceDown;
 
-	int isFace_Right = ray_angle < (M_PI / 2) || ray_angle > (3 * M_PI / 2);
-	int isFace_Left = !isFace_Right;
+	data->hold.is_FaceRight = ray_angle < (M_PI / 2) || ray_angle > (3 * M_PI / 2);
+	data->hold.is_FaceLeft = !data->hold.is_FaceRight;
 
     // horz_inter
-    int foundHorz_hit = 0;
-	double horzHit_x = 0;
-	double horzHit_y = 0;
-	int	horzContent = 0;
+    data->hold.foundHorz_hit = 0;
+	data->hold.horzHit_x = 0;
+	data->hold.horzHit_y = 0;
 
-    x_inter = floor(data->ray.player_y / data->map_info.square_S) * data->map_info.square_S;
-	x_inter += isFace_Down ? data->map_info.square_S : 0;
+    data->hold.x_inter = floor(data->player._y / data->map_info.square_S) * data->map_info.square_S;
+	data->hold.x_inter += data->hold.is_FaceDown ? data->map_info.square_S : 0;
 
-	y_inter = data->ray.player_x + (y_inter - data->ray.player_y) / tan(ray_angle);
+	data->hold.y_inter = data->player._x + (data->hold.y_inter - data->player._y) / tan(ray_angle);
 
     // calculate xstep and ystep
-    y_step = data->map_info.square_S;
-	y_step *= isFace_Up ? -1 : 1;
+    data->hold.y_step = data->map_info.square_S;
+	data->hold.y_step *= data->hold.is_FaceUp ? -1 : 1;
 
-	x_step = data->map_info.square_S / tan(ray_angle);
-	x_step *= (isFace_Left && x_step > 0) ? -1 : 1;
-	x_step *= (isFace_Right && x_step < 0) ? -1 : 1;
+	data->hold.x_step = data->map_info.square_S / tan(ray_angle);
+	data->hold.x_step *= (data->hold.is_FaceLeft && data->hold.x_step > 0) ? -1 : 1;
+	data->hold.x_step *= (data->hold.is_FaceRight && data->hold.x_step < 0) ? -1 : 1;
 
     //
-    double next_x = x_inter;
-	double next_y = y_inter;
+    data->hold.next_x = data->hold.x_inter;
+	data->hold.next_y = data->hold.y_inter;
 
     //increment xstep and ystep until find a wall hit
-	while (next_x >= 0 && next_x <= WIDTH && next_y >= 0 && next_y <= HEIGHT)
+	while (data->hold.next_x >= 0 && data->hold.next_x <= WIDTH
+			&& data->hold.next_y >= 0 && data->hold.next_y <= HEIGHT)
 	{
-		double x_toCheck = next_x;
-		double y_toCheck = next_y + (isFace_Up ? -1 : 0);
+		double x_toCheck = data->hold.next_x;
+		double y_toCheck = data->hold.next_y + (data->hold.is_FaceUp ? -1 : 0);
 
-		if (is_wall(x_toCheck, y_toCheck))
+		if (is_wall(data, x_toCheck, y_toCheck))
 		{
-			data->ray[i].wallHit_x = next_x;
-			data->ray[i].wallHit_y = next_y;
-			foundHorz_hit = 1;
+			data->ray[i].wallHit_x = data->hold.next_x;
+			data->ray[i].wallHit_y = data->hold.next_y;
+			data->hold.foundHorz_hit = 1;
 			break;
 		}
 		else
 		{
-			next_x += x_step;
-			next_y += y_step;
+			data->hold.next_x += data->hold.x_step;
+			data->hold.next_y += data->hold.y_step;
 		}
 	}
 }

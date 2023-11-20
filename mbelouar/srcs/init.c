@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 22:54:47 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:09:00 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_init_player(t_data *data)
 {
-	// after parse the map
-	data->ray.player_x = data->map_info.snew_x * data->map_info.square_S + (data->map_info.square_S / 2);
-	data->ray.player_y = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
-	// data->r_angle = 0.0;
-	data->ray.player_size = 8;
-	data->ray.step_size = 0.1;
+	data->player._x = data->map_info.snew_x * data->map_info.square_S + (data->map_info.square_S / 2);
+	data->player._y = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
+	data->player.p_size = 8;
 	init_player_direction(data);
 }
 
@@ -43,15 +40,14 @@ void	ft_init_data(t_data *data)
 	mlx_image_to_window(data->mlx_ptr, data->image.img, 0, 0);
 	ft_init_map(data);
 	ft_init_player(data);
-	// data->ray = (t_ray *)malloc(sizeof(t_ray) * WIDTH);
+	data->ray = (t_ray *)malloc(sizeof(t_ray) * WIDTH);
 }
- 
+
 int init_player_direction(t_data *data)
 {
 	double	initial_rotation_angle;
 
 	initial_rotation_angle = 0.0;
-	// printf("dir : %c\n", data->map_info.snew_dir);
 	if (data->map_info.snew_dir == 'N')
 		initial_rotation_angle = 0;
 	else if (data->map_info.snew_dir == 'S')
@@ -60,7 +56,6 @@ int init_player_direction(t_data *data)
 		initial_rotation_angle = M_PI / 2;
 	else if (data->map_info.snew_dir == 'W')
 		initial_rotation_angle = (3 * M_PI) / 2;
-	// printf("initial rotation angle : %f\n\n", initial_rotation_angle);
 	data->r_angle = initial_rotation_angle;
 	return (0);
 }

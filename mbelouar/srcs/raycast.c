@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:25:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 22:06:07 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:01:27 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,23 @@ void	calculate_dis(t_data *data, int i)
 	// calculate_dis();
 	// calculate both horz and vert hit distances and choose the smallest one
 	// must add the two variables foundHorz_hit and foundVert_hit to a struct to hold the data
-	double horzHit_dist = foundHorz_hit ? dist_two_points(data->ray.player_x, data->ray.player_y, horzHit_x, horzHit_y)
+	double horzHit_dist = data->hold.foundHorz_hit ? dist_two_points(data->player._x, data->player._y, data->hold.horzHit_x, data->hold.horzHit_y)
 										: INT_MAX;
-	double vertHit_dist = foundVert_hit ? dist_two_points(data->ray.player_x, data->ray.player_y, vertHit_x, vertHit_y)
+	double vertHit_dist = data->hold.foundVert_hit ? dist_two_points(data->player._x, data->player._y, data->hold.vertHit_x, data->hold.vertHit_y)
 										: INT_MAX;
 	if (vertHit_dist < horzHit_dist)
 	{
-		data->ray.distance = vertHit_dist;
-		data->ray.wallHit_x = vertHit_x;
-		data->ray.wallHit_y = vertHit_y;
-		data->ray.wasHitVertical = 1;
+		data->ray[i].distance = vertHit_dist;
+		data->ray[i].wallHit_x = data->hold.vertHit_x;
+		data->ray[i].wallHit_y = data->hold.vertHit_y;
+		data->ray[i].wasHitVertical = 1;
 	}
 	else
 	{
-		data->ray.distance = horzHit_dist;
-		data->ray.wallHit_x = horzHit_x;
-		data->ray.wallHit_y = horzHit_y;
-		data->ray.wasHitVertical = 0;
+		data->ray[i].distance = horzHit_dist;
+		data->ray[i].wallHit_x = data->hold.horzHit_x;
+		data->ray[i].wallHit_y = data->hold.horzHit_y;
+		data->ray[i].wasHitVertical = 0;
 	}
 }
 
@@ -48,10 +48,6 @@ void	cast_ray(t_data *data, double ray_angle, int i)
 	horz_inter(data, ray_angle, i);
 	vert_inter(data, ray_angle, i);
 	data->ray[i].rayAngle = ray_angle;
-	data->ray[i].is_FaceDown = isFace_Down;
-	data->ray[i].is_FaceUp = isFace_Up;
-	data->ray[i].is_FaceRight = isFace_Left;
-	data->ray[i].is_FaceRight = isFace_Right;
 	calculate_dis(data, i);
 }
 

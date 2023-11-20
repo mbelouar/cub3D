@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/11/19 22:58:17 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/11/20 18:16:02 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,10 +64,10 @@ SRC =		main.c \
 			mbelouar/srcs/colors.c \
 			mbelouar/srcs/draw.c \
 			mbelouar/srcs/moves.c \
-			# mbelouar/srcs/raycast.c \
-			# mbelouar/srcs/horz_inter.c \
-			# mbelouar/srcs/vert_inter.c \
-			# mbelouar/srcs/dda_algo.c \
+			mbelouar/srcs/raycast.c \
+			mbelouar/srcs/horz_inter.c \
+			mbelouar/srcs/vert_inter.c \
+			mbelouar/srcs/dda_algo.c \
 
 OBJS := $(SRC:.c=.o)
 
@@ -80,7 +80,7 @@ $(NAME): $(OBJS)
 	@echo "$(YELLOW)Compiling cub3D...⏳$(RESET)"
 	@echo "$(YELLOW)Linking...⏳$(RESET)"
 	@make -C libft
-	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(AR_MLX) $(IMLX) $(GLFW) -o $(NAME) $(OBJS) $(INCLUDE)
+	@$(CC) $(CFLAGS) -fsanitize=address -g $(MLX_FLAGS) $(AR_MLX) $(IMLX) $(GLFW) -o $(NAME) $(OBJS) $(INCLUDE)
 	@echo "$(GREEN)Compilation completed ✅$(RESET)"
 
 clean:

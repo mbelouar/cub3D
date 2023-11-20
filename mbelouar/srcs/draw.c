@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 21:44:03 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:02:21 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void draw_player(double player_x, double player_y, t_data *data)
     double currentX;
     double currentY;
 
-    startX = player_y - data->ray.player_size / 2;
-    startY = player_x - data->ray.player_size / 2;
+    startX = player_y - data->player.p_size / 2;
+    startY = player_x - data->player.p_size / 2;
     currentX = startX;
-    while (currentX < startX + data->ray.player_size)
+    while (currentX < startX + data->player.p_size)
     {
         currentY = startY;
-        while (currentY < startY + data->ray.player_size)
+        while (currentY < startY + data->player.p_size)
         {
             mlx_put_pixel(data->image.img, currentX, currentY, generate_color(0, 0,0 , 255));
             currentY++;
@@ -36,7 +36,7 @@ void draw_player(double player_x, double player_y, t_data *data)
 
 // void draw_player(double player_x, double player_y, t_data *data)
 // {
-//     double radius = data->ray.player_size / 2.0;
+//     double radius = data->player.p_size / 2.0;
 //     double centerX = player_y;
 //     double centerY = player_x;
 
@@ -103,7 +103,7 @@ void draw_map2D(t_data *data)
         }
         row++;
     }
-    draw_player(data->ray.player_x, data->ray.player_y, data);
+    draw_player(data->player._x, data->player._y, data);
 }
 
 

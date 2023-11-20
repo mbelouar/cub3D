@@ -47,12 +47,36 @@ void	draw_rays(t_data *data)
 {
 	int	i;
 
-	i = -1;
-	while (++i < WIDTH)
+	i = 0;
+	while (i < WIDTH)
 	{
-		if (data->ray[i].wasHitVertical)
-			ft_dda();
+		if (data->ray[i].wasHitVertical == 1)
+			ft_dda(data, data->player._x + 4, data->player._y + 4, data->hold.vertHit_x, data->hold.vertHit_y);
 		else
-			ft_dda();
+			ft_dda(data, data->player._x + 4, data->player._y + 4, data->hold.horzHit_x, data->hold.horzHit_y);
+        i++;
 	}
 }
+
+// void draw_rays(t_data *data)
+// {
+//     int i = 0;
+//     while (i < WIDTH)
+//     {
+//         if (data->ray[i].wasHitVertical == 1)
+//         {
+//             if (data->hold.vertHit_x != 0 && data->hold.vertHit_y != 0)
+//                 ft_dda(data, data->player._x + 4, data->player._y + 4, data->hold.vertHit_x, data->hold.vertHit_y);
+//             else
+//                 printf("Invalid vertical hit coordinates\n");
+//         }
+//         else
+//         {
+//             if (data->hold.horzHit_x != 0 && data->hold.horzHit_y != 0)
+//                 ft_dda(data, data->player._x + 4, data->player._y + 4, data->hold.horzHit_x, data->hold.horzHit_y);
+//             else
+//                 printf("Invalid horizontal hit coordinates\n");
+//         }
+//         i++;
+//     }
+// }

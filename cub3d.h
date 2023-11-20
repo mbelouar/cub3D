@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 23:08:39 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:25:03 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ typedef struct s_map {
 }				t_map;
 
 typedef struct s_ray {
-    double  player_x;
-    double  player_y;
-    double  player_size;
     double  rayAngle;
     double  wallHit_x;
     double  wallHit_y;
@@ -70,8 +67,26 @@ typedef struct s_ray {
     int     step_y;
     int     touch;
     int     face_touched;
-    double  step_size;
 }				t_ray;
+
+typedef struct s_holder {
+    int     is_FaceUp;
+    int     is_FaceDown;
+    int     is_FaceRight;
+    int     is_FaceLeft;
+    int     foundHorz_hit;
+    int     foundVert_hit;
+	double  horzHit_x;
+	double  horzHit_y;
+	double  vertHit_x;
+	double  vertHit_y;
+    double  x_inter;
+    double  y_inter;
+	double  x_step;
+    double  y_step;
+    double  next_x;
+    double  next_y;
+}               t_holder;
 
 typedef struct s_dir{
     char    **NO;
@@ -84,17 +99,26 @@ typedef struct s_dir{
     char    **clr_c;
 }t_dir;
 
+typedef struct s_player {
+    double  _x;
+    double  _y;
+    double  p_size;
+}               t_player;
+
+
 typedef struct s_data {
 	t_image			image;
-	t_ray			ray;
+    t_player        player;
+	t_ray			*ray;
 	t_map			map_info;
     t_dir           dir;
+    t_holder        hold;
 	void			*mlx_ptr;
 	void			*win_ptr;
     double          r_angle;
     int             c;
-    double x_tmp;
-    double y_tmp;
+    double          x_tmp;
+    double          y_tmp;
 }				t_data;
 
 // <========== RAYCASTING ==========>
@@ -133,6 +157,17 @@ void    draw_map2D(t_data *data);
 void    draw_carre(int color, double top, double left, t_data *data);
 void    draw_player(double player_x, double player_y, t_data *data);
 void	draw_rays(t_data *data);
+
+// raycast
+void	castAll_rays(t_data *data);
+void	cast_ray(t_data *data, double ray_angle, int i);
+void	calculate_dis(t_data *data, int i);
+void	vert_inter(t_data *data, double ray_angle, int i);
+int     is_wall(t_data *data, double x, double y);
+void	horz_inter(t_data *data, double ray_angle, int i);
+void    ft_dda(t_data *data, int xi, int yi, int xf, int yf);
+void	draw_rays(t_data *data);
+
 
 // <========== PARSING ==========>
 

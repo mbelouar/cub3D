@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 23:06:06 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:05:04 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int check_wall(t_data *data, double xtmp, double ytmp)
 	int	S;
 
 	S = data->map_info.square_S;
-	if (data->map_info.map_wt[(int)data->ray.player_x / S][(int)ytmp / S] == '1' ||
-		data->map_info.map_wt[(int)xtmp / S][(int)data->ray.player_y / S] == '1' ||
+	if (data->map_info.map_wt[(int)data->player._x / S][(int)ytmp / S] == '1' ||
+		data->map_info.map_wt[(int)xtmp / S][(int)data->player._y / S] == '1' ||
 		data->map_info.map_wt[(int)xtmp / S][(int)ytmp / S] == '1' )
 		return (0);
 	return (1);
@@ -29,8 +29,8 @@ void	handle_moves(void *param)
 	t_data	*data;
 
 	data = (t_data *)param;
-	data->x_tmp = data->ray.player_x;
-	data->y_tmp = data->ray.player_y;
+	data->x_tmp = data->player._x;
+	data->y_tmp = data->player._y;
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx_ptr);
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_W))
@@ -47,8 +47,8 @@ void	handle_moves(void *param)
 		data->r_angle -= 0.05;
 	if (check_wall(data, data->x_tmp, data->y_tmp))
 	{
-		data->ray.player_x = data->x_tmp;
-		data->ray.player_y = data->y_tmp;
+		data->player._x = data->x_tmp;
+		data->player._y = data->y_tmp;
 		drawing(data);
 	}
 }

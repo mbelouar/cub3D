@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 17:12:00 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 23:05:29 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:05:04 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void ft_move_right(t_data *data)
 void update_position(t_data *data, double x, double y)
 {
 
-        data->ray.player_x = x;
-        data->ray.player_y = y;
+        data->player._x = x;
+        data->player._y = y;
 }
 
 int valid_move(t_data *data, double x, double y)
