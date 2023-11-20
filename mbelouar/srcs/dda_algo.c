@@ -54,7 +54,7 @@ void	draw_rays(t_data *data)
 			ft_dda(data, data->player._x + 4, data->player._y + 4, data->hold.vertHit_x, data->hold.vertHit_y);
 		else
 			ft_dda(data, data->player._x + 4, data->player._y + 4, data->hold.horzHit_x, data->hold.horzHit_y);
-        i++;
+         i++;
 	}
 }
 
