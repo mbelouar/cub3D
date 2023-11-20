@@ -6,11 +6,12 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/20 18:02:21 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:13:53 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
+
 
 void draw_player(double player_x, double player_y, t_data *data)
 {
