@@ -110,5 +110,6 @@ void draw_map2D(t_data *data)
 void drawing(t_data *data)
 {
     draw_map2D(data);
-    // draw_rays(data);
+    castAll_rays(data);
+    draw_rays(data);
 }

@@ -42,3 +42,17 @@ void ft_dda(t_data *data, int xi, int yi, int xf, int yf)
         i++;
     }
 }
+
+void	draw_rays(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < WIDTH)
+	{
+		if (data->ray[i].wasHitVertical)
+			ft_dda();
+		else
+			ft_dda();
+	}
+}

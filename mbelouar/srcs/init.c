@@ -45,7 +45,7 @@ void	ft_init_data(t_data *data)
 	ft_init_player(data);
 	// data->ray = (t_ray *)malloc(sizeof(t_ray) * WIDTH);
 }
-
+ 
 int init_player_direction(t_data *data)
 {
 	double	initial_rotation_angle;
