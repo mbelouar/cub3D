@@ -14,27 +14,27 @@
 
 void	ft_move_up(t_data *data)
 {
-	 data->x_tmp -= cos(data->r_angle) * SPEED_MOVE;
-	 data->y_tmp -= sin(data->r_angle) * SPEED_MOVE;
+	 data->x_tmp += cos(data->r_angle) * SPEED_MOVE;
+	 data->y_tmp += sin(data->r_angle) * SPEED_MOVE;
 }
 
 void	ft_move_down(t_data *data)
 {
 
-    data->x_tmp += cos(data->r_angle) * SPEED_MOVE;
-    data->y_tmp += sin(data->r_angle) * SPEED_MOVE;
+    data->x_tmp -= cos(data->r_angle) * SPEED_MOVE;
+    data->y_tmp -= sin(data->r_angle) * SPEED_MOVE;
 }
 
 void    ft_move_left(t_data *data)
 {
-	 data->x_tmp -= cos(data->r_angle + M_PI / 2) * SPEED_MOVE;
-     data->y_tmp -= sin(data->r_angle + M_PI / 2) * SPEED_MOVE;
+	 data->x_tmp += cos(data->r_angle - M_PI / 2) * SPEED_MOVE;
+     data->y_tmp += sin(data->r_angle - M_PI / 2) * SPEED_MOVE;
 }
 
 void ft_move_right(t_data *data)
 {
-    data->x_tmp += cos(data->r_angle + M_PI / 2) * SPEED_MOVE;
-    data->y_tmp += sin(data->r_angle + M_PI / 2) * SPEED_MOVE;
+    data->x_tmp -= cos(data->r_angle - M_PI / 2) * SPEED_MOVE;
+    data->y_tmp -= sin(data->r_angle - M_PI / 2) * SPEED_MOVE;
 }
 
 void update_position(t_data *data, double x, double y)

@@ -48,13 +48,13 @@ int init_player_direction(t_data *data)
 	double	initial_rotation_angle;
 
 	initial_rotation_angle = 0.0;
-	if (data->map_info.snew_dir == 'N')
+	if (data->map_info.snew_dir == 'E')
 		initial_rotation_angle = 0;
-	else if (data->map_info.snew_dir == 'S')
-		initial_rotation_angle = M_PI;
-	else if (data->map_info.snew_dir == 'E')
-		initial_rotation_angle = M_PI / 2;
 	else if (data->map_info.snew_dir == 'W')
+		initial_rotation_angle = M_PI;
+	else if (data->map_info.snew_dir == 'S')
+		initial_rotation_angle = M_PI / 2;
+	else if (data->map_info.snew_dir == 'N')
 		initial_rotation_angle = (3 * M_PI) / 2;
 	data->r_angle = initial_rotation_angle;
 	return (0);
