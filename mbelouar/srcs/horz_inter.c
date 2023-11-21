@@ -39,10 +39,10 @@ void	horz_inter(t_data *data, double ray_angle, int i)
 	data->hold.horzHit_x = 0;
 	data->hold.horzHit_y = 0;
 
-    data->hold.x_inter = floor(data->player._y / data->map_info.square_S) * data->map_info.square_S;
-	data->hold.x_inter += data->hold.is_FaceDown ? data->map_info.square_S : 0;
+    data->hold.y_inter = floor(data->player._y / data->map_info.square_S) * data->map_info.square_S;
+	data->hold.y_inter += data->hold.is_FaceDown ? data->map_info.square_S : 0;
 
-	data->hold.y_inter = data->player._x + (data->hold.y_inter - data->player._y) / tan(ray_angle);
+	data->hold.x_inter = data->player._x + (data->hold.y_inter - data->player._y) / tan(ray_angle);
 
     // calculate xstep and ystep
     data->hold.y_step = data->map_info.square_S;
@@ -57,8 +57,8 @@ void	horz_inter(t_data *data, double ray_angle, int i)
 	data->hold.next_y = data->hold.y_inter;
 
     //increment xstep and ystep until find a wall hit
-	while (data->hold.next_x >= 0 && data->hold.next_x <= WIDTH
-			&& data->hold.next_y >= 0 && data->hold.next_y <= HEIGHT)
+	while (data->hold.next_x >= 0 && data->hold.next_x <= HEIGHT
+			&& data->hold.next_y >= 0 && data->hold.next_y <= WIDTH)
 	{
 		double x_toCheck = data->hold.next_x;
 		double y_toCheck = data->hold.next_y + (data->hold.is_FaceUp ? -1 : 0);

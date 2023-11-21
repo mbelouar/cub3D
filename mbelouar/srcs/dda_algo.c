@@ -51,9 +51,9 @@ void	draw_rays(t_data *data)
 	while (i < WIDTH)
 	{
 		if (data->ray[i].wasHitVertical == 1)
-			ft_dda(data, data->player._x + 4, data->player._y + 4, data->hold.vertHit_x, data->hold.vertHit_y);
+			ft_dda(data, data->player._x + 4, data->player._y + 4, data->ray[i].wallHit_x, data->ray[i].wallHit_y);
 		else
-			ft_dda(data, data->player._x + 4, data->player._y + 4, data->hold.horzHit_x, data->hold.horzHit_y);
+			ft_dda(data, data->player._x + 4, data->player._y + 4, data->ray[i].wallHit_x, data->ray[i].wallHit_y);
         i++;
 	}
 }
