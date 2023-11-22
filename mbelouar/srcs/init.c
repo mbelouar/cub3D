@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/20 17:09:00 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:40:54 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_init_player(t_data *data)
 {
-	data->player._x = data->map_info.snew_x * data->map_info.square_S + (data->map_info.square_S / 2);
-	data->player._y = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
+	data->player._x = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
+	data->player._y = data->map_info.snew_x * data->map_info.square_S + (data->map_info.square_S / 2);
+	// printf("x == %f\n", floor(data->player._x / 64));
+	// printf("y == %f\n", floor(data->player._y / 64));
 	data->player.p_size = 8;
 	init_player_direction(data);
 }
@@ -48,14 +50,14 @@ int init_player_direction(t_data *data)
 	double	initial_rotation_angle;
 
 	initial_rotation_angle = 0.0;
-	if (data->map_info.snew_dir == 'E')
-		initial_rotation_angle = 0;
-	else if (data->map_info.snew_dir == 'W')
-		initial_rotation_angle = M_PI;
+	if (data->map_info.snew_dir == 'N')
+		initial_rotation_angle = (3 * M_PI) / 2;
 	else if (data->map_info.snew_dir == 'S')
 		initial_rotation_angle = M_PI / 2;
-	else if (data->map_info.snew_dir == 'N')
-		initial_rotation_angle = (3 * M_PI) / 2;
+	else if (data->map_info.snew_dir == 'W')
+		initial_rotation_angle = M_PI;
+	else if (data->map_info.snew_dir == 'E')
+		initial_rotation_angle = 0;
 	data->r_angle = initial_rotation_angle;
 	return (0);
 }

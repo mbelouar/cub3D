@@ -50,10 +50,12 @@ void	draw_rays(t_data *data)
 	i = 0;
 	while (i < WIDTH)
 	{
+        // printf("wall hit x ==> %f\n", data->ray[i].wallHit_x);
+        // printf("wall hit y ==> %f\n", data->ray[i].wallHit_y);
 		if (data->ray[i].wasHitVertical == 1)
-			ft_dda(data, data->player._x + 4, data->player._y + 4, data->ray[i].wallHit_x, data->ray[i].wallHit_y);
+			ft_dda(data, data->player._x, data->player._y, data->ray[i].wallHit_x, data->ray[i].wallHit_y);
 		else
-			ft_dda(data, data->player._x + 4, data->player._y + 4, data->ray[i].wallHit_x, data->ray[i].wallHit_y);
+			ft_dda(data, data->player._x, data->player._y, data->ray[i].wallHit_x, data->ray[i].wallHit_y);
         i++;
 	}
 }

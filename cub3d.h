@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/20 17:25:03 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:06:19 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct s_ray {
     int     is_FaceDown;
     int     is_FaceRight;
     int     is_FaceLeft;
-    int     wallHit_content;
     double  delta_dist_x;
     double  delta_dist_y;
     int     step_x;
@@ -84,8 +83,10 @@ typedef struct s_holder {
     double  y_inter;
 	double  x_step;
     double  y_step;
-    double  next_x;
-    double  next_y;
+    double  HorzNext_x;
+    double  HorzNext_y;
+    double  VertNext_x;
+    double  VertNext_y;
 }               t_holder;
 
 typedef struct s_dir{
@@ -141,7 +142,7 @@ void    handle_moves(void *param);
 // colors
 void	plot_point(t_data *data, int x, int y, int color);
 int     generate_color(int r, int g, int b, int a);
-double    setup_rot_angle(double angle);
+void    setup_rot_angle(t_data *data);
 
 // moves
 void	ft_move_up(t_data *data);
@@ -160,11 +161,11 @@ void	draw_rays(t_data *data);
 
 // raycast
 void	castAll_rays(t_data *data);
-void	cast_ray(t_data *data, double ray_angle, int i);
+void	cast_ray(t_data *data, int i);
 void	calculate_dis(t_data *data, int i);
-void	vert_inter(t_data *data, double ray_angle, int i);
+void	vert_inter(t_data *data, double ray_angle);
 int     is_wall(t_data *data, double x, double y);
-void	horz_inter(t_data *data, double ray_angle, int i);
+void	horz_inter(t_data *data, double ray_angle);
 void    ft_dda(t_data *data, int xi, int yi, int xf, int yf);
 void	draw_rays(t_data *data);
 

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:25:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/20 18:01:27 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:06:52 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,34 @@ void	calculate_dis(t_data *data, int i)
 		data->ray[i].wallHit_y = data->hold.horzHit_y;
 		data->ray[i].wasHitVertical = 0;
 	}
+	// printf("wallHit_x : %f\n", data->ray[i].wallHit_x);
+	// printf("wallHit_y : %f\n", data->ray[i].wallHit_y);
 }
 
-void	cast_ray(t_data *data, double ray_angle, int i)
+void	cast_ray(t_data *data, int i)
 {
-	ray_angle = setup_rot_angle(ray_angle);
-	horz_inter(data, ray_angle, i);
-	vert_inter(data, ray_angle, i);
-	data->ray[i].rayAngle = ray_angle;
+	setup_rot_angle(data);
+	horz_inter(data, data->ray->rayAngle);
+	// printf("wallHit_x : %f\n", data->ray[i].wallHit_x);
+	// printf("wallHit_y : %f\n", data->ray[i].wallHit_y);
+	vert_inter(data, data->ray->rayAngle);
+	// printf("next_x : %f\n", data->hold.next_x);
+	// printf("next_y : %f\n", data->hold.next_y);
+	// printf("x_hit : %f\n", data->hold.horzHit_x);
+	// printf("y_hit : %f\n", data->hold.horzHit_y);
 	calculate_dis(data, i);
 }
 
 void	castAll_rays(t_data *data)
 {
     int 	i = 0;
-    double	ray_angle = data->r_angle - (FOV_ANGLE / 2);
+    data->ray->rayAngle = data->r_angle - (FOV_ANGLE / 2);
 
+	// printf("ray_angle : %f\n", ray_angle);
     while (i < WIDTH)
     {
-        cast_ray(data, ray_angle, i);
-        ray_angle += FOV_ANGLE / WIDTH;
+        cast_ray(data, i);
+        data->ray->rayAngle += FOV_ANGLE / WIDTH;
         i++;
     }
 }

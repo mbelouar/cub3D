@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/20 17:05:04 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:05:51 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int check_wall(t_data *data, double xtmp, double ytmp)
 	int	S;
 
 	S = data->map_info.square_S;
-	if (data->map_info.map_wt[(int)data->player._x / S][(int)ytmp / S] == '1' ||
-		data->map_info.map_wt[(int)xtmp / S][(int)data->player._y / S] == '1' ||
-		data->map_info.map_wt[(int)xtmp / S][(int)ytmp / S] == '1' )
+	if (data->map_info.map_wt[(int)data->player._y / S][(int)xtmp / S] == '1' ||
+		data->map_info.map_wt[(int)ytmp / S][(int)data->player._x / S] == '1' ||
+		data->map_info.map_wt[(int)ytmp / S][(int)xtmp / S] == '1' )
 		return (0);
 	return (1);
 }
@@ -42,22 +42,23 @@ void	handle_moves(void *param)
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_D))
 		ft_move_right(data);
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_LEFT))
-		data->r_angle += 0.05;
-	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
 		data->r_angle -= 0.05;
+	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
+		data->r_angle += 0.05;
 	if (check_wall(data, data->x_tmp, data->y_tmp))
 	{
 		data->player._x = data->x_tmp;
 		data->player._y = data->y_tmp;
+		// printf("new x : %f\n", data->player._x);
+		// printf("new y : %f\n", data->player._y);
 		drawing(data);
 	}
 }
 
-double setup_rot_angle(double angle)
+void setup_rot_angle(t_data *data)
 {
-	if (angle < 0)
-		angle += (2 * M_PI);
-	if (angle > (2 * M_PI))
-		angle -= (2 * M_PI);
-	return (angle);
+	if (data->ray->rayAngle < 0)
+		data->ray->rayAngle += (2 * M_PI);
+	if (data->ray->rayAngle > (2 * M_PI))
+		data->ray->rayAngle -= (2 * M_PI);
 }

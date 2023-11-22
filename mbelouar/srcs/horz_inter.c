@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:39:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/20 18:14:53 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:16:13 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,29 @@
 
 int is_wall(t_data *data, double x, double y)
 {
-    double x_pix;
-    double y_pix;
+    int	index;
+	int	line_len;
+	int	x_pix;
+	int	y_pix;
 
-    if (x >= data->map_info.map_width || y >= data->map_info.map_height)
-        return (1);
-    x_pix = floor(x / data->map_info.square_S);
-    y_pix = floor(y / data->map_info.square_S);
-    if (data->map_info.map_wt[(int)x_pix][(int)y_pix] == '1')
-        return (1);
-    return (0);
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return (1);
+	x_pix = (int)floor(x / data->map_info.square_S);
+	y_pix = (int)floor(y / data->map_info.square_S);
+	index = 0;
+	while (data->map_info.map_wt[index])
+		index++;
+	if (y_pix >= index)
+		return (1);
+	line_len = ft_strlen(data->map_info.map_wt[y_pix]);
+	if (x_pix >= line_len)
+		return (1);
+	if (data->map_info.map_wt[y_pix][x_pix] == '1')
+		return (1);
+	return (0);
 }
 
-void	horz_inter(t_data *data, double ray_angle, int i)
+void	horz_inter(t_data *data, double ray_angle)
 {
     data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
 	data->hold.is_FaceUp = !data->hold.is_FaceDown;
@@ -35,10 +45,6 @@ void	horz_inter(t_data *data, double ray_angle, int i)
 	data->hold.is_FaceLeft = !data->hold.is_FaceRight;
 
     // horz_inter
-    data->hold.foundHorz_hit = 0;
-	data->hold.horzHit_x = 0;
-	data->hold.horzHit_y = 0;
-
     data->hold.y_inter = floor(data->player._y / data->map_info.square_S) * data->map_info.square_S;
 	data->hold.y_inter += data->hold.is_FaceDown ? data->map_info.square_S : 0;
 
@@ -53,27 +59,29 @@ void	horz_inter(t_data *data, double ray_angle, int i)
 	data->hold.x_step *= (data->hold.is_FaceRight && data->hold.x_step < 0) ? -1 : 1;
 
     //
-    data->hold.next_x = data->hold.x_inter;
-	data->hold.next_y = data->hold.y_inter;
-
+    data->hold.HorzNext_x = data->hold.x_inter;
+	data->hold.HorzNext_y = data->hold.y_inter;
     //increment xstep and ystep until find a wall hit
-	while (data->hold.next_x >= 0 && data->hold.next_x <= HEIGHT
-			&& data->hold.next_y >= 0 && data->hold.next_y <= WIDTH)
+	while (data->hold.HorzNext_x >= 0 && data->hold.HorzNext_x <= WIDTH
+			&& data->hold.HorzNext_y >= 0 && data->hold.HorzNext_y <= HEIGHT)
 	{
-		double x_toCheck = data->hold.next_x;
-		double y_toCheck = data->hold.next_y + (data->hold.is_FaceUp ? -1 : 0);
-
+		double x_toCheck = data->hold.HorzNext_x;
+		double y_toCheck = data->hold.HorzNext_y + (data->hold.is_FaceUp ? -1 : 0);
+		// printf("x_toCheck : %f\n", x_toCheck);
+		// printf("y_toCheck : %f\n", y_toCheck);
 		if (is_wall(data, x_toCheck, y_toCheck))
 		{
-			data->ray[i].wallHit_x = data->hold.next_x;
-			data->ray[i].wallHit_y = data->hold.next_y;
+			data->hold.horzHit_x = data->hold.HorzNext_x;
+			data->hold.horzHit_y = data->hold.HorzNext_y;
 			data->hold.foundHorz_hit = 1;
+			// printf("wallHit_x : %f\n", data->ray[i].wallHit_x);
+			// printf("wallHit_y : %f\n", data->ray[i].wallHit_y);
 			break;
 		}
 		else
 		{
-			data->hold.next_x += data->hold.x_step;
-			data->hold.next_y += data->hold.y_step;
+			data->hold.HorzNext_x += data->hold.x_step;
+			data->hold.HorzNext_y += data->hold.y_step;
 		}
 	}
 }
