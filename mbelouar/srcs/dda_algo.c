@@ -18,10 +18,10 @@ void ft_dda(t_data *data, int xi, int yi, int xf, int yf)
     int dx;
     int i;
     int dy;
-    float xinc;
-    float yinc;
-    float X;
-    float Y;
+    double xinc;
+    double yinc;
+    double X;
+    double Y;
 
     dx = xf - xi;
     dy = yf - yi;
@@ -32,8 +32,8 @@ void ft_dda(t_data *data, int xi, int yi, int xf, int yf)
         steps = abs(dx);
     else
         steps = abs(dy);
-    yinc = dy / (float)steps;
-    xinc = dx / (float)steps;
+    yinc = dy / (double)steps;
+    xinc = dx / (double)steps;
     while (i <= steps)
     {
         mlx_put_pixel(data->image.img, round(X), round(Y), 0xFF0000FF);

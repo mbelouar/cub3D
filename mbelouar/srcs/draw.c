@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/22 17:14:15 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:22:52 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void draw_map2D(t_data *data)
         {
             draw_square(generate_color(224, 244, 255, 255), row * square_S, col * square_S, data);  //#F1EFEF off-white.
             if (mapRow[(int)col] == '1')
-                draw_square(generate_color(22, 72, 99, 255), row * square_S, col * square_S, data);  //#176B87  turquoise.
+                draw_square(generate_color(24, 111, 101, 255), row * square_S, col * square_S, data);  //#176B87  turquoise.
             col++;
         }
         row++;
@@ -108,9 +108,19 @@ void draw_map2D(t_data *data)
     draw_player(data->player._x, data->player._y, data);
 }
 
+// rgb(131, 162, 255)
+// rgb(54, 47, 217)
+// rgb(33, 53, 85)
 
+// rgb(248, 111, 3)
+// rgb(255, 164, 27)
+
+// rgb(24, 111, 101)
+// rgb(181, 203, 153)
 void drawing(t_data *data)
 {
+    clearColor_buffer(data, generate_color(181, 203, 153, 255));
+    generate3D_projection(data);
     draw_map2D(data);
     castAll_rays(data);
     draw_rays(data);

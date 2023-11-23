@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/22 19:06:19 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/23 22:17:50 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 
 # define FOV_ANGLE  60 * (M_PI / 180)
-# define SPEED_MOVE 5.00
+# define SPEED_MOVE 1.50
 # define WIDTH		2200
 # define HEIGHT		1000
 # define TITLE		"cub3D"
@@ -56,17 +56,15 @@ typedef struct s_ray {
     double  wallHit_y;
     double  distance;
     int     wasHitVertical;
-    int     is_FaceUp;
-    int     is_FaceDown;
-    int     is_FaceRight;
-    int     is_FaceLeft;
-    double  delta_dist_x;
-    double  delta_dist_y;
-    int     step_x;
-    int     step_y;
-    int     touch;
-    int     face_touched;
 }				t_ray;
+
+typedef struct s_projection {
+    double  dist_projec;
+    double  projWall_height;
+    int     wall_Height;
+    int     wall_topPixel;
+    int     wall_bottomPixel;
+}               t_projection;
 
 typedef struct s_holder {
     int     is_FaceUp;
@@ -114,12 +112,14 @@ typedef struct s_data {
 	t_map			map_info;
     t_dir           dir;
     t_holder        hold;
+    t_projection    project;
 	void			*mlx_ptr;
 	void			*win_ptr;
     double          r_angle;
     int             c;
     double          x_tmp;
     double          y_tmp;
+    unsigned int    *Color_buffer;
 }				t_data;
 
 // <========== RAYCASTING ==========>
@@ -169,6 +169,9 @@ void	horz_inter(t_data *data, double ray_angle);
 void    ft_dda(t_data *data, int xi, int yi, int xf, int yf);
 void	draw_rays(t_data *data);
 
+// projection
+void	clearColor_buffer(t_data *data, unsigned int color);
+void	generate3D_projection(t_data *data);
 
 // <========== PARSING ==========>
 

@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/11/22 15:23:25 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/11/23 22:40:12 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ SRC =		main.c \
 			mbelouar/srcs/horz_inter.c \
 			mbelouar/srcs/vert_inter.c \
 			mbelouar/srcs/dda_algo.c \
+			mbelouar/srcs/projection.c \
 
 OBJS := $(SRC:.c=.o)
 
@@ -79,19 +80,19 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(YELLOW)Compiling cub3D...⏳$(RESET)"
 	@echo "$(YELLOW)Linking...⏳$(RESET)"
-	@make -C libft
+	@make -s -C libft
 	@$(CC) $(CFLAGS) -fsanitize=address -g $(MLX_FLAGS) $(AR_MLX) $(IMLX) $(GLFW) -o $(NAME) $(OBJS) $(INCLUDE)
 	@echo "$(GREEN)Compilation completed ✅$(RESET)"
 
 clean:
 	@$(RM) $(OBJS)
 	@echo "$(RED)Deleting obj_files$(RESET)"
-	@make clean -C libft
+	@make clean -s -C libft
 
 fclean: clean
 	@$(RM) $(NAME)
 	@echo "$(RED)Deleting obj_files + ./cub3D$(RESET)"
-	@make fclean -C libft
+	@make fclean -s -C libft
 
 re: fclean all
 
