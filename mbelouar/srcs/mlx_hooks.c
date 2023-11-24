@@ -32,7 +32,10 @@ void	handle_moves(void *param)
 	data->x_tmp = data->player._x;
 	data->y_tmp = data->player._y;
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_ESCAPE))
+	{
+		system("kill $(ps | grep afplay  | awk '{print $1}' | head -1)");
 		mlx_close_window(data->mlx_ptr);
+	}
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_W))
 		ft_move_up(data);
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_S))
@@ -55,10 +58,17 @@ void	handle_moves(void *param)
 	}
 }
 
+//void setup_rot_angle(t_data *data)
+//{
+//	if (data->ray->rayAngle < 0)
+//		data->ray->rayAngle += (2 * M_PI);
+//	if (data->ray->rayAngle > (2 * M_PI))
+//		data->ray->rayAngle -= (2 * M_PI);
+//}
+
 void setup_rot_angle(t_data *data)
 {
+	data->ray->rayAngle = remainder(data->ray->rayAngle, (2 * M_PI));
 	if (data->ray->rayAngle < 0)
-		data->ray->rayAngle += (2 * M_PI);
-	if (data->ray->rayAngle > (2 * M_PI))
-		data->ray->rayAngle -= (2 * M_PI);
+		data->ray->rayAngle = data->ray->rayAngle + (2 * M_PI);
 }

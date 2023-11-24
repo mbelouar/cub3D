@@ -15,7 +15,7 @@
 int main(int ac, char **av)
 {
 	t_data	data;
-	int		fd;
+	int			fd;
 
 	fd = 0;
 	if (ac != 2)
@@ -23,6 +23,12 @@ int main(int ac, char **av)
 	check_fd_map(&fd, av[1]);
 	if (map_valid(&data, fd, av[1]))
 	{
+		f_pid = fork();
+		if (f_pid == 0)
+		{
+			system("afplay /Users/moelalj/Desktop/cub3D/ikambi.mp3");
+			exit (0);
+		}
 		ft_init_data(&data);
 		mlx_loop_hook(data.mlx_ptr, handle_moves, &data);
 		mlx_loop(data.mlx_ptr);

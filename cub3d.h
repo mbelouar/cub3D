@@ -27,7 +27,7 @@
 # define HEIGHT		1000
 # define TITLE		"cub3D"
 # define INT_MAX 2147483647
-
+int			f_pid;
 typedef struct e_image {
 	void	*img;
 	char	*addr;
