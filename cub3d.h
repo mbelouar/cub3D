@@ -36,6 +36,13 @@ typedef struct e_image {
 	int		endian;
 }				t_image;
 
+typedef struct s_tex{
+	mlx_texture_t	*tex_no;
+	mlx_texture_t	*tex_so;
+	mlx_texture_t	*tex_we;
+	mlx_texture_t	*tex_ea;
+}t_tex;
+
 typedef struct s_map {
 	char	**map;
 	char	**map_wt;
@@ -123,6 +130,7 @@ typedef struct s_data {
 	t_dda			dda;
 	t_holder		hold;
 	t_projection	project;
+	t_tex					tex;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	float			r_angle;

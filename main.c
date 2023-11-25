@@ -20,14 +20,14 @@ int main(int ac, char **av)
 
 	fd = 0;
 	if (ac != 2)
-		print_and_exit_param();
+		print_and_exit_param(); 
 	check_fd_map(&fd, av[1]);
 	if (map_valid(&data, fd, av[1]))
 	{
 		f_pid = fork();
 		if (f_pid == 0)
 		{
-			system("afplay /Users/mbelouar/Desktop/cub3D/songs/ikambi.mp3");
+			system("afplay /Users/$USER/Desktop/cub3D/songs/ikambi.mp3");
 			exit (0);
 		}
 		ft_init_data(&data);
