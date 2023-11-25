@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:51:21 by moelalj           #+#    #+#             */
-/*   Updated: 2023/11/23 20:47:24 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:52:13 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	check_surr_by_walls(t_data *data)
 	int	len;
 
 	i = 1;
-	if (strchrr(data->map_info.map_wt[0], '1'))
+	if (__strchrr(data->map_info.map_wt[0], '1'))
 		not_surr_err();
 	while (data->map_info.map_wt[i])
 	{
@@ -73,11 +73,11 @@ void	check_surr_by_walls(t_data *data)
 			not_surr_err();
 		i++;
 	}
-	if (strchrr(data->map_info.map[i - 1], '1'))
+	if (__strchrr(data->map_info.map[i - 1], '1'))
 		not_surr_err();
 }
 
-void	check_if_double_directions(t_data *data)
+void	check_if_float_directions(t_data *data)
 {
 	int	i;
 	int	c;
@@ -102,14 +102,14 @@ void	check_if_double_directions(t_data *data)
 	if (c == 0)
 		non_directions_err();
 	if (c != 1)
-		double_directions_err();
+		float_directions_err();
 }
 
 void	check_map(t_data *data)
 {
 	found_tab_inside(data);
 	only_valid_characters(data);
-	check_if_double_directions(data);
+	check_if_float_directions(data);
 	check_surr_by_walls(data);
 	check_around_spaces(data);
 	check_if_play_can_go_bg(data);

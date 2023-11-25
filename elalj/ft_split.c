@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moelalj <moelalj@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 19:33:39 by moelalj           #+#    #+#             */
-/*   Updated: 2023/11/16 14:20:55 by moelalj          ###   ########.fr       */
+/*   Updated: 2023/11/25 16:51:49 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_str_free(char **s)
 	free(s);
 }
 
-int	strchrr(char *line, char c)
+int	__strchrr(char *line, char c)
 {
 	int		i;
 

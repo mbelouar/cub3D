@@ -6,13 +6,13 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:39:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/23 20:47:24 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:18:01 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int is_wall(t_data *data, double x, double y)
+int	is_wall(t_data *data, float x, float y)
 {
     int	index;
 	int	line_len;
@@ -36,9 +36,9 @@ int is_wall(t_data *data, double x, double y)
 	return (0);
 }
 
-void	horz_inter(t_data *data, double ray_angle)
+void	horz_inter(t_data *data, float ray_angle)
 {
-    data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
+	data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
 	data->hold.is_FaceUp = !data->hold.is_FaceDown;
 
 	data->hold.is_FaceRight = ray_angle < (M_PI / 2) || ray_angle > (3 * M_PI / 2);
@@ -62,20 +62,15 @@ void	horz_inter(t_data *data, double ray_angle)
     data->hold.HorzNext_x = data->hold.x_inter;
 	data->hold.HorzNext_y = data->hold.y_inter;
     //increment xstep and ystep until find a wall hit
-	while (data->hold.HorzNext_x >= 0 && data->hold.HorzNext_x <= WIDTH
-			&& data->hold.HorzNext_y >= 0 && data->hold.HorzNext_y <= HEIGHT)
+	while (true)
 	{
-		double x_toCheck = data->hold.HorzNext_x;
-		double y_toCheck = data->hold.HorzNext_y + (data->hold.is_FaceUp ? -1 : 0);
-		// printf("x_toCheck : %f\n", x_toCheck);
-		// printf("y_toCheck : %f\n", y_toCheck);
+		float x_toCheck = data->hold.HorzNext_x;
+		float y_toCheck = data->hold.HorzNext_y + (data->hold.is_FaceUp ? -1 : 0);
 		if (is_wall(data, x_toCheck, y_toCheck))
 		{
 			data->hold.horzHit_x = data->hold.HorzNext_x;
 			data->hold.horzHit_y = data->hold.HorzNext_y;
 			data->hold.foundHorz_hit = 1;
-			// printf("wallHit_x : %f\n", data->ray[i].wallHit_x);
-			// printf("wallHit_y : %f\n", data->ray[i].wallHit_y);
 			break;
 		}
 		else

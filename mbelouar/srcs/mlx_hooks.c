@@ -6,13 +6,13 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/23 20:47:24 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:00:23 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static int check_wall(t_data *data, double xtmp, double ytmp)
+static int	check_wall(t_data *data, float xtmp, float ytmp)
 {
 	int	S;
 
@@ -52,23 +52,13 @@ void	handle_moves(void *param)
 	{
 		data->player._x = data->x_tmp;
 		data->player._y = data->y_tmp;
-		// printf("new x : %f\n", data->player._x);
-		// printf("new y : %f\n", data->player._y);
 		drawing(data);
 	}
 }
 
-//void setup_rot_angle(t_data *data)
-//{
-//	if (data->ray->rayAngle < 0)
-//		data->ray->rayAngle += (2 * M_PI);
-//	if (data->ray->rayAngle > (2 * M_PI))
-//		data->ray->rayAngle -= (2 * M_PI);
-//}
-
-void setup_rot_angle(t_data *data)
+void	setup_rot_angle(t_data *data)
 {
-	data->ray->rayAngle = remainder(data->ray->rayAngle, (2 * M_PI));
+	data->ray->rayAngle = remainder(data->ray->rayAngle, 2 * M_PI);
 	if (data->ray->rayAngle < 0)
-		data->ray->rayAngle = data->ray->rayAngle + (2 * M_PI);
+		data->ray->rayAngle = (2 * M_PI) + data->ray->rayAngle;
 }

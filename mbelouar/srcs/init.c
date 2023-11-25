@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/23 22:22:28 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:41:03 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_init_player(t_data *data)
 {
 	data->player._x = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
 	data->player._y = data->map_info.snew_x * data->map_info.square_S + (data->map_info.square_S / 2);
-	// printf("x == %f\n", floor(data->player._x / 64));
-	// printf("y == %f\n", floor(data->player._y / 64));
 	data->player.p_size = 4;
 	init_player_direction(data);
 }
@@ -43,12 +41,11 @@ void	ft_init_data(t_data *data)
 	ft_init_map(data);
 	ft_init_player(data);
 	data->ray = (t_ray *)malloc(sizeof(t_ray) * WIDTH);
-	data->Color_buffer = malloc(sizeof(unsigned int) * (unsigned int)HEIGHT * (unsigned int)WIDTH);
 }
 
-int init_player_direction(t_data *data)
+int	init_player_direction(t_data *data)
 {
-	double	initial_rotation_angle;
+	float	initial_rotation_angle;
 
 	initial_rotation_angle = 0.0;
 	if (data->map_info.snew_dir == 'N')

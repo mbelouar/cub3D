@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:48:53 by moelalj           #+#    #+#             */
-/*   Updated: 2023/11/23 20:47:24 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:14:06 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	around_spaces_err(void)
 	exit (1);
 }
 
-void	double_directions_err(void)
+void	float_directions_err(void)
 {
-	ft_putstr_fd("Error:\n  ->Found double directions><\n", 2);
+	ft_putstr_fd("Error:\n  ->Found float directions><\n", 2);
 	exit (1);
 }
 

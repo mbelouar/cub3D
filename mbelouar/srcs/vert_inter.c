@@ -6,13 +6,13 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:40:11 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/23 20:47:24 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:14:06 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	vert_inter(t_data *data, double ray_angle)
+void	vert_inter(t_data *data, float ray_angle)
 {
     data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
 	data->hold.is_FaceUp = !data->hold.is_FaceDown;
@@ -38,11 +38,10 @@ void	vert_inter(t_data *data, double ray_angle)
     data->hold.VertNext_x = data->hold.x_inter;
 	data->hold.VertNext_y = data->hold.y_inter;
     //increment xstep and ystep until find a wall hit
-	while (data->hold.VertNext_x >= 0 && data->hold.VertNext_x <= WIDTH
-			&& data->hold.VertNext_y >= 0 && data->hold.VertNext_y <= HEIGHT)
+	while (true)
 	{
-		double x_toCheck = data->hold.VertNext_x + (data->hold.is_FaceLeft ? -1 : 0);
-		double y_toCheck = data->hold.VertNext_y;
+		float x_toCheck = data->hold.VertNext_x + (data->hold.is_FaceLeft ? -1 : 0);
+		float y_toCheck = data->hold.VertNext_y;
 
 		if (is_wall(data, x_toCheck, y_toCheck))
 		{

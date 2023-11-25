@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 00:12:53 by moelalj           #+#    #+#             */
-/*   Updated: 2023/11/23 20:47:24 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:14:06 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_err_directions(void)
 {
-	ft_putstr_fd("Eroor:\n  ->Found double/missing direction in map", 2);
+	ft_putstr_fd("Eroor:\n  ->Found float/missing direction in map", 2);
 	exit (1);
 }
 
