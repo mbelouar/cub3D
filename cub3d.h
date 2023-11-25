@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 16:51:55 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 23:58:21 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ typedef struct e_image {
 	int		endian;
 }				t_image;
 
-typedef struct s_tex{
+typedef struct s_tex {
 	mlx_texture_t	*tex_no;
 	mlx_texture_t	*tex_so;
 	mlx_texture_t	*tex_we;
 	mlx_texture_t	*tex_ea;
-}t_tex;
+}				t_tex;
 
 typedef struct s_map {
 	char	**map;
@@ -130,7 +130,7 @@ typedef struct s_data {
 	t_dda			dda;
 	t_holder		hold;
 	t_projection	project;
-	t_tex					tex;
+	t_tex			tex;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	float			r_angle;

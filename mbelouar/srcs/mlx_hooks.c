@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 17:00:23 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:29:59 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ static int	check_wall(t_data *data, float xtmp, float ytmp)
 		data->map_info.map_wt[(int)ytmp / S][(int)xtmp / S] == '1' )
 		return (0);
 	return (1);
+}
+
+static void	check_and_draw(t_data *data)
+{
+	if (check_wall(data, data->x_tmp, data->y_tmp))
+	{
+		data->player._x = data->x_tmp;
+		data->player._y = data->y_tmp;
+		drawing(data);
+	}
 }
 
 void	handle_moves(void *param)
@@ -48,12 +58,7 @@ void	handle_moves(void *param)
 		data->r_angle -= 0.05;
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
 		data->r_angle += 0.05;
-	if (check_wall(data, data->x_tmp, data->y_tmp))
-	{
-		data->player._x = data->x_tmp;
-		data->player._y = data->y_tmp;
-		drawing(data);
-	}
+	check_and_draw(data);
 }
 
 void	setup_rot_angle(t_data *data)

@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/11/24 20:50:20 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/11/26 00:00:43 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,17 +22,17 @@ RESET = \033[0m
 NAME = cub3d
 
  IMLX = -I /Users/$(USER)/MLX42/include/MLX42
- GLFW = -I include -lglfw -L"/Users/moelalj/.brew/opt/glfw/lib/"
+#  GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 #IMLX = -I /Users/mbelouar/MLX42/include/MLX42
 
-#GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 
 MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
 #AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
- AR_MLX = /Users/moelalj/MLX42/build/libmlx42.a
+ AR_MLX = /Users/$(USER)/MLX42/build/libmlx42.a
 
 
 
@@ -106,7 +106,7 @@ define CUB3D
 
 	═══════════  ██████╗██╗   ██╗██████╗ ██████╗ ██████╗  ═══════════
 	══════════  ██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗  ═══════════	 ******************  ** $(RED)
-	══════════  ██║     ██║   ██║███⭐️██╔ █████╔╝██║  ██║  ═══════════	 $(NAME) in progress   ⏳ 
+	══════════  ██║     ██║   ██║███⭐️██╔ █████╔╝██║  ██║  ═══════════	 $(NAME) in progress   ⏳
 	══════════  ██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║  ═══════════	$(YELLOW) ******************  **
 	══════════  ╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝  ═══════════
 	═══════════  ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝  ═══════════

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:39:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 17:18:01 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:23:44 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,50 @@ int	is_wall(t_data *data, float x, float y)
 	return (0);
 }
 
-void	horz_inter(t_data *data, float ray_angle)
+static void	calculate_horz_intercepts(t_data *data, float ray_angle)
 {
-	data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
-	data->hold.is_FaceUp = !data->hold.is_FaceDown;
+	data->hold.y_inter = floor(data->player._y / data->map_info.square_S)
+		* data->map_info.square_S;
+	if (data->hold.is_FaceDown)
+		data->hold.y_inter += data->map_info.square_S;
+	else
+		data->hold.y_inter += 0;
+	data->hold.x_inter = data->player._x
+		+ (data->hold.y_inter - data->player._y) / tan(ray_angle);
+}
 
-	data->hold.is_FaceRight = ray_angle < (M_PI / 2) || ray_angle > (3 * M_PI / 2);
-	data->hold.is_FaceLeft = !data->hold.is_FaceRight;
-
-    // horz_inter
-    data->hold.y_inter = floor(data->player._y / data->map_info.square_S) * data->map_info.square_S;
-	data->hold.y_inter += data->hold.is_FaceDown ? data->map_info.square_S : 0;
-
-	data->hold.x_inter = data->player._x + (data->hold.y_inter - data->player._y) / tan(ray_angle);
-
-    // calculate xstep and ystep
-    data->hold.y_step = data->map_info.square_S;
-	data->hold.y_step *= data->hold.is_FaceUp ? -1 : 1;
-
+static void	calculate_horz_xystep(t_data *data, float ray_angle)
+{
+	data->hold.y_step = data->map_info.square_S;
+	if (data->hold.is_FaceUp)
+		data->hold.y_step *= -1;
+	else
+		data->hold.y_step *= 1;
 	data->hold.x_step = data->map_info.square_S / tan(ray_angle);
-	data->hold.x_step *= (data->hold.is_FaceLeft && data->hold.x_step > 0) ? -1 : 1;
-	data->hold.x_step *= (data->hold.is_FaceRight && data->hold.x_step < 0) ? -1 : 1;
+	if (data->hold.is_FaceLeft && data->hold.x_step > 0)
+		data->hold.x_step *= -1;
+	else
+		data->hold.x_step *= 1;
+	if (data->hold.is_FaceRight && data->hold.x_step < 0)
+		data->hold.x_step *= -1;
+	else
+		data->hold.x_step *= 1;
+}
 
-    //
-    data->hold.HorzNext_x = data->hold.x_inter;
-	data->hold.HorzNext_y = data->hold.y_inter;
-    //increment xstep and ystep until find a wall hit
+static void	search_horz_wall_hit(t_data *data)
+{
+	float	x_toCheck;
+	float	y_toCheck;
+	int		add_pix;
+
+	if (data->hold.is_FaceUp)
+		add_pix = -1;
+	else
+		add_pix = 0;
 	while (true)
 	{
-		float x_toCheck = data->hold.HorzNext_x;
-		float y_toCheck = data->hold.HorzNext_y + (data->hold.is_FaceUp ? -1 : 0);
+		x_toCheck = data->hold.HorzNext_x;
+		y_toCheck = data->hold.HorzNext_y + add_pix;
 		if (is_wall(data, x_toCheck, y_toCheck))
 		{
 			data->hold.horzHit_x = data->hold.HorzNext_x;
@@ -79,4 +93,17 @@ void	horz_inter(t_data *data, float ray_angle)
 			data->hold.HorzNext_y += data->hold.y_step;
 		}
 	}
+}
+
+void	horz_inter(t_data *data, float ray_angle)
+{
+	data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
+	data->hold.is_FaceUp = !data->hold.is_FaceDown;
+	data->hold.is_FaceRight = ray_angle < (M_PI / 2) || ray_angle > (3 * M_PI / 2);
+	data->hold.is_FaceLeft = !data->hold.is_FaceRight;
+	calculate_horz_intercepts(data, ray_angle);
+	calculate_horz_xystep(data, ray_angle);
+	data->hold.HorzNext_x = data->hold.x_inter;
+	data->hold.HorzNext_y = data->hold.y_inter;
+	search_horz_wall_hit(data);
 }
