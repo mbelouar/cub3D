@@ -11,26 +11,28 @@
 # **************************************************************************** #
 
 # Colors
+WHITE = \033[1;37m
 RED = \033[1;31m
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
+PURPLE = \033[1;35m
 RESET = \033[0m
 
 
 NAME = cub3d
 
-# IMLX = -I /Users/$(USER)/MLX42/include/MLX42
-# GLFW = -I include -lglfw -L"/Users/moelalj/.brew/opt/glfw/lib/"
-IMLX = -I /Users/mbelouar/MLX42/include/MLX42
+ IMLX = -I /Users/$(USER)/MLX42/include/MLX42
+ GLFW = -I include -lglfw -L"/Users/moelalj/.brew/opt/glfw/lib/"
+#IMLX = -I /Users/mbelouar/MLX42/include/MLX42
 
-GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+#GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 
 MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
-AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
-# AR_MLX = /Users/moelalj/MLX42/build/libmlx42.a
+#AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
+ AR_MLX = /Users/moelalj/MLX42/build/libmlx42.a
 
 
 
@@ -84,6 +86,7 @@ $(NAME): $(OBJS)
 	@make -s -C libft
 	@$(CC) $(CFLAGS) -fsanitize=address -g $(MLX_FLAGS) $(AR_MLX) $(IMLX) $(GLFW) -o $(NAME) $(OBJS) $(INCLUDE)
 	@echo "$(GREEN)Compilation completed ✅$(RESET)"
+	@echo "$(GREEN) $$CUB3D $(END)"
 
 clean:
 	@$(RM) $(OBJS)
@@ -98,3 +101,22 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+define CUB3D
+
+	═══════════  ██████╗██╗   ██╗██████╗ ██████╗ ██████╗  ═══════════
+	══════════  ██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗  ═══════════	 ******************  ** $(RED)
+	══════════  ██║     ██║   ██║███⭐️██╔ █████╔╝██║  ██║  ═══════════	 $(NAME) in progress   ⏳ 
+	══════════  ██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║  ═══════════	$(YELLOW) ******************  **
+	══════════  ╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝  ═══════════
+	═══════════  ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝  ═══════════
+		  	$(YELLOW)cub3d By: $(WHITE)mbelouar && moelalj $(RESET)
+
+		CONTROLE PANEL 🎮: ═══╗
+		                      ╚══﹥ ROTATING KEYS: ◀️ rotate left / ▶️ rotate right.
+		                      ║
+		                      ╚══﹥ MOVES KEYS: 🅰 move left / 🆂 move backword / 🅳 move right / 🆆 move forword.
+				      ║
+				      ╚══﹥ EXIT KEY: 🇪 EXIT.
+endef
+export CUB3D
