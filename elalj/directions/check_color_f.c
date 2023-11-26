@@ -12,12 +12,24 @@
 
 #include "../../cub3d.h"
 
+void	init_f_array(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->dir.clr_f[i])
+	{
+		data->dir.floor[i] = ft_atoi(data->dir.clr_f[i]);
+		i++;
+	}
+}
 void	check_f_c(t_data *data)
 {
 	data->dir.clr_f = ftt_split(data->dir.F[1], ',');
 	valid_box_color_f(data);
 	check_consecutive_semicolon_f(data);
 	valid_color_f(data);
+	init_f_array(data);
 }
 
 void	check_consecutive_semicolon_f(t_data *data)

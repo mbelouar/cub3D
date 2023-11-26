@@ -111,6 +111,8 @@ typedef struct s_dir {
 	char	**EA;
 	char	**F;
 	char	**clr_f;
+	int		floor[3];
+	int		celling[3];
 	char	**C;
 	char	**clr_c;
 }				t_dir;
@@ -252,6 +254,8 @@ void	float_directions_err(void);
 void	non_directions_err(void);
 void	check_if_play_can_go_bg(t_data *data);
 int		found_last_0(char *line);
+void	init_f_array(t_data *data);
+void	init_c_array(t_data *data);
 
 //errors
 void	check_fd_map(int *fd, char *file);
