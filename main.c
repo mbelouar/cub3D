@@ -27,7 +27,7 @@ int main(int ac, char **av)
 		f_pid = fork();
 		if (f_pid == 0)
 		{
-			system("afplay /Users/mbelouar/Desktop/cub3D/songs/ekambi_audio.mp3");
+			system("afplay /Users/$USER/Desktop/cub3D/songs/ekambi_audio.mp3");
 			exit (0);
 		}
 		ft_init_data(&data);
