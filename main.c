@@ -12,6 +12,15 @@
 
 #include "cub3d.h"
 
+static void	ft_close(void	*param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	system("kill $(ps | grep afplay  | awk '{print $1}' | head -1)");
+	mlx_close_window(data->mlx_ptr);
+}
+
 int main(int ac, char **av)
 {
 	t_data	data;
@@ -32,6 +41,7 @@ int main(int ac, char **av)
 		}
 		ft_init_data(&data);
 		mlx_loop_hook(data.mlx_ptr, handle_moves, &data);
+		mlx_close_hook(data.mlx_ptr, ft_close, &data);
 		mlx_loop(data.mlx_ptr);
 	}
 	return (0);

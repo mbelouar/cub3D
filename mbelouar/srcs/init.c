@@ -34,8 +34,8 @@ void	ft_init_data(t_data *data)
 		err_msg("Mlx initialization failed\n", 2);
 	if (!(data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT)))
     {
-        mlx_close_window(data->mlx_ptr);
-		err_msg("Mlx creation image failed\n", 2);
+      mlx_close_window(data->mlx_ptr);
+			err_msg("Mlx creation image failed\n", 2);
     }
 	mlx_image_to_window(data->mlx_ptr, data->image.img, 0, 0);
 	ft_init_map(data);

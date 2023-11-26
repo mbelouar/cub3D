@@ -19,7 +19,7 @@ void	init_c_array(t_data *data)
 	i = 0;
 	while (data->dir.clr_c[i])
 	{
-		data->dir.celling[i] = ft_atoi(data->dir.clr_c[i]);
+		data->dir.ceiling[i] = ft_atoi(data->dir.clr_c[i]);
 		i++;
 	}
 }
