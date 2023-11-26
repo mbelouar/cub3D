@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:19:52 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 23:36:54 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/11/26 20:49:54 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	draw_roof(t_data *data)
 		j = 0;
 		while (j < HEIGHT / 2)
 		{
-			mlx_put_pixel(data->image.img, i, j, generate_color(0,123,94,255));
+			mlx_put_pixel(data->image.img, i, j,
+				generate_color(data->dir.ceiling[0],
+					data->dir.ceiling[1], data->dir.ceiling[2], 255));
 			j++;
 		}
 		i++;
@@ -41,7 +43,9 @@ void	draw_floor(t_data *data)
 		j = HEIGHT / 2;
 		while (j < HEIGHT)
 		{
-			mlx_put_pixel(data->image.img, i, j, generate_color(252,210,14,255));
+			mlx_put_pixel(data->image.img, i, j,
+				generate_color(data->dir.floor[0],
+					data->dir.floor[1], data->dir.floor[2], 255));
 			j++;
 		}
 		i++;
@@ -58,7 +62,8 @@ void	generate3D_projection(t_data *data)
 	S = data->map_info.square_S;
 	while (i < WIDTH)
 	{
-		// float	corrected_dist = data->ray[i].distance * cos(data->ray[i].rayAngle - data->r_angle);
+		// float	corrected_dist = data->ray[i].distance * cos(FOV_ANGLE / 2);
+		// printf("rotation angle : %f\n", data->r_angle);
 		float	dist_projec = (WIDTH / 2) / tan(FOV_ANGLE / 2);
 		float	projWall_height = (S / data->ray[i].distance) * dist_projec;
 

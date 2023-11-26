@@ -3,8 +3,8 @@ SO ./textures/bkay.png
 WE ./textures/cameron.png
 EA ./textures/hadaf.png
 
-F 220,100,0
-C 225,30,0
+F 252,210,14
+C 0,123,94
 
 1111111111111111111111111
 1000000000110000000000001
