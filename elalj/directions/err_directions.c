@@ -14,7 +14,7 @@
 
 void	print_err_directions(void)
 {
-	ft_putstr_fd("Eroor:\n  ->Found float/missing direction in map", 2);
+	ft_putstr_fd("Eroor:\n  ->Found more/less direction in map", 2);
 	exit (1);
 }
 

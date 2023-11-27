@@ -20,7 +20,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-
 # define FOV_ANGLE	60 * (M_PI / 180)
 # define SPEED_MOVE	1.50
 # define WIDTH		2200

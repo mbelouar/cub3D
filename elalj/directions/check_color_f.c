@@ -23,6 +23,7 @@ void	init_f_array(t_data *data)
 		i++;
 	}
 }
+
 void	check_f_c(t_data *data)
 {
 	data->dir.clr_f = ftt_split(data->dir.F[1], ',');

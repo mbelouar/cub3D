@@ -22,6 +22,11 @@ void	check_no_needs(t_data *data)
 	if (i != 2)
 		print_err_needs_directions();
 	data->tex.tex_no = mlx_load_png(data->dir.NO[1]);
+	if (!data->tex.tex_no)
+	{
+		ft_putstr_fd("Error:  ->Did not found the NO path\n", 2);
+		exit (1);
+	}
 }
 
 void	check_so_needs(t_data *data)
@@ -34,6 +39,11 @@ void	check_so_needs(t_data *data)
 	if (i != 2)
 		print_err_needs_directions();
 	data->tex.tex_so = mlx_load_png(data->dir.SO[1]);
+	if (data->tex.tex_so == NULL)
+	{
+		ft_putstr_fd("Error:  ->Did not found the SO path\n", 2);
+		exit (1);
+	}
 }
 
 void	check_we_needs(t_data *data)
@@ -46,6 +56,11 @@ void	check_we_needs(t_data *data)
 	if (i != 2)
 		print_err_needs_directions();
 	data->tex.tex_we = mlx_load_png(data->dir.WE[1]);
+	if (!data->tex.tex_we)
+	{
+		ft_putstr_fd("Error:  ->Did not found the WE path\n", 2);
+		exit (1);
+	}
 }
 
 void	check_ea_needs(t_data *data)
@@ -58,6 +73,11 @@ void	check_ea_needs(t_data *data)
 	if (i != 2)
 		print_err_needs_directions();
 	data->tex.tex_ea = mlx_load_png(data->dir.EA[1]);
+	if (!data->tex.tex_ea)
+	{
+		ft_putstr_fd("Error:  ->Did not found the EA path\n", 2);
+		exit (1);
+	}
 }
 
 void	check_f_needs(t_data *data)

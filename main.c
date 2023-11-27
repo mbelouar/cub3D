@@ -21,7 +21,7 @@ static void	ft_close(void	*param)
 	mlx_close_window(data->mlx_ptr);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	data;
 	pid_t	f_pid;
