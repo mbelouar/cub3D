@@ -61,6 +61,23 @@ void	handle_moves(void *param)
 	check_and_draw(data);
 }
 
+void mouse_hook(int curr_x, void *param)
+{
+    static int	old_x;
+	int 		delta_x;
+    t_data		*data;
+
+    data = (t_data *)param;
+    if (old_x == 0)
+        old_x = curr_x;
+    delta_x = curr_x - old_x;
+    data->r_angle += 0.1 * delta_x;
+    old_x = curr_x;
+    setup_rot_angle(data);
+}
+
+
+// must modify this function to normalize any angle i give it
 void	setup_rot_angle(t_data *data)
 {
 	data->ray->rayAngle = remainder(data->ray->rayAngle, 2 * M_PI);

@@ -87,3 +87,4 @@ void	generate3D_projection(t_data *data)
 		i++;
 	}
 }
+
