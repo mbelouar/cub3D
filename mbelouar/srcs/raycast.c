@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:25:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 16:42:35 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:01:50 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,17 @@ void	cast_ray(t_data *data, int i)
 void	castAll_rays(t_data *data)
 {
 	int	i;
+	float	step;
 
+	step = (float)FOV_ANGLE / WIDTH;
 	i = 0;
 	data->ray->rayAngle = data->r_angle - (FOV_ANGLE / 2);
 	while (i < WIDTH)
 	{
+		data->ray[i].rayAngle = data->ray->rayAngle;
 		cast_ray(data, i);
-		data->ray->rayAngle += FOV_ANGLE / WIDTH;
+		data->ray->rayAngle += step;
 		i++;
 	}
+	data->ray[0].rayAngle = data->r_angle - (FOV_ANGLE / 2);
 }

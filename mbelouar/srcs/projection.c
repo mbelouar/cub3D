@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:19:52 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/26 20:49:54 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 20:53:29 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,15 @@ void	draw_floor(t_data *data)
 	}
 }
 
-void	find_x_texture(t_data *data, int i)
-{
-	
-}
+// void	find_x_texture(t_data *data, int i)
+// {
+
+// }
+
+// void	find_y_texture(t_data *data, int i)
+// {
+
+// }
 
 void	generate3D_projection(t_data *data)
 {
@@ -67,12 +72,13 @@ void	generate3D_projection(t_data *data)
 	S = data->map_info.square_S;
 	while (i < WIDTH)
 	{
-		// float	corrected_dist = data->ray[i].distance * cos(FOV_ANGLE / 2);
+		float	corrected_dist = data->ray[i].distance * cos(data->ray[i].rayAngle - data->r_angle);
 		// printf("rotation angle : %f\n", data->r_angle);
-		float	dist_projec = (WIDTH / 2) / tan(FOV_ANGLE / 2);
-		float	projWall_height = (S / data->ray[i].distance) * dist_projec;
+		// float	dist_projec = (WIDTH / 2) / tan(FOV_ANGLE / 2);
+		// float	projWall_height = (S / data->ray[i].distance) * dist_projec;
 
-		int	wall_Height = (int)projWall_height;
+		// int	wall_Height = 32000 / data->ray[i].distance;
+		int	wall_Height = 32000 / corrected_dist;
 
 		int wall_topPixel = (HEIGHT / 2) - (wall_Height / 2);
 		if (wall_topPixel < 0)
@@ -83,16 +89,16 @@ void	generate3D_projection(t_data *data)
 			wall_bottomPixel = HEIGHT;
 
 
-		find_x_texture(data, i);
-		find_y_texture(data, i);
-		draw_texture(data, i);
-		// j = wall_topPixel;
-		// while (j < wall_bottomPixel)
-		// {
-		// 	// data->Color_buffer[(WIDTH * j) + i] = 0xFFFFFFFF;
-		// 	mlx_put_pixel(data->image.img, i, j, generate_color(207,8,33,255));
-		// 	j++;
-		// }
+		// find_x_texture(data, i);
+		// find_y_texture(data, i);
+		// draw_texture(data, i);
+		j = wall_topPixel;
+		while (j < wall_bottomPixel)
+		{
+			// data->Color_buffer[(WIDTH * j) + i] = 0xFFFFFFFF;
+			mlx_put_pixel(data->image.img, i, j, generate_color(207,8,33,255));
+			j++;
+		}
 		i++;
 	}
 }
