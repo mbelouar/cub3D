@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 23:58:21 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 22:08:53 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ typedef struct s_data {
 	float			x_tmp;
 	float			y_tmp;
 	int				c;
-	// unsigned int    *Color_buffer;
 }				t_data;
 
 // <========== RAYCASTING ==========>
@@ -153,6 +152,7 @@ int		init_player_direction(t_data *data);
 void	err_msg(char *str, int fd);
 void	print_and_exit_param(void);
 void	open_fd_check(int *fd, char *file);
+void	mouse_hook(int curr_x, void *param);
 
 // mlx hooks
 void	handle_moves(void *param);
@@ -170,13 +170,13 @@ void	ft_move_left(t_data *data);
 
 // drawing
 void	drawing(t_data * data);
-void	draw_map2D(t_data *data);
+void	draw_map2d(t_data *data);
 void	draw_carre(int color, float top, float left, t_data *data);
 void	draw_player(float player_x, float player_y, t_data *data);
 void	draw_rays(t_data *data);
 
 // raycast
-void	castAll_rays(t_data *data);
+void	cast_all_rays(t_data *data);
 void	cast_ray(t_data *data, int i);
 void	calculate_dis(t_data *data, int i);
 void	vert_inter(t_data *data, float ray_angle);
@@ -196,18 +196,18 @@ void	draw_roof(t_data *data);
 void	read_map(t_data *data, int fd);
 int		map_valid(t_data *data, int fd, char *file);
 
-//split
+// split
 char	**ftt_split(char const *s, char c);
 int		count_chars(char const *s, char delimiter, int lens);
 int		count_words(char const *s, char delimiter);
 
-//trim
+// trim
 char	*ftt_strtrim(char const *s1, char const *set);
 int		check_end(char const *s, char const *set);
 int		check_start(char const *s, char const *set);
 int		check(char ch, char const *set);
 
-//directions
+// directions
 void	check_many_directions(t_data *data);
 void	print_err_directions();
 void	init_directions(t_data *data);
@@ -256,7 +256,7 @@ int		found_last_0(char *line);
 void	init_f_array(t_data *data);
 void	init_c_array(t_data *data);
 
-//errors
+// errors
 void	check_fd_map(int *fd, char *file);
 void	print_and_exit_param(void);
 void	err_empty_map(void);
@@ -264,15 +264,15 @@ void	found_semicolon_err(void);
 void	err_semicolons(void);
 
 #ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1337
+# define BUFFER_SIZE 1337
 
-//gnl
+// gnl
 char	*get_next_line(int fd);
 char	*ft_read(char *all, int fd);
 char	*cut(char *str);
 char	*copy_to_xyata(char *str);
 
-//libft_needed
+// libft_needed
 char	*ftt_strcpy(char *dst, char *src);
 char	*ftt_strjoin(char *s1, char *s2);
 char	*ftt_strchr(const char *s, int c);

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 21:29:59 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 23:05:15 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static int	check_wall(t_data *data, float xtmp, float ytmp)
 {
-	int	S;
+	int	tile_s;
 
-	S = data->map_info.square_S;
-	if (data->map_info.map_wt[(int)data->player._y / S][(int)xtmp / S] == '1' ||
-		data->map_info.map_wt[(int)ytmp / S][(int)data->player._x / S] == '1' ||
-		data->map_info.map_wt[(int)ytmp / S][(int)xtmp / S] == '1' )
+	tile_s = data->map_info.square_S;
+	if (data->map_info.map_wt[(int)data->player._y / tile_s]
+		[(int)xtmp / tile_s] == '1'
+		|| data->map_info.map_wt[(int)ytmp / tile_s]
+		[(int)data->player._x / tile_s] == '1'
+		|| data->map_info.map_wt[(int)ytmp / tile_s]
+		[(int)xtmp / tile_s] == '1' )
 		return (0);
 	return (1);
 }
@@ -61,19 +64,43 @@ void	handle_moves(void *param)
 	check_and_draw(data);
 }
 
-void mouse_hook(int curr_x, void *param)
-{
-    static int	old_x;
-	int 		delta_x;
-    t_data		*data;
+// void mouse_hook(int curr_x, void *param)
+// {
+// 	// static int old_x;
+// 	// static int	i;
+// 	t_data *data;
 
-    data = (t_data *)param;
-    if (old_x == 0)
-        old_x = curr_x;
-    delta_x = curr_x - old_x;
-    data->r_angle += 0.1 * delta_x;
-    old_x = curr_x;
-    setup_rot_angle(data);
+// 	data = (t_data *)param;
+
+// 	printf("curr_x : %d\n", curr_x);
+
+// 	// Print additional information for debugging
+// 	printf("data pointer: %p\n", (void *)data);
+
+// 	// Rest of mouse_hook logic...
+// }
+
+
+void	mouse_hook(int curr_x, void *param)
+{
+	static int	old_x;
+	static int	i;
+	t_data		*data;
+
+	data = (t_data *)param;
+	printf("curr x ==> %d\n", curr_x);
+	if (old_x == 0)
+		old_x = curr_x;
+	if (i++ == 1)
+	{
+		if (old_x > curr_x)
+			data->r_angle -= 0.08;
+		if (old_x < curr_x)
+			data->r_angle += 0.08;
+		i = 0;
+		old_x = curr_x;
+	}
+	setup_rot_angle(data);
 }
 
 
@@ -81,6 +108,9 @@ void mouse_hook(int curr_x, void *param)
 void	setup_rot_angle(t_data *data)
 {
 	data->ray->rayAngle = remainder(data->ray->rayAngle, 2 * M_PI);
+	data->r_angle = remainder(data->r_angle, 2 * M_PI);
 	if (data->ray->rayAngle < 0)
 		data->ray->rayAngle = (2 * M_PI) + data->ray->rayAngle;
+	if (data->r_angle < 0)
+		data->r_angle = (2 * M_PI) + data->r_angle;
 }

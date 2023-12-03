@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 16:41:03 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:51:59 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_init_player(t_data *data)
 {
-	data->player._x = data->map_info.snew_y * data->map_info.square_S + (data->map_info.square_S / 2);
-	data->player._y = data->map_info.snew_x * data->map_info.square_S + (data->map_info.square_S / 2);
+	data->player._x = data->map_info.snew_y * data->map_info.square_S
+		+ (data->map_info.square_S / 2);
+	data->player._y = data->map_info.snew_x * data->map_info.square_S
+		+ (data->map_info.square_S / 2);
 	data->player.p_size = 4;
 	init_player_direction(data);
 }
@@ -32,11 +34,12 @@ void	ft_init_data(t_data *data)
 	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, TITLE, 0);
 	if (!(data->mlx_ptr))
 		err_msg("Mlx initialization failed\n", 2);
-	if (!(data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT)))
-    {
-      mlx_close_window(data->mlx_ptr);
-			err_msg("Mlx creation image failed\n", 2);
-    }
+	data->image.img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	if (!(data->image.img))
+	{
+		err_msg("Mlx creation image failed\n", 2);
+		mlx_close_window(data->mlx_ptr);
+	}
 	mlx_image_to_window(data->mlx_ptr, data->image.img, 0, 0);
 	ft_init_map(data);
 	ft_init_player(data);

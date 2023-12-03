@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:39:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 21:23:44 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:52:53 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_wall(t_data *data, float x, float y)
 {
-    int	index;
+	int	index;
 	int	line_len;
 	int	x_pix;
 	int	y_pix;
@@ -68,8 +68,8 @@ static void	calculate_horz_xystep(t_data *data, float ray_angle)
 
 static void	search_horz_wall_hit(t_data *data)
 {
-	float	x_toCheck;
-	float	y_toCheck;
+	float	x_tocheck;
+	float	y_tocheck;
 	int		add_pix;
 
 	if (data->hold.is_FaceUp)
@@ -78,14 +78,14 @@ static void	search_horz_wall_hit(t_data *data)
 		add_pix = 0;
 	while (true)
 	{
-		x_toCheck = data->hold.HorzNext_x;
-		y_toCheck = data->hold.HorzNext_y + add_pix;
-		if (is_wall(data, x_toCheck, y_toCheck))
+		x_tocheck = data->hold.HorzNext_x;
+		y_tocheck = data->hold.HorzNext_y + add_pix;
+		if (is_wall(data, x_tocheck, y_tocheck))
 		{
 			data->hold.horzHit_x = data->hold.HorzNext_x;
 			data->hold.horzHit_y = data->hold.HorzNext_y;
 			data->hold.foundHorz_hit = 1;
-			break;
+			break ;
 		}
 		else
 		{
@@ -99,7 +99,8 @@ void	horz_inter(t_data *data, float ray_angle)
 {
 	data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
 	data->hold.is_FaceUp = !data->hold.is_FaceDown;
-	data->hold.is_FaceRight = ray_angle < (M_PI / 2) || ray_angle > (3 * M_PI / 2);
+	data->hold.is_FaceRight = ray_angle < (M_PI / 2)
+		|| ray_angle > (3 * M_PI / 2);
 	data->hold.is_FaceLeft = !data->hold.is_FaceRight;
 	calculate_horz_intercepts(data, ray_angle);
 	calculate_horz_xystep(data, ray_angle);

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:25:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/03 21:01:50 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 22:09:21 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ static void	check_calculate_dist(t_data *data, float h_d, float v_d, int i)
 
 void	calculate_dis(t_data *data, int i)
 {
-	float horzHit_dist;
-	float vertHit_dist;
+	float	horz_hit_dist;
+	float	vert_hit_dist;
 
 	if (data->hold.foundHorz_hit == 1)
-		horzHit_dist = dist_two_points(data->player._x, data->player._y,
+		horz_hit_dist = dist_two_points(data->player._x, data->player._y,
 				data->hold.horzHit_x, data->hold.horzHit_y);
 	else
-		horzHit_dist = INT_MAX;
+		horz_hit_dist = INT_MAX;
 	if (data->hold.foundVert_hit == 1)
-		vertHit_dist = dist_two_points(data->player._x, data->player._y,
+		vert_hit_dist = dist_two_points(data->player._x, data->player._y,
 				data->hold.vertHit_x, data->hold.vertHit_y);
 	else
-		vertHit_dist = INT_MAX;
-	check_calculate_dist(data, horzHit_dist, vertHit_dist, i);
+		vert_hit_dist = INT_MAX;
+	check_calculate_dist(data, horz_hit_dist, vert_hit_dist, i);
 }
 
 void	cast_ray(t_data *data, int i)
@@ -61,9 +61,9 @@ void	cast_ray(t_data *data, int i)
 	calculate_dis(data, i);
 }
 
-void	castAll_rays(t_data *data)
+void	cast_all_rays(t_data *data)
 {
-	int	i;
+	int		i;
 	float	step;
 
 	step = (float)FOV_ANGLE / WIDTH;

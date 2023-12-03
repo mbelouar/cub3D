@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:49:26 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 16:40:37 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:57:00 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,73 +14,73 @@
 
 void	draw_player(float player_x, float player_y, t_data *data)
 {
-	float	startX;
-	float	startY;
-	float	currentX;
-	float	currentY;
+	float	start_x;
+	float	start_y;
+	float	curr_x;
+	float	curr_y;
 
-	startX = player_x - data->player.p_size / 2.0;
-	startY = player_y - data->player.p_size / 2.0;
-	currentX = startX;
-	while (currentX < startX + data->player.p_size)
+	start_x = player_x - data->player.p_size / 2.0;
+	start_y = player_y - data->player.p_size / 2.0;
+	curr_x = start_x;
+	while (curr_x < start_x + data->player.p_size)
 	{
-		currentY = startY;
-		while (currentY < startY + data->player.p_size)
+		curr_y = start_y;
+		while (curr_y < start_y + data->player.p_size)
 		{
 			mlx_put_pixel(data->image.img,
-				currentX, currentY, generate_color(0, 0, 0, 255));
-			++currentY;
+				curr_x, curr_y, generate_color(0, 0, 0, 255));
+			++curr_y;
 		}
-		++currentX;
+		++curr_x;
 	}
 }
 
 void	draw_square(int color, float top, float left, t_data *data)
 {
-	float	currentX;
-	float	currentY;
+	float	curr_x;
+	float	curr_y;
 
-	currentY = 0;
-	while (currentY < data->map_info.square_S)
+	curr_y = 0;
+	while (curr_y < data->map_info.square_S)
 	{
-		currentX = 0;
-		while (currentX < data->map_info.square_S)
+		curr_x = 0;
+		while (curr_x < data->map_info.square_S)
 		{
-			if (currentX + left < WIDTH && currentY + top < HEIGHT)
+			if (curr_x + left < WIDTH && curr_y + top < HEIGHT)
 				mlx_put_pixel(data->image.img,
-					currentX + left, currentY + top, color);
-			if (currentX + left < WIDTH && top < HEIGHT)
+					curr_x + left, curr_y + top, color);
+			if (curr_x + left < WIDTH && top < HEIGHT)
 				mlx_put_pixel(data->image.img,
-					currentX + left, top, generate_color(0, 0, 0, 255));
-			currentX++;
+					curr_x + left, top, generate_color(0, 0, 0, 255));
+			curr_x++;
 		}
-		if (left < WIDTH && currentY + top < HEIGHT)
+		if (left < WIDTH && curr_y + top < HEIGHT)
 			mlx_put_pixel(data->image.img,
-				left, currentY + top, generate_color(0, 0, 0, 255));
-		currentY++;
+				left, curr_y + top, generate_color(0, 0, 0, 255));
+		curr_y++;
 	}
 }
 
-void	draw_map2D(t_data *data)
+void	draw_map2d(t_data *data)
 {
 	float	row;
 	float	col;
-	int		square_S;
-	char	*mapRow;
+	int		tile_s;
+	char	*map_row;
 
 	row = 0;
-	square_S = data->map_info.square_S;
+	tile_s = data->map_info.square_S;
 	while (data->map_info.map_wt[(int)row])
 	{
 		col = 0;
-		mapRow = data->map_info.map_wt[(int)row];
-		while (mapRow[(int)col])
+		map_row = data->map_info.map_wt[(int)row];
+		while (map_row[(int)col])
 		{
 			draw_square(generate_color(224, 244, 255, 255),
-				row * square_S, col * square_S, data);
-			if (mapRow[(int)col] == '1')
+				row * tile_s, col * tile_s, data);
+			if (map_row[(int)col] == '1')
 				draw_square(generate_color(24, 111, 101, 255),
-					row * square_S, col * square_S, data);
+					row * tile_s, col * tile_s, data);
 			col++;
 		}
 		row++;

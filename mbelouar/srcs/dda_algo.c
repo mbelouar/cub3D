@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_algo.c                                              :+:      :+:    :+:   */
+/*   dda_algo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 22:26:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/19 22:27:53 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:58:12 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_dda(t_data *data, int Xi, int Yi, int Xf, int Yf)
 	while (i <= data->dda.steps)
 	{
 		mlx_put_pixel(data->image.img, round(data->dda.X),
-			round(data->dda.Y), generate_color(255, 0,0,255));
+			round(data->dda.Y), generate_color(255, 0, 0, 255));
 		data->dda.X += data->dda.Xinc;
 		data->dda.Y += data->dda.Yinc;
 		i++;

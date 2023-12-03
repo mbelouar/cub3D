@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:40:11 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/11/25 21:24:06 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:43:55 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static void	calculate_vert_xystep(t_data *data, float ray_angle)
 
 static void	search_vert_wall_hit(t_data *data)
 {
-	float	x_toCheck;
-	float	y_toCheck;
+	float	x_tocheck;
+	float	y_tocheck;
 	int		add_pix;
 
 	if (data->hold.is_FaceLeft)
@@ -54,14 +54,14 @@ static void	search_vert_wall_hit(t_data *data)
 		add_pix = 0;
 	while (true)
 	{
-		x_toCheck = data->hold.VertNext_x + add_pix;
-		y_toCheck = data->hold.VertNext_y;
-		if (is_wall(data, x_toCheck, y_toCheck))
+		x_tocheck = data->hold.VertNext_x + add_pix;
+		y_tocheck = data->hold.VertNext_y;
+		if (is_wall(data, x_tocheck, y_tocheck))
 		{
 			data->hold.vertHit_x = data->hold.VertNext_x;
 			data->hold.vertHit_y = data->hold.VertNext_y;
 			data->hold.foundVert_hit = 1;
-			break;
+			break ;
 		}
 		else
 		{
@@ -75,7 +75,8 @@ void	vert_inter(t_data *data, float ray_angle)
 {
 	data->hold.is_FaceDown = ray_angle > 0 && ray_angle < M_PI;
 	data->hold.is_FaceUp = !data->hold.is_FaceDown;
-	data->hold.is_FaceRight = ray_angle < (M_PI / 2) || ray_angle > (3 * M_PI / 2);
+	data->hold.is_FaceRight = ray_angle < (M_PI / 2)
+		|| ray_angle > (3 * M_PI / 2);
 	data->hold.is_FaceLeft = !data->hold.is_FaceRight;
 	calculate_vert_intercepts(data, ray_angle);
 	calculate_vert_xystep(data, ray_angle);
