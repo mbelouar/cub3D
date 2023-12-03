@@ -52,6 +52,11 @@ void	draw_floor(t_data *data)
 	}
 }
 
+void	find_x_texture(t_data *data, int i)
+{
+	
+}
+
 void	generate3D_projection(t_data *data)
 {
 	int	i;
@@ -77,13 +82,17 @@ void	generate3D_projection(t_data *data)
 		if (wall_bottomPixel > HEIGHT)
 			wall_bottomPixel = HEIGHT;
 
-		j = wall_topPixel;
-		while (j < wall_bottomPixel)
-		{
-			// data->Color_buffer[(WIDTH * j) + i] = 0xFFFFFFFF;
-			mlx_put_pixel(data->image.img, i, j, generate_color(207,8,33,255));
-			j++;
-		}
+
+		find_x_texture(data, i);
+		find_y_texture(data, i);
+		draw_texture(data, i);
+		// j = wall_topPixel;
+		// while (j < wall_bottomPixel)
+		// {
+		// 	// data->Color_buffer[(WIDTH * j) + i] = 0xFFFFFFFF;
+		// 	mlx_put_pixel(data->image.img, i, j, generate_color(207,8,33,255));
+		// 	j++;
+		// }
 		i++;
 	}
 }
