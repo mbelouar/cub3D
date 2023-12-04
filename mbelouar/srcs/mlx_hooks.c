@@ -105,6 +105,7 @@ void	mouse_hook(int curr_x, void *param)
 
 
 // must modify this function to normalize any angle i give it
+// if i wanna use a single angle then just pass the adress of the angle
 void	setup_rot_angle(t_data *data)
 {
 	data->ray->rayAngle = remainder(data->ray->rayAngle, 2 * M_PI);

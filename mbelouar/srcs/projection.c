@@ -62,6 +62,23 @@ void	draw_floor(t_data *data)
 
 // }
 
+// void	draw_texture(t_data *data, int i)
+// {
+
+// }
+
+void	setup_texture(t_data *data, int i)
+{
+	if (data->ray[i].rayAngle >= 0 && data->ray[i].rayAngle < M_PI)
+		// Player is facing south
+	else if (data->ray[i].rayAngle >= M_PI && data->ray[i].rayAngle < 2 * M_PI)
+		// Player is facing north
+	else if (data->ray[i].rayAngle >= M_PI / 2 && data->ray[i].rayAngle < 3 * M_PI / 2)
+		// Player is facing east
+	else
+		// Player is facing west
+}
+
 void	generate3D_projection(t_data *data)
 {
 	int	i;
@@ -72,17 +89,23 @@ void	generate3D_projection(t_data *data)
 	S = data->map_info.square_S;
 	while (i < WIDTH)
 	{
+		// fishbowl eye
 		float	corrected_dist = data->ray[i].distance * cos(data->ray[i].rayAngle - data->r_angle);
+		
+		// wall height
 		int	wall_Height = 32000 / corrected_dist;
 
+		// wall starting point
 		int wall_topPixel = (HEIGHT / 2) - (wall_Height / 2);
 		if (wall_topPixel < 0)
 			wall_topPixel = 0;
+
+		// wall ending point
 		int wall_bottomPixel = (HEIGHT / 2) + (wall_Height / 2);
 		if (wall_bottomPixel > HEIGHT)
 			wall_bottomPixel = HEIGHT;
 
-
+		// setup_textures(data, i);
 		// find_x_texture(data, i);
 		// find_y_texture(data, i);
 		// draw_texture(data, i);
