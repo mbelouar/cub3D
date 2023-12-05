@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/03 22:08:53 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:39:35 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,9 @@ typedef struct s_data {
 	float			x_tmp;
 	float			y_tmp;
 	int				c;
+	int 			mouse_x;
+	int 			mouse_y;
+	int				tmp;
 }				t_data;
 
 // <========== RAYCASTING ==========>
@@ -152,7 +155,6 @@ int		init_player_direction(t_data *data);
 void	err_msg(char *str, int fd);
 void	print_and_exit_param(void);
 void	open_fd_check(int *fd, char *file);
-void	mouse_hook(int curr_x, void *param);
 
 // mlx hooks
 void	handle_moves(void *param);
@@ -182,7 +184,7 @@ void	calculate_dis(t_data *data, int i);
 void	vert_inter(t_data *data, float ray_angle);
 void	horz_inter(t_data *data, float ray_angle);
 void	ft_dda(t_data *data, int xi, int yi, int xf, int yf);
-void	setup_rot_angle(t_data *data);
+void	setup_rot_angle(float *angle);
 int		is_wall(t_data *data, float x, float y);
 
 // projection

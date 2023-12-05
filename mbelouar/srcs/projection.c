@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:19:52 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/03 21:32:40 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:37:15 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,17 @@ void	draw_floor(t_data *data)
 
 // }
 
-void	setup_texture(t_data *data, int i)
-{
-	if (data->ray[i].rayAngle >= 0 && data->ray[i].rayAngle < M_PI)
-		// Player is facing south
-	else if (data->ray[i].rayAngle >= M_PI && data->ray[i].rayAngle < 2 * M_PI)
-		// Player is facing north
-	else if (data->ray[i].rayAngle >= M_PI / 2 && data->ray[i].rayAngle < 3 * M_PI / 2)
-		// Player is facing east
-	else
-		// Player is facing west
-}
+// void	setup_texture(t_data *data, int i)
+// {
+// 	if (data->ray[i].rayAngle >= 0 && data->ray[i].rayAngle < M_PI)
+// 		// Player is facing south
+// 	else if (data->ray[i].rayAngle >= M_PI && data->ray[i].rayAngle < 2 * M_PI)
+// 		// Player is facing north
+// 	else if (data->ray[i].rayAngle >= M_PI / 2 && data->ray[i].rayAngle < 3 * M_PI / 2)
+// 		// Player is facing east
+// 	else
+// 		// Player is facing west
+// }
 
 void	generate3D_projection(t_data *data)
 {
@@ -91,7 +91,7 @@ void	generate3D_projection(t_data *data)
 	{
 		// fishbowl eye
 		float	corrected_dist = data->ray[i].distance * cos(data->ray[i].rayAngle - data->r_angle);
-		
+
 		// wall height
 		int	wall_Height = 32000 / corrected_dist;
 
@@ -112,7 +112,8 @@ void	generate3D_projection(t_data *data)
 		j = wall_topPixel;
 		while (j < wall_bottomPixel)
 		{
-			mlx_put_pixel(data->image.img, i, j, generate_color(207,8,33,255));
+			if (i <= WIDTH && i >=0 && j >= 0 && j <= HEIGHT)
+				mlx_put_pixel(data->image.img, i, j, generate_color(0,0,0,255));
 			j++;
 		}
 		i++;

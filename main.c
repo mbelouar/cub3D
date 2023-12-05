@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:18:27 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/03 22:38:57 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:39:06 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int ac, char **av)
 		ft_init_data(&data);
 		mlx_loop_hook(data.mlx_ptr, handle_moves, &data);
 		mlx_close_hook(data.mlx_ptr, ft_close, &data);
-		mlx_mouse_hook(data.mlx_ptr, (mlx_mousefunc)mouse_hook, &data);
 		mlx_loop(data.mlx_ptr);
 	}
 	return (0);

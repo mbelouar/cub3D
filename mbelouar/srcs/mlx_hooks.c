@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/03 23:05:15 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:48:57 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	check_and_draw(t_data *data)
 	{
 		data->player._x = data->x_tmp;
 		data->player._y = data->y_tmp;
+		// data->mouse_x =
 		drawing(data);
 	}
 }
@@ -61,57 +62,36 @@ void	handle_moves(void *param)
 		data->r_angle -= 0.05;
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
 		data->r_angle += 0.05;
+	mlx_get_mouse_pos(data->mlx_ptr, &data->mouse_x, &data->mouse_y);
+	if (data->mouse_x >= 0 && data->mouse_x <= WIDTH && data->tmp > data->mouse_x && data->mouse_y >= 0 && data->mouse_y <= HEIGHT)
+	{
+		data->r_angle -= 0.05;
+		setup_rot_angle(&data->r_angle);
+		data->tmp = data->mouse_x;
+	}
+	if (data->mouse_x >= 0 && data->mouse_x <= WIDTH && data->tmp < data->mouse_x&& data->mouse_y >= 0 && data->mouse_y <= HEIGHT){
+		data->r_angle += 0.05;
+		setup_rot_angle(&data->r_angle);
+		data->tmp = data->mouse_x;
+	}
 	check_and_draw(data);
 }
 
-// void mouse_hook(int curr_x, void *param)
-// {
-// 	// static int old_x;
-// 	// static int	i;
-// 	t_data *data;
-
-// 	data = (t_data *)param;
-
-// 	printf("curr_x : %d\n", curr_x);
-
-// 	// Print additional information for debugging
-// 	printf("data pointer: %p\n", (void *)data);
-
-// 	// Rest of mouse_hook logic...
-// }
-
-
-void	mouse_hook(int curr_x, void *param)
-{
-	static int	old_x;
-	static int	i;
-	t_data		*data;
-
-	data = (t_data *)param;
-	printf("curr x ==> %d\n", curr_x);
-	if (old_x == 0)
-		old_x = curr_x;
-	if (i++ == 1)
-	{
-		if (old_x > curr_x)
-			data->r_angle -= 0.08;
-		if (old_x < curr_x)
-			data->r_angle += 0.08;
-		i = 0;
-		old_x = curr_x;
-	}
-	setup_rot_angle(data);
-}
-
-
 // must modify this function to normalize any angle i give it
 // if i wanna use a single angle then just pass the adress of the angle
-void	setup_rot_angle(t_data *data)
+// void	setup_rot_angle(t_data *data)
+// {
+// 	data->ray->rayAngle = remainder(data->ray->rayAngle, 2 * M_PI);
+// 	data->r_angle = remainder(data->r_angle, 2 * M_PI);
+// 	if (data->ray->rayAngle < 0)
+// 		data->ray->rayAngle = (2 * M_PI) + data->ray->rayAngle;
+// 	if (data->r_angle < 0)
+// 		data->r_angle = (2 * M_PI) + data->r_angle;
+// }
+
+void	setup_rot_angle(float *angle)
 {
-	data->ray->rayAngle = remainder(data->ray->rayAngle, 2 * M_PI);
-	data->r_angle = remainder(data->r_angle, 2 * M_PI);
-	if (data->ray->rayAngle < 0)
-		data->ray->rayAngle = (2 * M_PI) + data->ray->rayAngle;
-	if (data->r_angle < 0)
-		data->r_angle = (2 * M_PI) + data->r_angle;
+	*angle = remainder(*angle, 2 * M_PI);
+	if (*angle < 0)
+		*angle = (2 * M_PI) + *angle;
 }

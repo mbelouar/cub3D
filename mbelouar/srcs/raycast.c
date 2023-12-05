@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:25:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/03 22:09:21 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:34:41 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	calculate_dis(t_data *data, int i)
 
 void	cast_ray(t_data *data, int i)
 {
-	setup_rot_angle(data);
+	setup_rot_angle(&data->ray->rayAngle);
 	horz_inter(data, data->ray->rayAngle);
 	vert_inter(data, data->ray->rayAngle);
 	calculate_dis(data, i);
