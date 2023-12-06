@@ -33,7 +33,6 @@ static void	check_and_draw(t_data *data)
 	{
 		data->player._x = data->x_tmp;
 		data->player._y = data->y_tmp;
-		// data->mouse_x =
 		drawing(data);
 	}
 }

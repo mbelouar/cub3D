@@ -62,6 +62,9 @@ typedef struct s_ray {
 	float	wallHit_y;
 	float	distance;
 	int		wasHitVertical;
+	int		wall_Height;
+	int 	wall_topPixel;
+	int 	wall_bottomPixel;
 }				t_ray;
 
 typedef struct s_dda {
@@ -83,24 +86,27 @@ typedef struct s_projection {
 }				t_projection;
 
 typedef struct s_holder {
-	int		is_FaceUp;
-	int		is_FaceDown;
-	int		is_FaceRight;
-	int		is_FaceLeft;
-	int		foundHorz_hit;
-	int		foundVert_hit;
-	float	horzHit_x;
-	float	horzHit_y;
-	float	vertHit_x;
-	float	vertHit_y;
-	float	x_inter;
-	float	y_inter;
-	float	x_step;
-	float	y_step;
-	float	HorzNext_x;
-	float	HorzNext_y;
-	float	VertNext_x;
-	float	VertNext_y;
+	int				is_FaceUp;
+	int				is_FaceDown;
+	int				is_FaceRight;
+	int				is_FaceLeft;
+	int				foundHorz_hit;
+	int				foundVert_hit;
+	float			horzHit_x;
+	float			horzHit_y;
+	float			vertHit_x;
+	float			vertHit_y;
+	float			x_inter;
+	float			y_inter;
+	float			x_step;
+	float			y_step;
+	float			HorzNext_x;
+	float			HorzNext_y;
+	float			VertNext_x;
+	float			VertNext_y;
+	float			x_text;
+	float			y_text;
+	mlx_texture_t	*texture;
 }				t_holder;
 
 typedef struct s_dir {
@@ -131,7 +137,7 @@ typedef struct s_data {
 	t_dda			dda;
 	t_holder		hold;
 	t_projection	project;
-	t_tex			tex;
+	t_tex			text;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	float			r_angle;
