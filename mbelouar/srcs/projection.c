@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:19:52 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/05 22:37:15 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/06 21:23:36 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,37 +52,37 @@ void	draw_floor(t_data *data)
 	}
 }
 
-void	find_x_texture(t_data *data, int i, mlx_texture_t *texture)
+static void	find_x_texture(t_data *data, int i, mlx_texture_t *texture)
 {
 	float hit_coord;
 	float tile;
 
 	tile = data->map_info.square_S;
-    if (data->ray[i].wasHitVertical == 1)
-        hit_coord = data->ray[i].wallHit_y;
-    else
-        hit_coord = data->ray[i].wallHit_x;
+	if (data->ray[i].wasHitVertical == 1)
+		hit_coord = data->ray[i].wallHit_y;
+	else
+		hit_coord = data->ray[i].wallHit_x;
 
-    if (hit_coord >= 0 && hit_coord < WIDTH)
-        data->hold.x_text = fmod(hit_coord, tile) * (texture->width / tile);
+	if (hit_coord >= 0 && hit_coord < WIDTH)
+		data->hold.x_text = fmod(hit_coord, tile) * (texture->width / tile);
 }
 
-void	find_y_texture(t_data *data, int i, mlx_texture_t *texture)
+static void	find_y_texture(t_data *data, int i, mlx_texture_t *texture)
 {
-	if (data->ray[i].wall_topPixel > 0 && data->ray[i].wall_topPixel < HEIGHT) 
+	if (data->ray[i].wall_topPixel > 0 && data->ray[i].wall_topPixel < HEIGHT)
 	{
-        float wall_height_ratio;
-		
+		float wall_height_ratio;
+
 		wall_height_ratio = 1 - (data->ray[i].wall_bottomPixel - data->ray[i].wall_topPixel)
 			/ data->ray[i].wall_Height;
-        game->hold.y_text = wall_height_ratio * texture->height;
-    }
+		data->hold.y_text = wall_height_ratio * texture->height;
+	}
 }
 
-void	draw_texture(t_data *data, int i)
+static void	draw_texture(t_data *data, int i)
 {
-	int x_texture;
-	int y_texture;
+	uint32_t	x_texture;
+	uint32_t	y_texture;
 
 	while (data->ray[i].wall_topPixel < data->ray[i].wall_bottomPixel
 		&& data->ray[i].wall_topPixel < HEIGHT)
@@ -90,18 +90,18 @@ void	draw_texture(t_data *data, int i)
 		if (data->ray[i].wall_topPixel >= 0)
 		{
 			find_y_texture(data, i, data->hold.texture);
-			x_texture = data->hold.x_texures;
-			y_texture = data->hold.y_textures;
+			x_texture = data->hold.x_text;
+			y_texture = data->hold.y_text;
 			if (x_texture >= 0 && x_texture < data->hold.texture->width
 				&& y_texture >= 0 && y_texture < data->hold.texture->height)
-				mlx_put_pixel(data->mlx.image, index, data->ray[i].wall_topPixel,
-								get_texture_color(x_texture, y_texture, data->hold.image));
+				mlx_put_pixel(data->image.img, i, data->ray[i].wall_topPixel,
+								get_texture_color(x_texture, y_texture, data->hold.texture));
 		}
 		data->ray[i].wall_topPixel++;
 	}
 }
 
-void	setup_texture(t_data *data, int i)
+static void	setup_texture(t_data *data, int i)
 {
 	if (data->ray[i].rayAngle >= 0 && data->ray[i].rayAngle < M_PI)
 		data->hold.texture = data->text.tex_so;
@@ -140,7 +140,7 @@ void	generate3D_projection(t_data *data)
 		if (data->ray[i].wall_bottomPixel > HEIGHT)
 			data->ray[i].wall_bottomPixel = HEIGHT;
 
-		setup_textures(data, i);
+		setup_texture(data, i);
 		find_x_texture(data, i, data->hold.texture);
 		draw_texture(data, i);
 		// j = data->ray[i].wall_topPixel;

@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/05 22:39:35 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/06 21:22:34 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ int		esc_handle(int keycode, t_data *data);
 
 // colors
 int		generate_color(int r, int g, int b, int a);
+int		get_texture_color(int x_coord, int y_coord, mlx_texture_t *texture);
 
 // moves
 void	ft_move_up(t_data *data);
