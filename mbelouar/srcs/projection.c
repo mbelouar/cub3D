@@ -54,49 +54,41 @@ void	draw_floor(t_data *data)
 
 static void	find_x_texture(t_data *data, int i, mlx_texture_t *texture)
 {
-	float hit_coord;
 	float tile;
 
 	tile = data->map_info.square_S;
 	if (data->ray[i].wasHitVertical == 1)
-		hit_coord = data->ray[i].wallHit_y;
+	{
+		data->hold.x_text = fmod(data->ray[i].wallHit_y, tile)
+			* (texture->width / tile);
+	}
 	else
-		hit_coord = data->ray[i].wallHit_x;
-
-	if (hit_coord >= 0 && hit_coord < WIDTH)
-		data->hold.x_text = fmod(hit_coord, tile) * (texture->width / tile);
+	{
+		if (data->ray[i].wallHit_x >= 0
+			&& data->ray[i].wallHit_x < WIDTH)
+			data->hold.x_text = fmod(data->ray[i].wallHit_x, tile)
+				* (texture->width / tile);
+	}
 }
 
 static void	find_y_texture(t_data *data, int i, mlx_texture_t *texture)
 {
 	if (data->ray[i].wall_topPixel > 0 && data->ray[i].wall_topPixel < HEIGHT)
-	{
-		float wall_height_ratio;
-
-		wall_height_ratio = 1 - (data->ray[i].wall_bottomPixel - data->ray[i].wall_topPixel)
-			/ data->ray[i].wall_Height;
-		data->hold.y_text = wall_height_ratio * texture->height;
-	}
+		data->hold.y_text = (1 - (data->ray[i].wall_bottomPixel
+					- data->ray[i].wall_topPixel)
+				/ data->ray[i].wall_height) * texture->height;
 }
 
 static void	draw_texture(t_data *data, int i)
 {
-	uint32_t	x_texture;
-	uint32_t	y_texture;
-
 	while (data->ray[i].wall_topPixel < data->ray[i].wall_bottomPixel
 		&& data->ray[i].wall_topPixel < HEIGHT)
 	{
-		if (data->ray[i].wall_topPixel >= 0)
-		{
-			find_y_texture(data, i, data->hold.texture);
-			x_texture = data->hold.x_text;
-			y_texture = data->hold.y_text;
-			if (x_texture >= 0 && x_texture < data->hold.texture->width
-				&& y_texture >= 0 && y_texture < data->hold.texture->height)
-				mlx_put_pixel(data->image.img, i, data->ray[i].wall_topPixel,
-								get_texture_color(x_texture, y_texture, data->hold.texture));
-		}
+		find_y_texture(data, i, data->hold.texture);
+		if (data->ray[i].wall_topPixel >= 0
+			&& data->ray[i].wall_topPixel < HEIGHT)
+		mlx_put_pixel(data->image.img, i, data->ray[i].wall_topPixel,
+			get_texture_color(data->hold.x_text, data->hold.y_text, data->hold.texture));
 		data->ray[i].wall_topPixel++;
 	}
 }
@@ -132,13 +124,13 @@ void	generate3D_projection(t_data *data)
 
 		// wall starting point
 		data->ray[i].wall_topPixel = (HEIGHT / 2) - (data->ray[i].wall_Height / 2);
-		if (data->ray[i].wall_topPixel < 0)
-			data->ray[i].wall_topPixel = 0;
+		// if (data->ray[i].wall_topPixel < 0)
+		// 	data->ray[i].wall_topPixel = 0;
 
 		// wall ending point
 		data->ray[i].wall_bottomPixel = (HEIGHT / 2) + (data->ray[i].wall_Height / 2);
-		if (data->ray[i].wall_bottomPixel > HEIGHT)
-			data->ray[i].wall_bottomPixel = HEIGHT;
+		// if (data->ray[i].wall_bottomPixel > HEIGHT)
+		// 	data->ray[i].wall_bottomPixel = HEIGHT;
 
 		setup_texture(data, i);
 		find_x_texture(data, i, data->hold.texture);
@@ -150,7 +142,7 @@ void	generate3D_projection(t_data *data)
 		// 		mlx_put_pixel(data->image.img, i, j, generate_color(0,0,0,255));
 		// 	j++;
 		// }
-		i++;
+		++i;
 	}
 }
 

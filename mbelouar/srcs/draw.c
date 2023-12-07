@@ -16,8 +16,8 @@ void	drawing(t_data *data)
 {
 	draw_floor(data);
 	draw_roof(data);
+	cast_all_rays(data);
 	generate3D_projection(data);
 	draw_map2d(data);
-	cast_all_rays(data);
 	draw_rays(data);
 }
