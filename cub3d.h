@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/08 01:49:42 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/08 23:40:29 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <math.h>
 # define FOV_ANGLE	60 * (M_PI / 180)
 # define SPEED_MOVE	1.50
-# define WIDTH		2200
-# define HEIGHT		1000
+# define WIDTH		1800
+# define HEIGHT		900
 # define TITLE		"cub3D"
 # define INT_MAX	2147483647
 
@@ -169,7 +169,7 @@ int		esc_handle(int keycode, t_data *data);
 
 // colors
 int		generate_color(int r, int g, int b, int a);
-int		get_texture_color(int x_coord, int y_coord, mlx_texture_t *texture);
+int		get_texture_color(float x, float y, mlx_texture_t *texture);
 
 // moves
 void	ft_move_up(t_data *data);
