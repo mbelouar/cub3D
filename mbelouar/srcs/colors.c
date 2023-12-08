@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:51:43 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/06 21:21:23 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/08 01:49:58 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ int	generate_color(int r, int g, int b, int a)
 
 int get_texture_color(int x_coord, int y_coord, mlx_texture_t *texture)
 {
-	if (x_coord < 0 || y_coord < 0 || (uint32_t)x_coord >= texture->width || (uint32_t)y_coord >= texture->height)
-	{
-		// Coordinates are out of bounds, return a default color (e.g., black)
+	if (x_coord < 0 || y_coord < 0 || (uint32_t)x_coord >= texture->width
+		|| (uint32_t)y_coord >= texture->height)
 		return (generate_color(0, 0, 0, 255));
-	}
 
 	// Calculate the starting index of the pixel in the 1D pixel array
 	int pixel_index = (y_coord * texture->width + x_coord) * texture->bytes_per_pixel;

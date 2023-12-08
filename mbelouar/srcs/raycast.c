@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:25:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/05 15:34:41 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/07 23:13:01 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	check_calculate_dist(t_data *data, float h_d, float v_d, int i)
 		data->ray[i].wallHit_y = data->hold.horzHit_y;
 		data->ray[i].wasHitVertical = 0;
 	}
+	
 }
 
 void	calculate_dis(t_data *data, int i)

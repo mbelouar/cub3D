@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/05 22:48:57 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:59:07 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	handle_moves(void *param)
 		setup_rot_angle(&data->r_angle);
 		data->tmp = data->mouse_x;
 	}
+	setup_rot_angle(&data->r_angle);
 	check_and_draw(data);
 }
 

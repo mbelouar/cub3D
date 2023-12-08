@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:19:52 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/06 21:23:36 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/08 01:51:43 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,49 +52,85 @@ void	draw_floor(t_data *data)
 	}
 }
 
-static void	find_x_texture(t_data *data, int i, mlx_texture_t *texture)
+void	find_x_texture(t_data *data, int i, mlx_texture_t *texture)
 {
+	float hit_coord;
 	float tile;
 
-	tile = data->map_info.square_S;
+	tile = (float)data->map_info.square_S;
 	if (data->ray[i].wasHitVertical == 1)
-	{
-		data->hold.x_text = fmod(data->ray[i].wallHit_y, tile)
-			* (texture->width / tile);
-	}
+		hit_coord = data->ray[i].wallHit_y;
 	else
+		hit_coord = data->ray[i].wallHit_x;
+	if (hit_coord >= 0 && hit_coord < WIDTH)
+		data->hold.x_text = fmod(hit_coord, tile) * (texture->width / tile);
+}
+void find_y_texture(t_data *data, mlx_texture_t *texture, int top, int bottom)
+{
+	// Ensure that the top and bottom values are within the valid range
+	if (top < 0)
+		top = 0;
+
+	if (bottom > HEIGHT)
+		bottom = HEIGHT;
+
+	// Calculate the y_text based on the middle of the wall
+	data->hold.y_text = (top + (bottom - top) / 2 - (HEIGHT / 2)) * (texture->height / (bottom - top));
+}
+
+void draw_texture(t_data *data, int i, int top, int bottom)
+{
+	// Calculate the starting y coordinate for drawing the texture
+	find_y_texture(data, data->hold.texture, top, bottom);
+
+	while (top < bottom)
 	{
-		if (data->ray[i].wallHit_x >= 0
-			&& data->ray[i].wallHit_x < WIDTH)
-			data->hold.x_text = fmod(data->ray[i].wallHit_x, tile)
-				* (texture->width / tile);
+		if (top >= 0 && top < HEIGHT)
+		{
+			mlx_put_pixel(data->image.img, i, top,
+							get_texture_color(data->hold.x_text, data->hold.y_text, data->hold.texture));
+		}
+		// Increment y_text for the next pixel
+		data->hold.y_text += (float)data->hold.texture->height / (bottom - top);
+
+		top++;
 	}
 }
 
-static void	find_y_texture(t_data *data, int i, mlx_texture_t *texture)
-{
-	if (data->ray[i].wall_topPixel > 0 && data->ray[i].wall_topPixel < HEIGHT)
-		data->hold.y_text = (1 - (data->ray[i].wall_bottomPixel
-					- data->ray[i].wall_topPixel)
-				/ data->ray[i].wall_height) * texture->height;
-}
 
-static void	draw_texture(t_data *data, int i)
-{
-	while (data->ray[i].wall_topPixel < data->ray[i].wall_bottomPixel
-		&& data->ray[i].wall_topPixel < HEIGHT)
-	{
-		find_y_texture(data, i, data->hold.texture);
-		if (data->ray[i].wall_topPixel >= 0
-			&& data->ray[i].wall_topPixel < HEIGHT)
-		mlx_put_pixel(data->image.img, i, data->ray[i].wall_topPixel,
-			get_texture_color(data->hold.x_text, data->hold.y_text, data->hold.texture));
-		data->ray[i].wall_topPixel++;
-	}
-}
+// void	find_y_texture(t_data *data, mlx_texture_t *texture, int top, int bottom)
+// {
+// 	(void)texture;
+// 	// printf("wall top = %d\nwall bottom = %d\n", top, bottom);
+// 	if (top > 0 && top < HEIGHT)
+// 	{
+// 		// printf("heyy\n");
+// 		data->hold.y_text = (top - ((HEIGHT / 2) + ((bottom - top) / 2)))
+// 			* (data->map_info.square_S / (bottom - top));
+// 		// data->hold.y_text = (1 - (bottom - top)
+// 		// 		/ (bottom - top)) * texture->height;
+// 	}
+// }
 
-static void	setup_texture(t_data *data, int i)
+// void	draw_texture(t_data *data, int i, int top, int bottom)
+// {
+// 	while (top < bottom)
+// 	{
+// 		find_y_texture(data, data->hold.texture, top, bottom);
+// 		if (top >= 0 && top < HEIGHT)
+// 			mlx_put_pixel(data->image.img, i, top,
+// 				get_texture_color(data->hold.x_text, data->hold.y_text, data->hold.texture));
+// 		top++;
+// 	}
+// }
+
+void	setup_texture(t_data *data, int i)
 {
+	// if (i == 0)
+	// {
+	// 	printf("rayAngle = %f\ni = %d\n", data->ray[i].rayAngle, i);
+	// 	pause();
+	// }
 	if (data->ray[i].rayAngle >= 0 && data->ray[i].rayAngle < M_PI)
 		data->hold.texture = data->text.tex_so;
 	else if (data->ray[i].rayAngle >= M_PI && data->ray[i].rayAngle < 2 * M_PI)
@@ -120,21 +156,33 @@ void	generate3D_projection(t_data *data)
 		corrected_dist = data->ray[i].distance * cos(data->ray[i].rayAngle - data->r_angle);
 
 		// wall height
-		data->ray[i].wall_Height = 32000 / corrected_dist;
+		int wall_Height = 26000 / corrected_dist;
 
 		// wall starting point
-		data->ray[i].wall_topPixel = (HEIGHT / 2) - (data->ray[i].wall_Height / 2);
-		// if (data->ray[i].wall_topPixel < 0)
-		// 	data->ray[i].wall_topPixel = 0;
+		int wall_topPixel = (HEIGHT / 2) - (wall_Height / 2);
+		if (wall_topPixel < 0)
+			wall_topPixel = 0;
 
 		// wall ending point
-		data->ray[i].wall_bottomPixel = (HEIGHT / 2) + (data->ray[i].wall_Height / 2);
-		// if (data->ray[i].wall_bottomPixel > HEIGHT)
-		// 	data->ray[i].wall_bottomPixel = HEIGHT;
-
-		setup_texture(data, i);
+		int wall_bottomPixel = (HEIGHT / 2) + (wall_Height / 2);
+		if (wall_bottomPixel > HEIGHT)
+			wall_bottomPixel = HEIGHT;
+		data->hold.texture = data->text.tex_we;
+		// setup_texture(data, i);
+		// if (data->ray[i].wasHitVertical == 1)
+		// 	data->hold.x_text = (int)data->ray[i].wallHit_y % S;
+		// else
+		// 	data->hold.x_text = (int)data->ray[i].wallHit_x % S;
 		find_x_texture(data, i, data->hold.texture);
-		draw_texture(data, i);
+		// while (wall_topPixel < wall_bottomPixel)
+		// {
+		// 	data->hold.y_text = (wall_topPixel - ((HEIGHT / 2)
+			// + (wall_Height / 2))) * (S / wall_Height);
+		// 	int index = (data->hold.y_text * S + data->hold.x_text) * data->hold.texture->bytes_per_pixel;
+		// 	mlx_put_pixel(data->image.img, i, wall_topPixel, generate_color(data->hold.texture->pixels[index],data->hold.texture->pixels[index + 1],data->hold.texture->pixels[index + 2], data->hold.texture->pixels[index + 3]));
+		// 	wall_topPixel++;
+		// }
+		draw_texture(data, i, wall_topPixel, wall_bottomPixel);
 		// j = data->ray[i].wall_topPixel;
 		// while (j < data->ray[i].wall_bottomPixel)
 		// {
@@ -142,7 +190,7 @@ void	generate3D_projection(t_data *data)
 		// 		mlx_put_pixel(data->image.img, i, j, generate_color(0,0,0,255));
 		// 	j++;
 		// }
-		++i;
+		i++;
 	}
 }
 
