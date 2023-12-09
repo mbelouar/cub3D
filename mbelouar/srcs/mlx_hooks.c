@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/07 22:59:07 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/09 22:11:48 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,36 +58,24 @@ void	handle_moves(void *param)
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_D))
 		ft_move_right(data);
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_LEFT))
-		data->r_angle -= 0.05;
+		data->r_angle -= 0.08;
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
-		data->r_angle += 0.05;
+		data->r_angle += 0.08;
 	mlx_get_mouse_pos(data->mlx_ptr, &data->mouse_x, &data->mouse_y);
 	if (data->mouse_x >= 0 && data->mouse_x <= WIDTH && data->tmp > data->mouse_x && data->mouse_y >= 0 && data->mouse_y <= HEIGHT)
 	{
-		data->r_angle -= 0.05;
+		data->r_angle -= 0.08;
 		setup_rot_angle(&data->r_angle);
 		data->tmp = data->mouse_x;
 	}
 	if (data->mouse_x >= 0 && data->mouse_x <= WIDTH && data->tmp < data->mouse_x&& data->mouse_y >= 0 && data->mouse_y <= HEIGHT){
-		data->r_angle += 0.05;
+		data->r_angle += 0.08;
 		setup_rot_angle(&data->r_angle);
 		data->tmp = data->mouse_x;
 	}
 	setup_rot_angle(&data->r_angle);
 	check_and_draw(data);
 }
-
-// must modify this function to normalize any angle i give it
-// if i wanna use a single angle then just pass the adress of the angle
-// void	setup_rot_angle(t_data *data)
-// {
-// 	data->ray->rayAngle = remainder(data->ray->rayAngle, 2 * M_PI);
-// 	data->r_angle = remainder(data->r_angle, 2 * M_PI);
-// 	if (data->ray->rayAngle < 0)
-// 		data->ray->rayAngle = (2 * M_PI) + data->ray->rayAngle;
-// 	if (data->r_angle < 0)
-// 		data->r_angle = (2 * M_PI) + data->r_angle;
-// }
 
 void	setup_rot_angle(float *angle)
 {

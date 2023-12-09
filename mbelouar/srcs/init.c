@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/08 16:44:56 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/09 22:50:40 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_init_player(t_data *data)
 
 void	ft_init_map(t_data *data)
 {
-	data->map_info.square_S = 16;
+	data->map_info.square_S = 8;
 	data->map_info.map_height = 0;
 	data->map_info.map_width = 0;
 }

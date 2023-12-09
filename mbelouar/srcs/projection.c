@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:19:52 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/09 20:59:17 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/09 22:58:48 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,20 @@ void	draw_texture(t_data *data, int i, int top, int bottom, int height)
 
 void	setup_texture(t_data *data, int i)
 {
-	if (data->ray[i].rayAngle >= 0 && data->ray[i].rayAngle < M_PI)
+	if (data->ray[i].wasHitVertical != 1
+		&& data->ray[i].rayAngle >= 0
+			&& data->ray[i].rayAngle < M_PI)
+			data->hold.texture = data->text.tex_no;
+	else if (data->ray[i].wasHitVertical != 1
+		&& data->ray[i].rayAngle >= M_PI
+			&& data->ray[i].rayAngle < 2 * M_PI)
 		data->hold.texture = data->text.tex_so;
-	else if (data->ray[i].rayAngle >= M_PI && data->ray[i].rayAngle < 2 * M_PI)
-		data->hold.texture = data->text.tex_no;
-	else if (data->ray[i].rayAngle >= M_PI / 2 && data->ray[i].rayAngle < 3 * M_PI / 2)
-		data->hold.texture = data->text.tex_ea;
+	else if (data->ray[i].wasHitVertical == 1
+		&& data->ray[i].rayAngle >= M_PI / 2
+			&& data->ray[i].rayAngle < 3 * M_PI / 2)
+			data->hold.texture = data->text.tex_we;
 	else
-		data->hold.texture = data->text.tex_we;
+			data->hold.texture = data->text.tex_ea;
 }
 
 void	generate3D_projection(t_data *data)
@@ -129,11 +135,15 @@ void	generate3D_projection(t_data *data)
 	while (i < WIDTH)
 	{
 		corrected_dist = data->ray[i].distance * cos(data->ray[i].rayAngle - data->r_angle);
-		wall_Height = 26000 / corrected_dist;
+		wall_Height = 13000 / corrected_dist;
+		// float	dist_projec = (WIDTH / 2) / tan(FOV_ANGLE / 2);
+		// float	projWall_height = (data->map_info.square_S / corrected_dist) * dist_projec;
+
+		// wall_Height = (int)projWall_height;
 		wall_topPixel = (HEIGHT / 2) - (wall_Height / 2);
 		wall_bottomPixel = (HEIGHT / 2) + (wall_Height / 2);
-		data->hold.texture = data->text.tex_so;
-		// setup_texture(data, i);
+		// data->hold.texture = data->text.tex_so;
+		setup_texture(data, i);
 		find_x_texture(data, i, data->hold.texture);
 		draw_texture(data, i, wall_topPixel, wall_bottomPixel, wall_Height);
 		i++;

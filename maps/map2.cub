@@ -1,10 +1,10 @@
-NO ./textures/9atila.png
-SO ./textures/bkay.png
-WE ./textures/bellingham.png
-EA ./textures/hadaf.png
+NO ./textures/ronaldo.png
+SO ./textures/belly_cele.png
+WE ./textures/vini_belly.png
+EA ./textures/zidane.png
 
-F 252,210,14
-C 0,123,94
+F 73,94,87
+C 244,206,20
 
 111111111111
 100000000001

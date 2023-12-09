@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:49:26 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/03 21:57:00 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/09 22:48:09 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ void	draw_map2d(t_data *data)
 		map_row = data->map_info.map_wt[(int)row];
 		while (map_row[(int)col])
 		{
-			draw_square(generate_color(224, 244, 255, 255),
+			draw_square(generate_color(244, 206, 20, 255),
 				row * tile_s, col * tile_s, data);
 			if (map_row[(int)col] == '1')
-				draw_square(generate_color(24, 111, 101, 255),
+				draw_square(generate_color(73, 94, 87, 255),
 					row * tile_s, col * tile_s, data);
 			col++;
 		}
