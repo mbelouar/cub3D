@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 		f_pid = fork();
 		if (f_pid == 0)
 		{
-			system("afplay /Users/$USER/Desktop/cub3D/Bonus/songs/y_nada_mas.mp3");
+			system("afplay /Users/$USER/Desktop/last/Bonus/songs/y_nada_mas.mp3");
 			exit (0);
 		}
 		ft_init_data(&data);

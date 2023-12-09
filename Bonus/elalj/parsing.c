@@ -70,6 +70,34 @@ void	found_player_e_w(t_data *data)
 	}
 }
 
+void	check_long_map(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map_info.map[i])
+		i++;
+	if (i > 57)
+	{
+		ft_putstr_fd("Error:\n  -> Map bigger than the window height!\n", 2);
+		exit (1);
+	}
+	i = 0;
+	while (data->map_info.map[i])
+	{
+		j = 0;
+		while (data->map_info.map[i][j])
+			j++;
+		if (j > 113)
+		{
+			ft_putstr_fd("Error:\n  -> Map bigger than the window width!\n", 2);
+			exit (1);
+		}
+		i++;
+	}
+}
+
 int	map_valid(t_data *data, int fd, char *file)
 {
 	check_extension_map(file);
@@ -79,6 +107,7 @@ int	map_valid(t_data *data, int fd, char *file)
 	check_directions_needs(data);
 	check_colors(data);
 	init_maps(data);
+	check_long_map(data);
 	check_map(data);
 	found_player_n_s(data);
 	found_player_e_w(data);

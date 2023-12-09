@@ -269,6 +269,7 @@ void	check_if_play_can_go_bg(t_data *data);
 int		found_last_0(char *line);
 void	init_f_array(t_data *data);
 void	init_c_array(t_data *data);
+void	check_long_map(t_data *data);
 
 // errors
 void	check_fd_map(int *fd, char *file);
