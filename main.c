@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:18:27 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/08 10:24:05 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/09 20:35:40 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 		// f_pid = fork();
 		// if (f_pid == 0)
 		// {
-		// 	system("afplay /Users/$USER/Desktop/cub3D/songs/ikambi.mp3");
+		// 	system("afplay /Users/$USER/Desktop/cub3D/songs/y_nada_mas.mp3");
 		// 	exit (0);
 		// }
 		ft_init_data(&data);

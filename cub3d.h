@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/08 23:40:29 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/09 20:57:42 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ void	open_fd_check(int *fd, char *file);
 
 // mlx hooks
 void	handle_moves(void *param);
-//int		ft_close(t_data *data);
 int		esc_handle(int keycode, t_data *data);
 
 // colors
@@ -201,9 +200,9 @@ void	draw_floor(t_data *data);
 void	draw_roof(t_data *data);
 
 // textures
-void	draw_texture(t_data *data, int i, int top, int bottom);
+void	draw_texture(t_data *data, int i, int top, int bottom, int height);
 void	find_x_texture(t_data *data, int i, mlx_texture_t *texture);
-void	find_y_texture(t_data *data, mlx_texture_t *texture, int top, int bottom);
+// void	find_y_texture(t_data *data, int top, int bottom);
 void	setup_texture(t_data *data, int i);
 
 // <========== PARSING ==========>

@@ -1,7 +1,7 @@
-NO ./textures/9atila.png
-SO ./textures/bkay.png
-WE ./textures/cameron.png
-EA ./textures/hadaf.png
+NO ./textures/1_goal.png
+SO ./textures/1_goal_cele.png
+WE ./textures/2_goal.png
+EA ./textures/2_goal_tir.png
 
 F 252,210,14
 C 0,123,94

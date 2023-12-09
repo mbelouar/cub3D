@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/08 16:43:46 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:17:52 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	drawing(t_data *data)
 	draw_roof(data);
 	cast_all_rays(data);
 	generate3D_projection(data);
-	// draw_map2d(data);
-	// draw_rays(data);
+	draw_map2d(data);
+	draw_rays(data);
 }
