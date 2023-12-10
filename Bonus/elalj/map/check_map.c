@@ -77,7 +77,7 @@ void	check_surr_by_walls(t_data *data)
 		not_surr_err();
 }
 
-void	check_if_float_directions(t_data *data)
+void	check_if_double_directions(t_data *data)
 {
 	int	i;
 	int	c;
@@ -102,14 +102,14 @@ void	check_if_float_directions(t_data *data)
 	if (c == 0)
 		non_directions_err();
 	if (c != 1)
-		float_directions_err();
+		double_directions_err();
 }
 
 void	check_map(t_data *data)
 {
 	found_tab_inside(data);
 	only_valid_characters(data);
-	check_if_float_directions(data);
+	check_if_double_directions(data);
 	check_surr_by_walls(data);
 	check_around_spaces(data);
 	check_if_play_can_go_bg(data);
