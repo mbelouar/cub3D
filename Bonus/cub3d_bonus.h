@@ -182,6 +182,7 @@ void	draw_map2d(t_data *data);
 void	draw_carre(int color, float top, float left, t_data *data);
 void	draw_player(float player_x, float player_y, t_data *data);
 void	draw_rays(t_data *data);
+void	ft_dda(t_data *data, int xi, int yi, int xf, int yf);
 
 // raycast
 void	cast_all_rays(t_data *data);
@@ -189,21 +190,22 @@ void	cast_ray(t_data *data, int i);
 void	calculate_dis(t_data *data, int i);
 void	vert_inter(t_data *data, float ray_angle);
 void	horz_inter(t_data *data, float ray_angle);
-void	ft_dda(t_data *data, int xi, int yi, int xf, int yf);
 void	setup_rot_angle(float *angle);
 int		is_wall(t_data *data, float x, float y);
 
 // projection
-void	clearColor_buffer(t_data *data, unsigned int color);
-void	generate3D_projection(t_data *data);
+void	generate3d_projection(t_data *data);
 void	draw_floor(t_data *data);
 void	draw_roof(t_data *data);
 
 // textures
 void	draw_texture(t_data *data, int i, int top, int bottom, int height);
 void	find_x_texture(t_data *data, int i, mlx_texture_t *texture);
-// void	find_y_texture(t_data *data, int top, int bottom);
+void	find_y_texture(t_data *data, int top, int height, int start);
 void	setup_texture(t_data *data, int i);
+
+//free_data
+void	free_data(t_data *data);
 
 // <========== PARSING ==========>
 

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   free_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 15:27:51 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 00:05:24 by mbelouar         ###   ########.fr       */
+/*   Created: 2023/12/10 18:06:32 by mbelouar          #+#    #+#             */
+/*   Updated: 2023/12/10 18:06:55 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d_bonus.h"
 
-void	drawing(t_data *data)
+void	free_data(t_data *data)
 {
-	draw_floor(data);
-	draw_roof(data);
-	cast_all_rays(data);
-	generate3D_projection(data);
-	draw_map2d(data);
-	draw_rays(data);
+	free(data->ray);
+	// mlx_destroy_image(data->mlx_ptr, data->image.img);
+	// mlx_close_window(data->mlx_ptr);
+	free(data->mlx_ptr);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:18:27 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 00:11:18 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:23:53 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 		f_pid = fork();
 		if (f_pid == 0)
 		{
-			system("afplay /Users/$USER/Desktop/last/Bonus/songs/y_nada_mas.mp3");
+			system("afplay /Users/$USER/Desktop/cub3D/Bonus/songs/y_nada_mas.mp3");
 			exit (0);
 		}
 		ft_init_data(&data);

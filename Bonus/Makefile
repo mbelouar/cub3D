@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/12/10 00:08:15 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/12/10 18:08:44 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ RESET = \033[0m
 NAME = cub3D_bonus
 
 IMLX = -I /Users/$(USER)/MLX42/include/MLX42
-GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+# GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 # IMLX = -I /Users/mbelouar/MLX42/include/MLX42
 
-#GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 
@@ -58,18 +58,21 @@ SRC =		main_bonus.c\
 			elalj/map/check_map_2.c\
 			elalj/map/map_casses.c\
 			elalj/map/errors_map.c\
-			mbelouar/srcs/ft_errors.c\
-			mbelouar/srcs/init.c\
-			mbelouar/srcs/mlx_hooks.c\
-			mbelouar/srcs/colors.c\
-			mbelouar/srcs/draw.c\
-			mbelouar/srcs/draw_utils.c\
-			mbelouar/srcs/moves.c\
-			mbelouar/srcs/raycast.c\
-			mbelouar/srcs/horz_inter.c\
-			mbelouar/srcs/vert_inter.c\
-			mbelouar/srcs/dda_algo.c\
-			mbelouar/srcs/projection.c\
+			mbelouar/src_utils/ft_errors.c\
+			mbelouar/src_utils/init.c\
+			mbelouar/src_utils/free_data.c\
+			mbelouar/src_hook/mlx_hooks.c\
+			mbelouar/src_hook/moves.c\
+			mbelouar/src_drawing/colors.c\
+			mbelouar/src_drawing/draw.c\
+			mbelouar/src_drawing/dda_algo.c\
+			mbelouar/src_drawing/draw_utils.c\
+			mbelouar/src_raycasting/raycast.c\
+			mbelouar/src_raycasting/horz_inter.c\
+			mbelouar/src_raycasting/vert_inter.c\
+			mbelouar/src_textures/projection.c\
+			mbelouar/src_textures/textures_coord.c\
+			mbelouar/src_textures/roof_floor.c\
 
 OBJS := $(SRC:.c=.o)
 
