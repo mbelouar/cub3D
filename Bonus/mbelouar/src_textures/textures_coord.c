@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:38:03 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 17:58:40 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/10 23:37:16 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	find_x_texture(t_data *data, int i, mlx_texture_t *texture)
 	float hit_coord;
 	float tile;
 
-	tile = (float)data->map_info.square_S;
-	if (data->ray[i].wasHitVertical == 1)
-		hit_coord = data->ray[i].wallHit_y;
+	tile = (float)data->map_info.square_s;
+	if (data->ray[i].hit_vertical == 1)
+		hit_coord = data->ray[i].wallhit_y;
 	else
-		hit_coord = data->ray[i].wallHit_x;
+		hit_coord = data->ray[i].wallhit_x;
 	if (hit_coord >= 0 && hit_coord < WIDTH)
 		data->hold.x_text = fmod(hit_coord, tile) * (texture->width / tile);
 }
@@ -67,17 +67,17 @@ void	draw_texture(t_data *data, int i, int top, int bottom, int height)
 
 void	setup_texture(t_data *data, int i)
 {
-	if (data->ray[i].wasHitVertical != 1
-		&& data->ray[i].rayAngle >= 0
-			&& data->ray[i].rayAngle < M_PI)
+	if (data->ray[i].hit_vertical != 1
+		&& data->ray[i].ray_angle >= 0
+			&& data->ray[i].ray_angle < M_PI)
 			data->hold.texture = data->text.tex_no;
-	else if (data->ray[i].wasHitVertical != 1
-		&& data->ray[i].rayAngle >= M_PI
-			&& data->ray[i].rayAngle < 2 * M_PI)
+	else if (data->ray[i].hit_vertical != 1
+		&& data->ray[i].ray_angle >= M_PI
+			&& data->ray[i].ray_angle < 2 * M_PI)
 		data->hold.texture = data->text.tex_so;
-	else if (data->ray[i].wasHitVertical == 1
-		&& data->ray[i].rayAngle >= M_PI / 2
-			&& data->ray[i].rayAngle < 3 * M_PI / 2)
+	else if (data->ray[i].hit_vertical == 1
+		&& data->ray[i].ray_angle >= M_PI / 2
+			&& data->ray[i].ray_angle < 3 * M_PI / 2)
 			data->hold.texture = data->text.tex_we;
 	else
 			data->hold.texture = data->text.tex_ea;

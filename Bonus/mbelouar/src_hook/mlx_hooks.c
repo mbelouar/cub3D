@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:23:25 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 00:06:45 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/10 23:18:37 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_wall(t_data *data, float xtmp, float ytmp)
 {
 	int	tile_s;
 
-	tile_s = data->map_info.square_S;
+	tile_s = data->map_info.square_s;
 	if (data->map_info.map_wt[(int)data->player._y / tile_s]
 		[(int)xtmp / tile_s] == '1'
 		|| data->map_info.map_wt[(int)ytmp / tile_s]

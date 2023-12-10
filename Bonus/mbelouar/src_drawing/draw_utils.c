@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:49:26 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 00:05:20 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/10 23:35:43 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	draw_square(int color, float top, float left, t_data *data)
 	float	curr_y;
 
 	curr_y = 0;
-	while (curr_y < data->map_info.square_S)
+	while (curr_y < data->map_info.square_s)
 	{
 		curr_x = 0;
-		while (curr_x < data->map_info.square_S)
+		while (curr_x < data->map_info.square_s)
 		{
 			if (curr_x + left < WIDTH && curr_y + top < HEIGHT)
 				mlx_put_pixel(data->image.img,
@@ -69,7 +69,7 @@ void	draw_map2d(t_data *data)
 	char	*map_row;
 
 	row = 0;
-	tile_s = data->map_info.square_S;
+	tile_s = data->map_info.square_s;
 	while (data->map_info.map_wt[(int)row])
 	{
 		col = 0;
@@ -95,12 +95,12 @@ void	draw_rays(t_data *data)
 	i = 0;
 	while (i < WIDTH)
 	{
-		if (data->ray[i].wasHitVertical == 1)
+		if (data->ray[i].hit_vertical == 1)
 			ft_dda(data, data->player._x, data->player._y,
-				data->ray[i].wallHit_x, data->ray[i].wallHit_y);
+				data->ray[i].wallhit_x, data->ray[i].wallhit_y);
 		else
 			ft_dda(data, data->player._x, data->player._y,
-				data->ray[i].wallHit_x, data->ray[i].wallHit_y);
+				data->ray[i].wallhit_x, data->ray[i].wallhit_y);
 		i++;
 	}
 }

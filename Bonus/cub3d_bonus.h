@@ -48,7 +48,7 @@ typedef struct s_map {
 	int		map_size;
 	int		map_width;
 	int		map_height;
-	int		square_S;
+	int		square_s;
 	char	snew_dir;
 	int		snew_x;
 	int		snew_y;
@@ -57,53 +57,51 @@ typedef struct s_map {
 }				t_map;
 
 typedef struct s_ray {
-	float	rayAngle;
-	float	wallHit_x;
-	float	wallHit_y;
+	float	ray_angle;
+	float	wallhit_x;
+	float	wallhit_y;
 	float	distance;
-	int		wasHitVertical;
-	int		wall_Height;
-	int 	wall_topPixel;
-	int 	wall_bottomPixel;
+	int		hit_vertical;
+	int		wall_height;
+	int 	wall_top;
+	int 	wall_bottom;
 }				t_ray;
 
 typedef struct s_dda {
 	int		steps;
 	int		dx;
 	int		dy;
-	float	Xinc;
-	float	Yinc;
-	float	X;
-	float	Y;
+	float	x_inc;
+	float	y_inc;
+	float	x;
+	float	y;
 }				t_dda;
 
 typedef struct s_projection {
-	float	dist_projec;
-	float	projWall_height;
-	int		wall_Height;
-	int		wall_topPixel;
-	int		wall_bottomPixel;
+	int		wall_height;
+	int		wall_top;
+	int		wall_bottom;
 }				t_projection;
 
 typedef struct s_holder {
-	int				is_FaceUp;
-	int				is_FaceDown;
-	int				is_FaceRight;
-	int				is_FaceLeft;
-	int				foundHorz_hit;
-	int				foundVert_hit;
-	float			horzHit_x;
-	float			horzHit_y;
-	float			vertHit_x;
-	float			vertHit_y;
+	int				is_faceup;
+	int				is_facedown;
+	int				is_faceright;
+	int				is_faceleft;
+	int				foundhorz_hit;
+	int				foundvert_hit;
+	float			horzhit_x;
+	float			horzhit_y;
+	float			verthit_x;
+	float			verthit_y;
 	float			x_inter;
 	float			y_inter;
 	float			x_step;
 	float			y_step;
-	float			HorzNext_x;
-	float			HorzNext_y;
-	float			VertNext_x;
-	float			VertNext_y;
+	float			horznext_x;
+	float			horznext_y;
+	float			vertnext_x;
+	float			vertnext_y;
 	float			x_text;
 	float			y_text;
 	mlx_texture_t	*texture;
