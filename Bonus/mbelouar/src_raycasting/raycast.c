@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 17:25:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 23:28:26 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/11 00:28:27 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	check_calculate_dist(t_data *data, float h_d, float v_d, int i)
 		data->ray[i].wallhit_y = data->hold.horzhit_y;
 		data->ray[i].hit_vertical = 0;
 	}
-
 }
 
 void	calculate_dis(t_data *data, int i)
@@ -67,9 +66,9 @@ void	cast_all_rays(t_data *data)
 	int		i;
 	float	step;
 
-	step = (float)FOV_ANGLE / WIDTH;
+	step = (float)data->player.fov / WIDTH;
 	i = 0;
-	data->ray->ray_angle = data->r_angle - (FOV_ANGLE / 2);
+	data->ray->ray_angle = data->r_angle - (data->player.fov / 2);
 	while (i < WIDTH)
 	{
 		data->ray[i].ray_angle = data->ray->ray_angle;
@@ -77,5 +76,5 @@ void	cast_all_rays(t_data *data)
 		data->ray->ray_angle += step;
 		i++;
 	}
-	data->ray[0].ray_angle = data->r_angle - (FOV_ANGLE / 2);
+	data->ray[0].ray_angle = data->r_angle - (data->player.fov / 2);
 }

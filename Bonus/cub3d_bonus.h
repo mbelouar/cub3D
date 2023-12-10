@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/09 22:54:35 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/11 00:27:44 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# define FOV_ANGLE	60 * (M_PI / 180)
+# define FOV_ANGLE	60
 # define SPEED_MOVE	1.50
 # define WIDTH		1800
 # define HEIGHT		900
@@ -63,8 +63,8 @@ typedef struct s_ray {
 	float	distance;
 	int		hit_vertical;
 	int		wall_height;
-	int 	wall_top;
-	int 	wall_bottom;
+	int		wall_top;
+	int		wall_bottom;
 }				t_ray;
 
 typedef struct s_dda {
@@ -124,6 +124,7 @@ typedef struct s_player {
 	float	_x;
 	float	_y;
 	float	p_size;
+	float	fov;
 }				t_player;
 
 typedef struct s_data {
@@ -142,8 +143,8 @@ typedef struct s_data {
 	float			x_tmp;
 	float			y_tmp;
 	int				c;
-	int 			mouse_x;
-	int 			mouse_y;
+	int				mouse_x;
+	int				mouse_y;
 	int				tmp;
 }				t_data;
 
@@ -175,12 +176,10 @@ void	ft_move_right(t_data *data);
 void	ft_move_left(t_data *data);
 
 // drawing
-void	drawing(t_data * data);
+void	drawing(t_data *data);
 void	draw_map2d(t_data *data);
 void	draw_carre(int color, float top, float left, t_data *data);
 void	draw_player(float player_x, float player_y, t_data *data);
-void	draw_rays(t_data *data);
-void	ft_dda(t_data *data, int xi, int yi, int xf, int yf);
 
 // raycast
 void	cast_all_rays(t_data *data);
@@ -197,13 +196,10 @@ void	draw_floor(t_data *data);
 void	draw_roof(t_data *data);
 
 // textures
-void	draw_texture(t_data *data, int i, int top, int bottom, int height);
+void	draw_texture(t_data *data, int i);
 void	find_x_texture(t_data *data, int i, mlx_texture_t *texture);
-void	find_y_texture(t_data *data, int top, int height, int start);
+void	find_y_texture(t_data *data, int start);
 void	setup_texture(t_data *data, int i);
-
-//free_data
-void	free_data(t_data *data);
 
 // <========== PARSING ==========>
 
@@ -223,7 +219,7 @@ int		check(char ch, char const *set);
 
 // directions
 void	check_many_directions(t_data *data);
-void	print_err_directions();
+void	print_err_directions(void);
 void	init_directions(t_data *data);
 void	ft_no(t_data *data);
 void	ft_so(t_data *data);
@@ -238,7 +234,7 @@ void	check_we_needs(t_data *data);
 void	check_ea_needs(t_data *data);
 void	check_f_needs(t_data *data);
 void	check_c_needs(t_data *data);
-void	print_err_needs_directions();
+void	print_err_needs_directions(void);
 void	check_colors(t_data *data);
 void	check_f_c(t_data *data);
 void	check_consecutive_semicolon_f(t_data *data);
@@ -278,8 +274,9 @@ void	err_empty_map(void);
 void	found_semicolon_err(void);
 void	err_semicolons(void);
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1337
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+# endif
 
 // gnl
 char	*get_next_line(int fd);
@@ -296,8 +293,6 @@ size_t	ftt_strlen(const char *s);
 // free
 void	ft_str_free(char **s);
 int		__strchrr(char *line, char c);
-void ft_close(void	*param);
+void	ft_close(void	*param);
 
 #endif
-#endif
-

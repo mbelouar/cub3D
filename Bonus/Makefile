@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/12/10 22:53:40 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/12/11 00:16:49 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,12 +59,10 @@ SRC =		main_bonus.c\
 			elalj/map/errors_map.c\
 			mbelouar/src_utils/ft_errors.c\
 			mbelouar/src_utils/init.c\
-			mbelouar/src_utils/free_data.c\
 			mbelouar/src_hook/mlx_hooks.c\
 			mbelouar/src_hook/moves.c\
 			mbelouar/src_drawing/colors.c\
 			mbelouar/src_drawing/draw.c\
-			mbelouar/src_drawing/dda_algo.c\
 			mbelouar/src_drawing/draw_utils.c\
 			mbelouar/src_raycasting/raycast.c\
 			mbelouar/src_raycasting/horz_inter.c\

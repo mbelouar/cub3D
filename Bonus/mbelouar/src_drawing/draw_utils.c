@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 20:49:26 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 23:35:43 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/11 00:16:14 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,21 +86,4 @@ void	draw_map2d(t_data *data)
 		row++;
 	}
 	draw_player(data->player._x, data->player._y, data);
-}
-
-void	draw_rays(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < WIDTH)
-	{
-		if (data->ray[i].hit_vertical == 1)
-			ft_dda(data, data->player._x, data->player._y,
-				data->ray[i].wallhit_x, data->ray[i].wallhit_y);
-		else
-			ft_dda(data, data->player._x, data->player._y,
-				data->ray[i].wallhit_x, data->ray[i].wallhit_y);
-		i++;
-	}
 }
