@@ -69,6 +69,7 @@ void	found_player_e_w(t_data *data)
 		i++;
 	}
 }
+
 void	check_long_map(t_data *data)
 {
 	int	i;
