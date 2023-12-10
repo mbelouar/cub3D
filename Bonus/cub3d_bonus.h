@@ -24,7 +24,7 @@
 # define SPEED_MOVE	1.50
 # define WIDTH		1800
 # define HEIGHT		900
-# define TITLE		"cub3D"
+# define TITLE		"cub3D_bonus"
 # define INT_MAX	2147483647
 
 typedef struct e_image {
@@ -296,6 +296,7 @@ size_t	ftt_strlen(const char *s);
 // free
 void	ft_str_free(char **s);
 int		__strchrr(char *line, char c);
+void ft_close(void	*param);
 
 #endif
 #endif

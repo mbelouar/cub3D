@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:18:27 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/09 23:57:55 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/10 00:11:18 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static void	ft_close(void	*param)
+void ft_close(void	*param)
 {
 	t_data	*data;
 
@@ -24,8 +24,8 @@ static void	ft_close(void	*param)
 int	main(int ac, char **av)
 {
 	t_data	data;
-	pid_t	f_pid;
 	int		fd;
+	int		f_pid;
 
 	fd = 0;
 	if (ac != 2)

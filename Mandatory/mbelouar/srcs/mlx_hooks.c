@@ -61,18 +61,18 @@ void	handle_moves(void *param)
 		data->r_angle -= 0.08;
 	if (mlx_is_key_down(data->mlx_ptr, MLX_KEY_RIGHT))
 		data->r_angle += 0.08;
-	mlx_get_mouse_pos(data->mlx_ptr, &data->mouse_x, &data->mouse_y);
-	if (data->mouse_x >= 0 && data->mouse_x <= WIDTH && data->tmp > data->mouse_x && data->mouse_y >= 0 && data->mouse_y <= HEIGHT)
-	{
-		data->r_angle -= 0.08;
-		setup_rot_angle(&data->r_angle);
-		data->tmp = data->mouse_x;
-	}
-	if (data->mouse_x >= 0 && data->mouse_x <= WIDTH && data->tmp < data->mouse_x&& data->mouse_y >= 0 && data->mouse_y <= HEIGHT){
-		data->r_angle += 0.08;
-		setup_rot_angle(&data->r_angle);
-		data->tmp = data->mouse_x;
-	}
+	//mlx_get_mouse_pos(data->mlx_ptr, &data->mouse_x, &data->mouse_y);
+	//if (data->mouse_x >= 0 && data->mouse_x <= WIDTH && data->tmp > data->mouse_x && data->mouse_y >= 0 && data->mouse_y <= HEIGHT)
+	//{
+	//	data->r_angle -= 0.08;
+	//	setup_rot_angle(&data->r_angle);
+	//	data->tmp = data->mouse_x;
+	//}
+	//if (data->mouse_x >= 0 && data->mouse_x <= WIDTH && data->tmp < data->mouse_x&& data->mouse_y >= 0 && data->mouse_y <= HEIGHT){
+	//	data->r_angle += 0.08;
+	//	setup_rot_angle(&data->r_angle);
+	//	data->tmp = data->mouse_x;
+	//}
 	setup_rot_angle(&data->r_angle);
 	check_and_draw(data);
 }

@@ -15,24 +15,21 @@ WHITE = \033[1;37m
 RED = \033[1;31m
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
-PURPLE = \033[1;35m
 RESET = \033[0m
 
 
 NAME = cub3D
 
- IMLX = -I /Users/$(USER)/MLX42/include/MLX42
-   GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+IMLX = -I /Users/$(USER)/MLX42/include/MLX42
+GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 # IMLX = -I /Users/mbelouar/MLX42/include/MLX42
-
 #GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 
 MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
-#AR_MLX = /Users/mbelouar/MLX42/build/libmlx42.a
- AR_MLX = /Users/$(USER)/MLX42/build/libmlx42.a
+AR_MLX = /Users/$(USER)/MLX42/build/libmlx42.a
 
 
 
@@ -42,8 +39,8 @@ RM = rm -f
 
 INCLUDE = -L libft -lft
 
-SRC =		main.c \
-			elalj/errors.c \
+SRC =		main.c\
+			elalj/errors.c\
 			elalj/read_map.c\
 			elalj/parsing.c\
 			elalj/ft_split.c\
@@ -60,18 +57,18 @@ SRC =		main.c \
 			elalj/map/check_map_2.c\
 			elalj/map/map_casses.c\
 			elalj/map/errors_map.c\
-			mbelouar/srcs/ft_errors.c \
-			mbelouar/srcs/init.c \
-			mbelouar/srcs/mlx_hooks.c \
-			mbelouar/srcs/colors.c \
-			mbelouar/srcs/draw.c \
-			mbelouar/srcs/draw_utils.c \
-			mbelouar/srcs/moves.c \
-			mbelouar/srcs/raycast.c \
-			mbelouar/srcs/horz_inter.c \
-			mbelouar/srcs/vert_inter.c \
-			mbelouar/srcs/dda_algo.c \
-			mbelouar/srcs/projection.c \
+			mbelouar/srcs/ft_errors.c\
+			mbelouar/srcs/init.c\
+			mbelouar/srcs/mlx_hooks.c\
+			mbelouar/srcs/colors.c\
+			mbelouar/srcs/draw.c\
+			mbelouar/srcs/draw_utils.c\
+			mbelouar/srcs/moves.c\
+			mbelouar/srcs/raycast.c\
+			mbelouar/srcs/horz_inter.c\
+			mbelouar/srcs/vert_inter.c\
+			mbelouar/srcs/dda_algo.c\
+			mbelouar/srcs/projection.c\
 
 OBJS := $(SRC:.c=.o)
 
@@ -81,7 +78,7 @@ OBJS := $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "$(YELLOW)Compiling cub3D...⏳$(RESET)"
+	@echo "$(YELLOW)Compiling $(NAME)...⏳$(RESET)"
 	@echo "$(YELLOW)Linking...⏳$(RESET)"
 	@make -s -C libft
 	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(AR_MLX) $(IMLX) $(GLFW) -o $(NAME) $(OBJS) $(INCLUDE)
@@ -95,7 +92,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(RED)Deleting obj_files + ./cub3D$(RESET)"
+	@echo "$(RED)Deleting obj_files + ./$(NAME)$(RESET)"
 	@make fclean -s -C libft
 
 re: fclean all
@@ -105,12 +102,12 @@ re: fclean all
 define CUB3D
 
 	═══════════  ██████╗██╗   ██╗██████╗ ██████╗ ██████╗  ═══════════
-	══════════  ██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗  ═══════════	 ******************  ** $(RED)
-	══════════  ██║     ██║   ██║███⭐️██╔ █████╔╝██║  ██║  ═══════════	 $(NAME) in progress   ⏳
-	══════════  ██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║  ═══════════	$(YELLOW) ******************  **
+	══════════  ██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗  ═══════════	 $(RED)
+	══════════  ██║     ██║   ██║███⭐️██╔ █████╔╝██║  ██║  ═══════════
+	══════════  ██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║  ═══════════	$(YELLOW)
 	══════════  ╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝  ═══════════
 	═══════════  ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝  ═══════════
-		  	$(YELLOW)cub3d By: $(WHITE)mbelouar && moelalj $(RESET)
+			cub3d By: $(WHITE)mbelouar && moelalj $(RESET)
 
 		CONTROLE PANEL 🎮: ═══╗
 		                      ╚══﹥ ROTATING KEYS: ◀️ rotate left / ▶️ rotate right.

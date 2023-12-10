@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 12:56:57 by moelalj           #+#    #+#             */
-/*   Updated: 2023/12/09 23:49:03 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/10 00:07:56 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	found_player_e_w(t_data *data)
 		i++;
 	}
 }
-
 void	check_long_map(t_data *data)
 {
 	int	i;
