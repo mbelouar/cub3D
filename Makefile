@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/12/10 22:53:31 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/12/11 20:48:21 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ NAME = cub3D
 B_NAME = cub3D_bonus
 
 IMLX = -I /Users/$(USER)/MLX42/include/MLX42
-GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
-#GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+# GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 

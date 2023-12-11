@@ -1,7 +1,7 @@
-NO ./textures/ronaldo.png
-SO ./textures/belly_cele.png
-WE ./textures/vini_belly.png
-EA ./textures/galacticos.png
+NO ./Bonus/textures/ronaldo.png
+SO ./Bonus/textures/belly_cele.png
+WE ./Bonus/textures/vini_belly.png
+EA ./Bonus/textures/galacticos.png
 
 F 73,94,87
 C 244,206,20
