@@ -14,13 +14,13 @@
 
 void	extension_err(void)
 {
-	ft_putstr_fd("Error\n  ->invalid extension of the map\n", 2);
+	ft_putstr_fd("Error:\n  ->invalid extension of the map\n", 2);
 	exit (1);
 }
 
 void	not_surr_err(void)
 {
-	ft_putstr_fd("Error\n  ->The map is not surrounded by walls\n", 2);
+	ft_putstr_fd("Error:\n  ->The map is not surrounded by walls\n", 2);
 	exit (1);
 }
 
