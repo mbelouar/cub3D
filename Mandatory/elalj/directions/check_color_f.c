@@ -26,7 +26,7 @@ void	init_f_array(t_data *data)
 
 void	check_f_c(t_data *data)
 {
-	data->dir.clr_f = ftt_split(data->dir.F[1], ',');
+	data->dir.clr_f = ftt_split(data->dir.f[1], ',');
 	valid_box_color_f(data);
 	check_consecutive_semicolon_f(data);
 	valid_color_f(data);
@@ -39,21 +39,21 @@ void	check_consecutive_semicolon_f(t_data *data)
 	int	j;
 
 	i = 0;
-	while (data->dir.F[1][i])
+	while (data->dir.f[1][i])
 	{
-		if (data->dir.F[1][i] == ',')
+		if (data->dir.f[1][i] == ',')
 		{
 			i++;
-			if (data->dir.F[1][i] == ',')
+			if (data->dir.f[1][i] == ',')
 				found_semicolon_err();
 		}
 		i++;
 	}
 	i = 0;
 	j = 0;
-	while (data->dir.F[1][i])
+	while (data->dir.f[1][i])
 	{
-		if (data->dir.F[1][i] == ',')
+		if (data->dir.f[1][i] == ',')
 			j++;
 		i++;
 	}

@@ -32,7 +32,7 @@ void	ft_no(t_data *data)
 	{
 		str = ftt_strtrim(data->map_info.str[i], "\t ");
 		if (!ft_strncmp(str, "NO", 2))
-			data->dir.NO = ftt_split(str, ' ');
+			data->dir.no = ftt_split(str, ' ');
 		free(str);
 		i++;
 	}
@@ -48,7 +48,7 @@ void	ft_so(t_data *data)
 	{
 		str = ftt_strtrim(data->map_info.str[i], "\t ");
 		if (!ft_strncmp(str, "SO", 2))
-			data->dir.SO = ftt_split(str, ' ');
+			data->dir.so = ftt_split(str, ' ');
 		free(str);
 		i++;
 	}
@@ -64,7 +64,7 @@ void	ft_we(t_data *data)
 	{
 		str = ftt_strtrim(data->map_info.str[i], "\t ");
 		if (!ft_strncmp(str, "WE", 2))
-			data->dir.WE = ftt_split(str, ' ');
+			data->dir.we = ftt_split(str, ' ');
 		free(str);
 		i++;
 	}
@@ -80,7 +80,7 @@ void	ft_ea(t_data *data)
 	{
 		str = ftt_strtrim(data->map_info.str[i], "\t ");
 		if (!ft_strncmp(str, "EA", 2))
-			data->dir.EA = ftt_split(str, ' ');
+			data->dir.ea = ftt_split(str, ' ');
 		free(str);
 		i++;
 	}

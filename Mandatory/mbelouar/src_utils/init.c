@@ -6,7 +6,7 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:20:40 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 00:06:41 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/11 00:27:49 by mbelouar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 void	ft_init_player(t_data *data)
 {
-	data->player._x = data->map_info.snew_y * data->map_info.square_S
-		+ (data->map_info.square_S / 2);
-	data->player._y = data->map_info.snew_x * data->map_info.square_S
-		+ (data->map_info.square_S / 2);
+	data->player._x = data->map_info.snew_y * data->map_info.square_s
+		+ (data->map_info.square_s / 2);
+	data->player._y = data->map_info.snew_x * data->map_info.square_s
+		+ (data->map_info.square_s / 2);
 	data->player.p_size = 4;
-	init_player_direction(data);
+	data->player.fov = FOV_ANGLE * (M_PI / 180);
 	data->mouse_x = -1;
 	data->mouse_y = -1;
 	data->tmp = -1;
+	init_player_direction(data);
 }
 
 void	ft_init_map(t_data *data)
 {
-	data->map_info.square_S = 8;
+	data->map_info.square_s = 8;
 	data->map_info.map_height = 0;
 	data->map_info.map_width = 0;
 }

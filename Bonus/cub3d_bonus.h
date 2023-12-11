@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <math.h>
 # define FOV_ANGLE	60
 # define SPEED_MOVE	1.50
@@ -108,15 +107,15 @@ typedef struct s_holder {
 }				t_holder;
 
 typedef struct s_dir {
-	char	**NO;
-	char	**SO;
-	char	**WE;
-	char	**EA;
-	char	**F;
+	char	**no;
+	char	**so;
+	char	**we;
+	char	**ea;
+	char	**f;
+	char	**c;
 	char	**clr_f;
 	int		floor[3];
 	int		ceiling[3];
-	char	**C;
 	char	**clr_c;
 }				t_dir;
 
@@ -152,18 +151,15 @@ typedef struct s_data {
 
 // initialize functions
 void	ft_init_data(t_data *data);
-void	ft_init_image(t_data *data);
 void	ft_init_player(t_data *data);
 int		init_player_direction(t_data *data);
 
 // error functions
 void	err_msg(char *str, int fd);
 void	print_and_exit_param(void);
-void	open_fd_check(int *fd, char *file);
 
 // mlx hooks
 void	handle_moves(void *param);
-int		esc_handle(int keycode, t_data *data);
 
 // colors
 int		generate_color(int r, int g, int b, int a);
@@ -178,7 +174,7 @@ void	ft_move_left(t_data *data);
 // drawing
 void	drawing(t_data *data);
 void	draw_map2d(t_data *data);
-void	draw_carre(int color, float top, float left, t_data *data);
+void	draw_square(int color, float top, float left, t_data *data);
 void	draw_player(float player_x, float player_y, t_data *data);
 
 // raycast

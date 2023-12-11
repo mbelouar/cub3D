@@ -61,7 +61,7 @@ void	init_maps(t_data *data)
 
 void	check_extension_map(char *file)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (file[i])
@@ -75,11 +75,6 @@ void	check_extension_map(char *file)
 		extension_err();
 	if (file[i - 3] != '.')
 		extension_err();
-	if ((i - 4 - 4) == 0)
-	{
-		ft_putstr_fd("Error\n  ->No file name!\n", 2);
-		exit (1);
-	}
 }
 
 void	read_map(t_data *data, int fd)

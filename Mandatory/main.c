@@ -6,19 +6,20 @@
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:18:27 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/10 00:11:18 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/11 01:11:52 by moelalj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void ft_close(void	*param)
+void	ft_close(void	*param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
 	mlx_close_window(data->mlx_ptr);
 }
+
 int	main(int ac, char **av)
 {
 	t_data	data;

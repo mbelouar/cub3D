@@ -26,7 +26,7 @@ void	init_c_array(t_data *data)
 
 void	check_c_c(t_data *data)
 {
-	data->dir.clr_c = ftt_split(data->dir.C[1], ',');
+	data->dir.clr_c = ftt_split(data->dir.c[1], ',');
 	valid_box_color_c(data);
 	check_consecutive_semicolon_c(data);
 	valid_color_c(data);
@@ -39,21 +39,21 @@ void	check_consecutive_semicolon_c(t_data *data)
 	int	j;
 
 	i = 0;
-	while (data->dir.C[1][i])
+	while (data->dir.c[1][i])
 	{
-		if (data->dir.C[1][i] == ',')
+		if (data->dir.c[1][i] == ',')
 		{
 			i++;
-			if (data->dir.C[1][i] == ',')
+			if (data->dir.c[1][i] == ',')
 				found_semicolon_err();
 		}
 		i++;
 	}
 	i = 0;
 	j = 0;
-	while (data->dir.C[1][i])
+	while (data->dir.c[1][i])
 	{
-		if (data->dir.C[1][i] == ',')
+		if (data->dir.c[1][i] == ',')
 			j++;
 		i++;
 	}
@@ -103,15 +103,4 @@ void	valid_color_c(t_data *data)
 		}
 		i++;
 	}
-}
-
-void	check_c_needs(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->dir.C[i])
-		i++;
-	if (i != 2)
-		print_err_needs_directions();
 }

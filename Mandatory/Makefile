@@ -17,21 +17,17 @@ GREEN = \033[1;32m
 YELLOW = \033[1;33m
 RESET = \033[0m
 
-
 NAME = cub3D
 
 IMLX = -I /Users/$(USER)/MLX42/include/MLX42
-#  GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
-# IMLX = -I /Users/mbelouar/MLX42/include/MLX42
-GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+#GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 
 MLX_FLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
 AR_MLX = /Users/$(USER)/MLX42/build/libmlx42.a
-
-
 
 CFLAGS = -Wall -Werror -Wextra
 

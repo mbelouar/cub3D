@@ -12,6 +12,17 @@
 
 #include "../../cub3d.h"
 
+void	check_c_needs(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->dir.c[i])
+		i++;
+	if (i != 2)
+		print_err_needs_directions();
+}
+
 void	print_err_directions(void)
 {
 	ft_putstr_fd("Eroor:\n  ->Found more/less direction in map", 2);

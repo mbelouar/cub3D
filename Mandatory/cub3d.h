@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 23:19:14 by mbelouar          #+#    #+#             */
-/*   Updated: 2023/12/09 22:54:35 by mbelouar         ###   ########.fr       */
+/*   Updated: 2023/12/11 01:11:30 by moelalj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <math.h>
-# define FOV_ANGLE	60 * (M_PI / 180)
+# define FOV_ANGLE	60
 # define SPEED_MOVE	1.50
 # define WIDTH		1800
 # define HEIGHT		900
@@ -48,7 +47,7 @@ typedef struct s_map {
 	int		map_size;
 	int		map_width;
 	int		map_height;
-	int		square_S;
+	int		square_s;
 	char	snew_dir;
 	int		snew_x;
 	int		snew_y;
@@ -57,68 +56,66 @@ typedef struct s_map {
 }				t_map;
 
 typedef struct s_ray {
-	float	rayAngle;
-	float	wallHit_x;
-	float	wallHit_y;
+	float	ray_angle;
+	float	wallhit_x;
+	float	wallhit_y;
 	float	distance;
-	int		wasHitVertical;
-	int		wall_Height;
-	int 	wall_topPixel;
-	int 	wall_bottomPixel;
+	int		hit_vertical;
+	int		wall_height;
+	int		wall_top;
+	int		wall_bottom;
 }				t_ray;
 
 typedef struct s_dda {
 	int		steps;
 	int		dx;
 	int		dy;
-	float	Xinc;
-	float	Yinc;
-	float	X;
-	float	Y;
+	float	x_inc;
+	float	y_inc;
+	float	x;
+	float	y;
 }				t_dda;
 
 typedef struct s_projection {
-	float	dist_projec;
-	float	projWall_height;
-	int		wall_Height;
-	int		wall_topPixel;
-	int		wall_bottomPixel;
+	int		wall_height;
+	int		wall_top;
+	int		wall_bottom;
 }				t_projection;
 
 typedef struct s_holder {
-	int				is_FaceUp;
-	int				is_FaceDown;
-	int				is_FaceRight;
-	int				is_FaceLeft;
-	int				foundHorz_hit;
-	int				foundVert_hit;
-	float			horzHit_x;
-	float			horzHit_y;
-	float			vertHit_x;
-	float			vertHit_y;
+	int				is_faceup;
+	int				is_facedown;
+	int				is_faceright;
+	int				is_faceleft;
+	int				foundhorz_hit;
+	int				foundvert_hit;
+	float			horzhit_x;
+	float			horzhit_y;
+	float			verthit_x;
+	float			verthit_y;
 	float			x_inter;
 	float			y_inter;
 	float			x_step;
 	float			y_step;
-	float			HorzNext_x;
-	float			HorzNext_y;
-	float			VertNext_x;
-	float			VertNext_y;
+	float			horznext_x;
+	float			horznext_y;
+	float			vertnext_x;
+	float			vertnext_y;
 	float			x_text;
 	float			y_text;
 	mlx_texture_t	*texture;
 }				t_holder;
 
 typedef struct s_dir {
-	char	**NO;
-	char	**SO;
-	char	**WE;
-	char	**EA;
-	char	**F;
+	char	**no;
+	char	**so;
+	char	**we;
+	char	**ea;
+	char	**f;
+	char	**c;
 	char	**clr_f;
 	int		floor[3];
 	int		ceiling[3];
-	char	**C;
 	char	**clr_c;
 }				t_dir;
 
@@ -126,6 +123,7 @@ typedef struct s_player {
 	float	_x;
 	float	_y;
 	float	p_size;
+	float	fov;
 }				t_player;
 
 typedef struct s_data {
@@ -144,8 +142,8 @@ typedef struct s_data {
 	float			x_tmp;
 	float			y_tmp;
 	int				c;
-	int 			mouse_x;
-	int 			mouse_y;
+	int				mouse_x;
+	int				mouse_y;
 	int				tmp;
 }				t_data;
 
@@ -153,18 +151,15 @@ typedef struct s_data {
 
 // initialize functions
 void	ft_init_data(t_data *data);
-void	ft_init_image(t_data *data);
 void	ft_init_player(t_data *data);
 int		init_player_direction(t_data *data);
 
 // error functions
 void	err_msg(char *str, int fd);
 void	print_and_exit_param(void);
-void	open_fd_check(int *fd, char *file);
 
 // mlx hooks
 void	handle_moves(void *param);
-int		esc_handle(int keycode, t_data *data);
 
 // colors
 int		generate_color(int r, int g, int b, int a);
@@ -177,7 +172,7 @@ void	ft_move_right(t_data *data);
 void	ft_move_left(t_data *data);
 
 // drawing
-void	drawing(t_data * data);
+void	drawing(t_data *data);
 
 // raycast
 void	cast_all_rays(t_data *data);
@@ -194,9 +189,9 @@ void	draw_floor(t_data *data);
 void	draw_roof(t_data *data);
 
 // textures
-void	draw_texture(t_data *data, int i, int top, int bottom, int height);
+void	draw_texture(t_data *data, int i);
 void	find_x_texture(t_data *data, int i, mlx_texture_t *texture);
-void	find_y_texture(t_data *data, int top, int height, int start);
+void	find_y_texture(t_data *data, int start);
 void	setup_texture(t_data *data, int i);
 
 // <========== PARSING ==========>
@@ -217,7 +212,7 @@ int		check(char ch, char const *set);
 
 // directions
 void	check_many_directions(t_data *data);
-void	print_err_directions();
+void	print_err_directions(void);
 void	init_directions(t_data *data);
 void	ft_no(t_data *data);
 void	ft_so(t_data *data);
@@ -232,7 +227,7 @@ void	check_we_needs(t_data *data);
 void	check_ea_needs(t_data *data);
 void	check_f_needs(t_data *data);
 void	check_c_needs(t_data *data);
-void	print_err_needs_directions();
+void	print_err_needs_directions(void);
 void	check_colors(t_data *data);
 void	check_f_c(t_data *data);
 void	check_consecutive_semicolon_f(t_data *data);
@@ -272,8 +267,9 @@ void	err_empty_map(void);
 void	found_semicolon_err(void);
 void	err_semicolons(void);
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1337
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+# endif
 
 // gnl
 char	*get_next_line(int fd);
@@ -290,8 +286,6 @@ size_t	ftt_strlen(const char *s);
 // free
 void	ft_str_free(char **s);
 int		__strchrr(char *line, char c);
-void ft_close(void	*param);
+void	ft_close(void	*param);
 
 #endif
-#endif
-

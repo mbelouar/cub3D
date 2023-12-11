@@ -21,9 +21,9 @@ RESET = \033[0m
 NAME = cub3D_bonus
 
 IMLX = -I /Users/$(USER)/MLX42/include/MLX42
-#  GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+  GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
-GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
+#GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
 
 CC = cc
 
@@ -59,11 +59,11 @@ SRC =		main_bonus.c\
 			elalj/map/errors_map.c\
 			mbelouar/src_utils/ft_errors.c\
 			mbelouar/src_utils/init.c\
-			mbelouar/src_hook/mlx_hooks.c\
-			mbelouar/src_hook/moves.c\
 			mbelouar/src_drawing/colors.c\
 			mbelouar/src_drawing/draw.c\
 			mbelouar/src_drawing/draw_utils.c\
+			mbelouar/src_hook/mlx_hooks.c\
+			mbelouar/src_hook/moves.c\
 			mbelouar/src_raycasting/raycast.c\
 			mbelouar/src_raycasting/horz_inter.c\
 			mbelouar/src_raycasting/vert_inter.c\

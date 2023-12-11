@@ -22,7 +22,7 @@ void	ft_f(t_data *data)
 	{
 		str = ftt_strtrim(data->map_info.str[i], "\t ");
 		if (!ft_strncmp(str, "F", 1))
-			data->dir.F = ftt_split(str, ' ');
+			data->dir.f = ftt_split(str, ' ');
 		free(str);
 		i++;
 	}
@@ -38,7 +38,7 @@ void	ft_c(t_data *data)
 	{
 		str = ftt_strtrim(data->map_info.str[i], "\t ");
 		if (!ft_strncmp(str, "C", 1))
-			data->dir.C = ftt_split(str, ' ');
+			data->dir.c = ftt_split(str, ' ');
 		free(str);
 		i++;
 	}
