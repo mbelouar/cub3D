@@ -19,7 +19,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-# include <stdio.h>
 # define FOV_ANGLE	60
 # define SPEED_MOVE	1.50
 # define WIDTH		1800

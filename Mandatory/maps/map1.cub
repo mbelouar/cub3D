@@ -1,10 +1,12 @@
-NO ./textures/ronaldo.png
-SO ./textures/belly_cele.png
 WE ./textures/vini_belly.png
+SO ./textures/belly_cele.png
 EA ./textures/galacticos.png
+NO ./textures/ronaldo.png
 
-F 73,94,87
 C 244,206,20
+F 73,94,87
 111
+
+
 1N1
 111

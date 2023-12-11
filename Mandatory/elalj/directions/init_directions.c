@@ -31,6 +31,11 @@ void	ft_no(t_data *data)
 	while (i < 6)
 	{
 		str = ftt_strtrim(data->map_info.str[i], "\t ");
+		if (!ft_strncmp(str, "1", 1) || !ft_strncmp(str, "0", 1))
+		{
+			ft_putstr_fd("Error\n", 2);
+			exit (1);
+		}
 		if (!ft_strncmp(str, "NO", 2))
 			data->dir.no = ftt_split(str, ' ');
 		free(str);
