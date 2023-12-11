@@ -19,6 +19,8 @@ RESET = \033[0m
 
 NAME = cub3D
 
+B_NAME = cub3D_bonus
+
 IMLX = -I /Users/$(USER)/MLX42/include/MLX42
 GLFW = -I include -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 #GLFW = -I include -lglfw -L"/goinfre/$(USER)/homebrew/opt/glfw/lib/"
@@ -33,40 +35,76 @@ CFLAGS = -Wall -Werror -Wextra
 
 RM = rm -f
 
-INCLUDE = -L libft -lft
+INCLUDE = -L Mandatory/libft -lft
 
-SRC =		main.c\
-			elalj/errors.c\
-			elalj/read_map.c\
-			elalj/parsing.c\
-			elalj/ft_split.c\
-			elalj/ftt_strtrim.c\
-			elalj/gnl/get_next_line.c\
-			elalj/gnl/get_next_line_utils.c\
-			elalj/directions/check_directions.c\
-			elalj/directions/init_directions.c\
-			elalj/directions/err_directions.c\
-			elalj/directions/check_needs_directions.c\
-			elalj/directions/check_color_f.c\
-			elalj/directions/check_color_c.c\
-			elalj/map/check_map.c\
-			elalj/map/check_map_2.c\
-			elalj/map/map_casses.c\
-			elalj/map/errors_map.c\
-			mbelouar/src_utils/ft_errors.c\
-			mbelouar/src_utils/init.c\
-			mbelouar/src_drawing/colors.c\
-			mbelouar/src_drawing/draw.c\
-			mbelouar/src_hook/mlx_hooks.c\
-			mbelouar/src_hook/moves.c\
-			mbelouar/src_raycasting/raycast.c\
-			mbelouar/src_raycasting/horz_inter.c\
-			mbelouar/src_raycasting/vert_inter.c\
-			mbelouar/src_textures/projection.c\
-			mbelouar/src_textures/textures_coord.c\
-			mbelouar/src_textures/roof_floor.c\
+B_INCLUDE = -L Bonus/libft -lft
+
+SRC =		Mandatory/main.c\
+			Mandatory/elalj/errors.c\
+			Mandatory/elalj/read_map.c\
+			Mandatory/elalj/parsing.c\
+			Mandatory/elalj/ft_split.c\
+			Mandatory/elalj/ftt_strtrim.c\
+			Mandatory/elalj/gnl/get_next_line.c\
+			Mandatory/elalj/gnl/get_next_line_utils.c\
+			Mandatory/elalj/directions/check_directions.c\
+			Mandatory/elalj/directions/init_directions.c\
+			Mandatory/elalj/directions/err_directions.c\
+			Mandatory/elalj/directions/check_needs_directions.c\
+			Mandatory/elalj/directions/check_color_f.c\
+			Mandatory/elalj/directions/check_color_c.c\
+			Mandatory/elalj/map/check_map.c\
+			Mandatory/elalj/map/check_map_2.c\
+			Mandatory/elalj/map/map_casses.c\
+			Mandatory/elalj/map/errors_map.c\
+			Mandatory/mbelouar/src_utils/ft_errors.c\
+			Mandatory/mbelouar/src_utils/init.c\
+			Mandatory/mbelouar/src_drawing/colors.c\
+			Mandatory/mbelouar/src_drawing/draw.c\
+			Mandatory/mbelouar/src_hook/mlx_hooks.c\
+			Mandatory/mbelouar/src_hook/moves.c\
+			Mandatory/mbelouar/src_raycasting/raycast.c\
+			Mandatory/mbelouar/src_raycasting/horz_inter.c\
+			Mandatory/mbelouar/src_raycasting/vert_inter.c\
+			Mandatory/mbelouar/src_textures/projection.c\
+			Mandatory/mbelouar/src_textures/textures_coord.c\
+			Mandatory/mbelouar/src_textures/roof_floor.c\
+
+B_SRC =	Bonus/main_bonus.c\
+			Bonus/elalj/errors.c\
+			Bonus/elalj/read_map.c\
+			Bonus/elalj/parsing.c\
+			Bonus/elalj/ft_split.c\
+			Bonus/elalj/ftt_strtrim.c\
+			Bonus/elalj/gnl/get_next_line.c\
+			Bonus/elalj/gnl/get_next_line_utils.c\
+			Bonus/elalj/directions/check_directions.c\
+			Bonus/elalj/directions/init_directions.c\
+			Bonus/elalj/directions/err_directions.c\
+			Bonus/elalj/directions/check_needs_directions.c\
+			Bonus/elalj/directions/check_color_f.c\
+			Bonus/elalj/directions/check_color_c.c\
+			Bonus/elalj/map/check_map.c\
+			Bonus/elalj/map/check_map_2.c\
+			Bonus/elalj/map/map_casses.c\
+			Bonus/elalj/map/errors_map.c\
+			Bonus/mbelouar/src_utils/ft_errors.c\
+			Bonus/mbelouar/src_utils/init.c\
+			Bonus/mbelouar/src_drawing/colors.c\
+			Bonus/mbelouar/src_drawing/draw.c\
+			Bonus/mbelouar/src_drawing/draw_utils.c\
+			Bonus/mbelouar/src_hook/mlx_hooks.c\
+			Bonus/mbelouar/src_hook/moves.c\
+			Bonus/mbelouar/src_raycasting/raycast.c\
+			Bonus/mbelouar/src_raycasting/horz_inter.c\
+			Bonus/mbelouar/src_raycasting/vert_inter.c\
+			Bonus/mbelouar/src_textures/projection.c\
+			Bonus/mbelouar/src_textures/textures_coord.c\
+			Bonus/mbelouar/src_textures/roof_floor.c\
 
 OBJS := $(SRC:.c=.o)
+
+B_OBJS := $(B_SRC:.c=.o)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< $(IMLX) -o $@
@@ -76,24 +114,36 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(YELLOW)Compiling $(NAME)...⏳$(RESET)"
 	@echo "$(YELLOW)Linking...⏳$(RESET)"
-	@make -s -C libft
+	@make -s -C Mandatory/libft
 	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(AR_MLX) $(IMLX) $(GLFW) -o $(NAME) $(OBJS) $(INCLUDE)
 	@echo "$(GREEN)Compilation completed ✅$(RESET)"
 	@echo "$(GREEN) $$CUB3D $(END)"
 
+bonus: $(B_NAME)
+
+$(B_NAME): $(B_OBJS)
+	@echo "$(YELLOW)Compiling $(B_NAME)...⏳$(RESET)"
+	@echo "$(YELLOW)Linking...⏳$(RESET)"
+	@make -s -C Bonus/libft
+	@$(CC) $(CFLAGS) $(MLX_FLAGS) $(AR_MLX) $(IMLX) $(GLFW) -o $(B_NAME) $(B_OBJS) $(B_INCLUDE)
+	@echo "$(GREEN)Compilation completed ✅$(RESET)"
+	@echo "$(GREEN) $$CUB3D $(END)"
+
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(B_OBJS)
 	@echo "$(RED)Deleting obj_files$(RESET)"
-	@make clean -s -C libft
+	@make clean -s -C Mandatory/libft
+	@make clean -s -C Bonus/libft
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo "$(RED)Deleting obj_files + ./$(NAME)$(RESET)"
-	@make fclean -s -C libft
+	@$(RM) $(NAME) $(B_NAME)
+	@echo "$(RED)Deleting obj_files + ./exec_file$(RESET)"
+	@make fclean -s -C Mandatory/libft
+	@make fclean -s -C Bonus/libft
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
 define CUB3D
 
