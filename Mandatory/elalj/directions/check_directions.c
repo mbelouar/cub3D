@@ -51,7 +51,7 @@ void	check_many_directions(t_data *data)
 
 	data->c = 0;
 	i = 0;
-	while (data->map_info.str[i])
+	while (i < 6)
 	{
 		str = ftt_strtrim(data->map_info.str[i], "\t ");
 		if (!ft_strncmp(str, "NO", 2))

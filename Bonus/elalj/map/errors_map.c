@@ -32,7 +32,7 @@ void	around_spaces_err(void)
 
 void	double_directions_err(void)
 {
-	ft_putstr_fd("Error:\n  ->Found float directions><\n", 2);
+	ft_putstr_fd("Error:\n  ->Found double directions><\n", 2);
 	exit (1);
 }
 

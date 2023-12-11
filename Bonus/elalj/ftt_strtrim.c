@@ -69,7 +69,5 @@ char	*ftt_strtrim(char const *s1, char const *set)
 	start = check_start(s1, set);
 	end = check_end(s1, set);
 	len = end - start;
-	if (len <= 0)
-		return ("\0");
 	return (ft_substr(s1, start, len + 1));
 }
