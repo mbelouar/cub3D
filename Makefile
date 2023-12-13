@@ -6,7 +6,7 @@
 #    By: mbelouar <mbelouar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/06 23:15:39 by mbelouar          #+#    #+#              #
-#    Updated: 2023/12/11 20:48:21 by mbelouar         ###   ########.fr        #
+#    Updated: 2023/12/13 21:48:38 by mbelouar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,7 @@ B_SRC =	Bonus/main_bonus.c\
 			Bonus/mbelouar/src_textures/projection.c\
 			Bonus/mbelouar/src_textures/textures_coord.c\
 			Bonus/mbelouar/src_textures/roof_floor.c\
+			Bonus/mbelouar/src_rays/draw_rays.c\
 
 OBJS := $(SRC:.c=.o)
 
