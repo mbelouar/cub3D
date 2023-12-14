@@ -35,7 +35,8 @@ There's a famous soundtrack in the background of the game.
 ### Collaborators
 This project must be done by two students so, I would welcome this article by thanking my peer [Mohamed Elalj](https://github.com/elaljo) since he was my collaborator throughout this project
 
-#### Raycasting
+## Raycasting
+
 #### Emitter
 Raycasting begins with an emitter, a pivotal point in space that serves as the starting location for the rays. In a 2D scenario, this emitter could be a point on the screen, while in 3D, it might represent the position of a camera or any other designated point in space.
 
