@@ -55,10 +55,42 @@ Beyond rendering, raycasting excels in collision detection for games and simulat
 
 ## Installation
 
-1. Clone the repository:
+Firstly, try to clone the game using the git command:
 
-   ```bash
-   git clone https://github.com/your-username/Cub3D.git
+```sh
+git clone https://github.com/mbelouar/Cub3D.git
+```
+---
+Then `cd` to the folder `Cub3D` and cmake the mlx library (it comes included with the repository)
+
+```sh
+cd Cub3d
+cd mlx
+cmake -B build
+cmake --build build -j4
+cd ../
+```
+---
+Once you have all of these requirements done, start making the game by using each of these two commands according to what you want (mandatory / bonus part)
+
+```sh
+# Making mandatory part
+make
+# Making bonus part
+make bonus
+```
+---
+After making the game just type
+
+```sh
+# - ./cub3d Mandatory/maps/map,cub -> for mandatory part
+# - ./cub3d_bonus Bonus/maps/map.cub -> for bonus part
+
+```
+---
+> Enjoy playing and discovering raycasting
+---
+
 
 
 
