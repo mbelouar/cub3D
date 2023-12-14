@@ -104,7 +104,13 @@ While playing, you can use the following keys:
 
 ![Cub3D Demo](https://i.postimg.cc/MpWDZQms/Screen-Shot-2023-12-13-at-8-23-55-PM.png)
 
+- # **Contact Me**
 
+* [Twitter][_1]
+* [Instagram][_2]
+
+[_1]: https://twitter.com/MBelouarraq
+[_2]: https://www.instagram.com/med.belouarraq
 
 
 
