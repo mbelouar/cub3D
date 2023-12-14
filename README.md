@@ -83,8 +83,8 @@ make bonus
 After making the game just type
 
 ```sh
-# - ./cub3d Mandatory/maps/map,cub -> for mandatory part
-# - ./cub3d_bonus Bonus/maps/map.cub -> for bonus part
+ - ./cub3d Mandatory/maps/map,cub -> for mandatory part
+ - ./cub3d_bonus Bonus/maps/map.cub -> for bonus part
 
 ```
 ---
