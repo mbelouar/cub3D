@@ -11,7 +11,6 @@ This project is inspired by the world-famous Wolfenstein 3D game, which was the 
 - [Raycasting](#raycasting)
 - [Installation](#installation)
 - [Controls](#controls)
-- [License](#license)
 
 ## Demo
 
