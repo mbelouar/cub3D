@@ -17,6 +17,7 @@ This project is inspired by the world-famous Wolfenstein 3D game, which was the 
 
 ![Cub3D Demo](https://i.postimg.cc/fThmLCyZ/Screen-Shot-2023-12-13-at-9-52-48-PM.png)
 ![Cub3D Demo](https://i.postimg.cc/zvV1nK0k/Screen-Shot-2023-12-14-at-4-52-36-PM.png)
+![Cub3D Demo](https://i.postimg.cc/fWjHKJ6c/Screen-Shot-2023-12-14-at-4-53-57-PM.png)
 
 Showcase your project with a GIF or screenshot to give users a visual understanding of what your project does.
 
