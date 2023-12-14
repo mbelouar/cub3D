@@ -10,9 +10,7 @@ This project is inspired by the world-famous Wolfenstein 3D game, which was the 
 - [Collaborators](#collaborators)
 - [Raycasting](#raycasting)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Controls](#controls)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Demo
@@ -90,6 +88,10 @@ After making the game just type
 ---
 > Enjoy playing and discovering raycasting
 ---
+
+## Controls
+
+![Cub3D Demo](https://i.postimg.cc/MpWDZQms/Screen-Shot-2023-12-13-at-8-23-55-PM.png)
 
 
 
