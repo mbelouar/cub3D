@@ -91,6 +91,17 @@ After making the game just type
 
 ## Controls
 
+```sh
+While playing, you can use the following keys:
+
+    W: Move forward
+    S: Move backward
+    A: Turn left
+    D: Turn right
+    ESC: Close the game
+    Arrow keys: turn right and left based on the arrow key pressed (right key or left key)
+```
+
 ![Cub3D Demo](https://i.postimg.cc/MpWDZQms/Screen-Shot-2023-12-13-at-8-23-55-PM.png)
 
 
