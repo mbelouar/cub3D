@@ -8,6 +8,7 @@ This project is inspired by the world-famous Wolfenstein 3D game, which was the 
 - [Demo](#demo)
 - [Features](#features)
 - [Collaborators](#collaborators)
+- [Raycasting](#raycasting)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Controls](#controls)
@@ -33,6 +34,24 @@ There's a famous soundtrack in the background of the game.
 
 ### Collaborators
 This project must be done by two students so, I would welcome this article by thanking my peer [Mohamed Elalj](https://github.com/elaljo) since he was my collaborator throughout this project
+
+## Raycasting
+## Emitter
+Raycasting begins with an emitter, a pivotal point in space that serves as the starting location for the rays. In a 2D scenario, this emitter could be a point on the screen, while in 3D, it might represent the position of a camera or any other designated point in space.
+
+## Rays
+Rays are projected from the emitter in diverse directions, representing paths of light or vision. In 2D raycasting, these rays typically form a grid pattern across the screen, while in 3D, they can be cast in various patterns depending on the application.
+
+## Intersections
+As rays traverse the virtual environment, they may intersect with objects or surfaces. The raycasting algorithm calculates essential properties at these intersections, including the distance to the object, the surface normal, and material properties.
+
+## Rendering
+Raycasting shines in rendering by determining the color and intensity of light reaching the camera or observer at each pixel. Tracing rays from the camera through pixel positions, intersections with objects guide the determination of pixel color and shading based on object properties and the lighting model.
+
+## Collision Detection
+Beyond rendering, raycasting excels in collision detection for games and simulations. By projecting rays from a character's position in the direction of movement, it efficiently identifies potential collisions with objects in its path.
+
+Raycasting proves computationally efficient for specific applications
 
 ## Installation
 
